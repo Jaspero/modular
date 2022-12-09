@@ -1,0 +1,21 @@
+.container {
+  height: calc(100vh - 64px);
+
+  overflow: hidden;
+}
+
+#editor {
+  height: 60%;
+}
+
+#value-editor {
+  height: 40%;
+
+  border-top: 2px solid white;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}

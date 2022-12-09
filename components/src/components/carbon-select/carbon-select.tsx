@@ -55,7 +55,7 @@ export class CarbonSelect {
         <bx-select helper-text={this.options?.hint} label-text={this.options?.label}
                    placeholder={this.options?.placeholder} disabled={this.options?.disabled} value={this.value}
                    onInput={(event) => this.handleChange(event)}>
-          {this.options?.items.map(item => <bx-select-item value={item.value}>{item.label}</bx-select-item>)}
+          {[...(this.options?.items || [])].map(item => <bx-select-item value={item.value}>{item.label}</bx-select-item>)}
         </bx-select>
       </Host>
     );

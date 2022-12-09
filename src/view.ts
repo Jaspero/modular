@@ -28,7 +28,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     instance: ModularInstance
   }) {
     const {parentElement, instance} = options;
-    const elements: HTMLElement[] = [];
+    // const elements: HTMLElement[] = [];
 
     const container = document.createElement('div');
     container.style.display = 'flex';
@@ -44,21 +44,22 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       for (const view of row.items) {
         const element = document.createElement(`modular-${view.component as string}`);
 
-        if (typeof view.columns === 'number') {
+        if (!view.columns) {
+          element.classList.add(`modular-util-col-12`);
+        } else if (typeof view.columns === 'number') {
           element.classList.add(`modular-util-col-${view.columns}`);
-          continue;
-        }
+        } else {
+          if (view.columns?.desktop) {
+            element.classList.add(`modular-util-col-${view.columns.desktop}`);
+          }
 
-        if (view.columns?.desktop) {
-          element.classList.add(`modular-util-col-${view.columns.desktop}`);
-        }
+          if (view.columns?.tablet) {
+            element.classList.add(`modular-util-col-m-${view.columns.tablet}`);
+          }
 
-        if (view.columns?.tablet) {
-          element.classList.add(`modular-util-col-m-${view.columns.tablet}`);
-        }
-
-        if (view.columns?.mobile) {
-          element.classList.add(`modular-util-col-s-${view.columns.mobile}`);
+          if (view.columns?.mobile) {
+            element.classList.add(`modular-util-col-s-${view.columns.mobile}`);
+          }
         }
 
         element.style.padding = '0.5rem';
@@ -68,7 +69,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         (element as any)?.setOptions?.(view.options);
         (element as any)?.setValue?.(get(instance.value, view.field));
         rowContainer.appendChild(element);
-        elements.push(element);
+
+
       }
 
       container.appendChild(rowContainer);
@@ -92,9 +94,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         return value;
       },
       destroy: () => {
-        elements.forEach(element => {
-          element.remove();
-        });
+        container.remove();
       }
     }
   }

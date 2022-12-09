@@ -1,0 +1,15 @@
+<div class="grid container" style="max-width: unset;">
+  <div class="col-6" style="padding: 0;">
+    <div #editor id="editor">
+    </div>
+    <div #valueEditor id="value-editor">
+    </div>
+  </div>
+  <div class="col-6" style="padding: 0; height: 100%; overflow: scroll;">
+    <div class="flex jc-between p-a-s p-b-0">
+      <button mat-raised-button color="primary" [jpLoadClick]="saveSchema()">Save Schema</button>
+      <button mat-raised-button color="accent" [jpLoadClick]="saveDocument()">Save Document</button>
+    </div>
+    <div #render></div>
+  </div>
+</div>

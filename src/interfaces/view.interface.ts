@@ -1,13 +1,15 @@
-import {CarbonInputOptions} from '@jaspero/modular-components';
+import {CarbonInputOptions, CarbonSelectOptions, CarbonChartOptions} from '@jaspero/modular-components';
 
 export enum Components {
   CarbonInput = 'carbon-input',
-  CarbonSelect = 'carbon-select'
+  CarbonSelect = 'carbon-select',
+  CarbonChart = 'carbon-chart',
 }
 
 export interface ComponentOptions {
   [Components.CarbonInput]: CarbonInputOptions;
-  [Components.CarbonSelect]: any;
+  [Components.CarbonSelect]: CarbonSelectOptions;
+  [Components.CarbonChart]: CarbonChartOptions;
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
