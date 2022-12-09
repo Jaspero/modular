@@ -10,9 +10,9 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/components/components.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+  "author": {
+    "name": "Jaspero Ltd",
+    "email": "info@jaspero.co"
   },
   "files": [
     "dist/",

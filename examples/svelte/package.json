@@ -9,6 +9,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
+  "author": {
+    "name": "Jaspero Ltd",
+    "email": "info@jaspero.co"
+  },
   "devDependencies": {
     "@jaspero/modular": "file:../..",
     "@sveltejs/adapter-auto": "next",

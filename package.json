@@ -15,7 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/Jaspero/modular.git"
   },
-  "author": "",
+  "author": {
+    "name": "Jaspero Ltd",
+    "email": "info@jaspero.co"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Jaspero/modular/issues"
