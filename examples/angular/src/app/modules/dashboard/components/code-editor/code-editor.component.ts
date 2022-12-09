@@ -356,7 +356,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     return () => {
       return of(true).pipe(
         switchMap(() => {
-          const value = this.control?.value?.value || {};
+          const value = JSON.parse(this.control?.value?.value || '{}');
           console.log('Sending to /api/document', value);
           return this.http.post('http://localhost:3000/api/document', value);
         }),
@@ -380,9 +380,15 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
       return of(true).pipe(
         switchMap(() => {
           const value = {
-            ...this.control?.value || {}
+            ...(JSON.parse(this.control?.value || '{}'))
           };
+
+          if (typeof value.value === 'string') {
+            value.value = JSON.parse(value.value);
+          }
+
           delete value.value;
+
           console.log('Sending to /api/collection', value);
           return this.http.post('http://localhost:3000/api/collection', value);
         }),
