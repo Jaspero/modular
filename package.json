@@ -1,0 +1,36 @@
+{
+  "name": "@jaspero/modular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "rollup --watch -c rollup.config.js",
+    "dev:examples:svelte": "npm run dev --prefix examples/svelte",
+    "dev:components": "npm run start --prefix components",
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspero/modular.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jaspero/modular/issues"
+  },
+  "homepage": "https://github.com/Jaspero/modular#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-typescript": "10.0.1",
+    "rollup": "3.5.1",
+    "rollup-plugin-dts": "5.0.0",
+    "tslib": "2.4.1",
+    "typescript": "4.9.3"
+  },
+  "dependencies": {
+    "ajv": "8.11.2",
+    "@jaspero/modular-components": "file:./components"
+  }
+}
