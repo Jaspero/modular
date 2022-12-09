@@ -1,18 +1,12 @@
 import {JSONSchema} from './interfaces/json-schema.interface';
-import Ajv from 'ajv';
 import {ModularInstance} from './instance';
-// const {validate} = require('jsonschema');
-// var validate = require('jsonschema').validate;
 
 export class ModularSchema {
   private _schema: JSONSchema;
 
-  private _ajv: Ajv;
-
   constructor(
     schema: JSONSchema
   ) {
-    this._ajv = new Ajv();
     this._schema = schema;
   }
 
@@ -39,7 +33,6 @@ export class ModularSchema {
     }, {
       properties: {}
     });
-    console.log(schema);
 
     return new ModularSchema(schema);
   }

@@ -21,7 +21,7 @@ export class CarbonInput {
 
   @State() options: CarbonInputOptions = {};
 
-  @Prop() value: string;
+  @Prop() value: string = this.options?.value;
 
   @Event({
     eventName: 'value',
@@ -49,7 +49,7 @@ export class CarbonInput {
     return (
       <Host>
         <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.options.value} onInput={(event) => this.handleChange(event)}>
+                  value={this.value} onInput={(event) => this.handleChange(event)}>
           {this.options?.label && <span slot="label-text">{this.options.label}</span>}
           {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
         </bx-input>

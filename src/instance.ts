@@ -37,7 +37,10 @@ export class ModularInstance {
 
   public valid() {
     const validate = this._ajv.compile(this._schema.schema);
-    // console.log(valid, validate.errors);
+    /**
+     * TODO:
+     * Fetch error list using validate.errors
+     */
     return validate(this._value);
   }
 }

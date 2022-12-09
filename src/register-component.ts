@@ -5,7 +5,6 @@ export function registerComponent(name: string, component: CustomElementConstruc
     };
   }
 
-  // customElements.
   if (!customElements.get(name)) {
     customElements.define(`modular-${name}`, component);
 

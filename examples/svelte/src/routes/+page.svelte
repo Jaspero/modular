@@ -28,7 +28,7 @@
 
     const instance = schema.createInstance({
       name: 'John',
-      gender: 30
+      gender: 'female'
     });
 
     const view = new ModularView({
@@ -55,7 +55,7 @@
                 tablet: 12
               },
               options: {
-                label: 'Age',
+                label: 'Gender',
                 items: [
                   {
                     label: 'Male',

@@ -25,7 +25,7 @@ export class CarbonSelect {
     items: []
   };
 
-  @Prop() value: string;
+  @Prop() value: string = this.options.value;
 
   @Event({
     eventName: 'value',
@@ -53,7 +53,7 @@ export class CarbonSelect {
     return (
       <Host>
         <bx-select helper-text={this.options?.hint} label-text={this.options?.label}
-                   placeholder={this.options?.placeholder} disabled={this.options?.disabled} value={this.options.value}
+                   placeholder={this.options?.placeholder} disabled={this.options?.disabled} value={this.value}
                    onInput={(event) => this.handleChange(event)}>
           {this.options?.items.map(item => <bx-select-item value={item.value}>{item.label}</bx-select-item>)}
         </bx-select>

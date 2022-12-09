@@ -30,7 +30,8 @@
     "typescript": "4.9.3"
   },
   "dependencies": {
+    "@jaspero/modular-components": "file:./components",
     "ajv": "8.11.2",
-    "@jaspero/modular-components": "file:./components"
+    "jsonpointer": "^5.0.1"
   }
 }

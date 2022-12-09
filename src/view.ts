@@ -1,6 +1,7 @@
 import {ModularInstance} from './instance';
 import {ComponentOptions, View} from './interfaces/view.interface';
 import {ModularSchema} from './schema';
+import {get} from './utils/json-pointer.util';
 
 interface ViewRow<Options, Fields extends keyof Options> {
   align?: 'start' | 'center' | 'end';
@@ -27,14 +28,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     instance: ModularInstance
   }) {
     const {parentElement, instance} = options;
-    // const value = instance.value;
-    // const views = this._views;
-    // views.forEach(view => {
-    //   const element = document.createElement(view.component);
-    //   element.setAttribute('field', view.field);
-    //   element.setAttribute('value', value[view.field]);
-    //   parentElement.appendChild(element);
-    // });
     const elements: HTMLElement[] = [];
 
     const container = document.createElement('div');
@@ -73,7 +66,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           console.log('Value', value);
         });
         (element as any)?.setOptions?.(view.options);
-        (element as any)?.setValue?.(instance.value[view.field]);
+        (element as any)?.setValue?.(get(instance.value, view.field));
         rowContainer.appendChild(element);
         elements.push(element);
       }
@@ -99,7 +92,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         return value;
       },
       destroy: () => {
-        // todo: remove event listeners
         elements.forEach(element => {
           element.remove();
         });
