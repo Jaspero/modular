@@ -72,7 +72,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
                     $ref: 'json-schema'
                   },
                   rules: {
-                    $ref: 'rules'
+                    $ref: 'rules',
                   },
                   views: {
                     type: 'array'
@@ -82,50 +82,365 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
               }
             },
             {
+              uri: 'database-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['database']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'createdocument',
+                          'updatedocument',
+                          'deletedocument',
+                          'createdocuments',
+                          'updatedocuments',
+                          'deletedocuments',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          destination: {
+                            type: 'string',
+                            enum: ['orders', 'invoices', 'users']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'email-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['email']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'sendemail'
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          message: {
+                            type: 'string',
+                          },
+                          to: {
+                            type: 'string'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'storage-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['storage']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'createfile',
+                          'updatefile',
+                          'deletefile',
+                          'createfolder',
+                          'updatefolder',
+                          'deletefolder',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          choose_file: {
+                            type: 'string',
+                            enum: ['file1', 'file2', 'file3']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'transcription-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['transcription']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'transcribe',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          type: {
+                            enum: ['text to speech', 'speech to text']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'user-manager-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['user-manager']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'createuser',
+                          'updateuser',
+                          'deleteuser',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          choose_user: {
+                            type: 'string',
+                            enum: ['user1', 'user2', 'user3']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'push-notifications-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['push-notifications']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'sendpushnotification',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          to: {
+                            type: 'string',
+                            enum: ['all', 'selected']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'messaging-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['messaging']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'sendmessage',
+                          'createconversation',
+                          'deleteconversation',
+                          'addprincipal',
+                          'removeprincipal',
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          with: {
+                            type: 'string',
+                            enum: ['user1', 'user2', 'user3']
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              uri: 'payments-service',
+              schema: {
+                properties: {
+                  service: {
+                    type: 'string',
+                    enum: ['payments']
+                  },
+                  function: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'string',
+                        enum: [
+                          'charge', 'payout'
+                        ]
+                      },
+                      context: {
+                        type: 'object',
+                        properties: {
+                          charge: {
+                            type: 'object',
+                            properties: {
+                              who_to_charge: {
+                                type: 'string',
+                                enum: ['user1', 'user2', 'user3']
+                              },
+                              amount: {
+                                type: 'number',
+                                enum: [10, 100, 1000, 10000, 100000]
+                              },
+                              what_is_charged: {
+                                type: 'string',
+                                enum: ['storage', 'database', 'messaging', 'transcription']
+                              },
+                              how_is_charged: {
+                                type: 'string',
+                                enum: ['one-time', 'recurring']
+                              }
+                            }
+                          },
+                          payout: {
+                            type: 'object',
+                            properties: {
+                              who_to_payout: {
+                                type: 'string',
+                                enum: ['user1', 'user2', 'user3']
+                              },
+                              amount: {
+                                type: 'number',
+                                enum: [10, 100, 1000, 10000, 100000]
+                              },
+                              how_is_paid: {
+                                type: 'string',
+                                enum: ['one-time', 'in installments']
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
               uri: 'json-schema',
               schema: {
                 type: 'object',
-                patternProperties: {
-                  '^.*$': {
-                    anyOf: [
-                      {
-                        type: 'object',
-                        properties: {
-                          type: {
-                            enum: ['string', 'number', 'boolean', null]
-                          },
-                        },
-                      },
-                      {
-                        type: 'object',
-                        properties: {
-                          type: {
-                            enum: ['object']
-                          },
-                          properties: {
-                            $ref: 'json-schema'
+                properties: {
+                  properties: {
+                    type: 'object',
+                        patternProperties: {
+                          '.*': {
+                            anyOf: [
+                              {
+                                type: 'object',
+                                properties: {
+                                  type: {
+                                    enum: ['string', 'number', 'boolean', null]
+                                  },
+                                },
+                              },
+                              {
+                                type: 'object',
+                                properties: {
+                                  type: {
+                                    enum: ['object']
+                                  },
+                                  properties: {
+                                    $ref: 'json-schema'
+                                  }
+                                },
+                              },
+                              {
+                                type: 'object',
+                                properties: {
+                                  type: {
+                                    enum: ['array']
+                                  },
+                                  items: {
+                                    type: 'object',
+                                    properties: {
+                                      $ref: 'json-schema'
+                                    }
+                                  }
+
+                                },
+                              },
+
+                            ]
                           }
-                        },
-                      },
-                      {
-                        type: 'object',
-                        properties: {
-                          type: {
-                            enum: ['array']
-                          },
-                          items: {
-                            type: 'object',
-                            properties: {
-                              $ref: 'json-schema'
-                            }
-                          }
-                        },
-                      },
-                    ]
+                        }
+
                   }
-                },
-                'additionalProperties': false
-              }
+
+                }
+              },
+
+              // 'patternProperties': {
+              //   "*": {
+              //     type: 'string',
+              //     enum: ['string', 'number', 'boolean', null]
+              //   }
+              // }
+
             },
             {
               uri: 'rules',
@@ -134,52 +449,51 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
                   type: 'array',
                   items: {
                     type: 'object',
-                    properties: {
-                      id: {
-                        type: 'string',
-                      },
-                      function: {
-                        type: 'object',
-                        oneOf: [
-                          {
-                            properties: {
-                              id: {const: 'createdocument'},
-                              context: {
-                                type: 'object',
-                                properties: {
-                                  destination: {
-                                    type: 'string',
-                                    enum: ['orders', 'invoices', 'users']
-                                  }
-                                }
-                              }
-                            }
+                    anyOf: [
+                      {
+                        properties: {
+                          id: {
+                            type: 'string'
                           },
-                          {
-                            properties: {
-                              id: {const: 'deletedocument'},
-                              context: {
-                                type: 'object',
-                                properties: {
-                                  example: {
-                                    type: 'string',
-                                    enum: ['one', 'two']
-                                  }
-                                }
-                              }
-                            }
+                          description: {
+                            type: 'string'
+                          },
+                          trigger: {
+                            type: 'string',
+                            enum: ['onCreate', 'onUpdate', 'onDelete'],
+                            default: 'onCreate'
+                          },
+                          needs: {
+                            type: 'string'
                           }
-                        ]
+                        }
                       },
-
-                      instance: {
-                        type: 'string',
-                        enum: [
-                          'small', 'medium', 'large'
-                        ]
+                      {
+                        $ref: 'database-service'
                       },
-                    }
-                  }
+                      {
+                        $ref: 'email-service'
+                      },
+                      {
+                        $ref: 'storage-service'
+                      },
+                      {
+                        $ref: 'transcription-service'
+                      },
+                      {
+                        $ref: 'user-manager-service'
+                      },
+                      {
+                        $ref: 'push-notifications-service'
+                      },
+                      {
+                        $ref: 'messaging-service'
+                      },
+                      {
+                        $ref: 'payments-service'
+                      }
+                    ]
+                  },
                 }
             }
           ]
@@ -189,74 +503,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
         const valueEditor = monaco.editor.create(this.valueEditorElement.nativeElement, options);
         // editor.setValue(`{\n\t\n}`);
         // editor.setValue(`{\n\t"schema": {\n\t\t"name": {\n\t\t\t"type": "string"\n\t\t}\n\t}\n}`);
-        editor.setValue(`{
-    "id": "users",
-    "schema": {
-        "name": {
-            "type": "string"
-        },
-        "surname": {
-            "type": "string"
-        },
-        "sales": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "labels": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        }
-    },
-    "views": [
-        {
-            "align": "center",
-            "items": [
-                {
-                    "field": "/name",
-                    "component": "carbon-input",
-                    "options": {
-                        "label": "Name"
-                    }
-                },
-                {
-                    "field": "/surname",
-                    "component": "carbon-input",
-                    "options": {
-                        "label": "Surname",
-                        "hint": "This is a hint"
-                    }
-                },
-                {
-                    "field": "/sales",
-                    "component": "carbon-chart",
-                    "options": {
-                        "label": "Sales per month"
-                    }
-                }
-            ]
-        }
-    ],
-    "rules": [
-        {
-            "function": {
-                "id": "createdocument",
-                "context": {
-                    "destination": "invoices"
-                }
-            }
-        }
-    ]
-}
-`);
+        editor.setValue(`{\n\t\n}`);
         valueEditor.setValue(`{
     "name": "John",
     "surname": "Doe",
@@ -312,7 +559,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.controlSubscription = this.control.valueChanges.pipe(
       startWith(this.control.value),
-      tap((value) => {
+      tap((value: string) => {
 
         let json = null;
         try {
@@ -365,7 +612,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
             duration: 3000
           });
         }),
-        catchError((error) => {
+        catchError((error: { message: any; }) => {
           this.snack.open(error.message, 'Dismiss', {
             duration: 3000
           });
@@ -397,7 +644,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
             duration: 3000
           });
         }),
-        catchError((error) => {
+        catchError((error: { message: any; }) => {
           this.snack.open(error.message, 'Dismiss', {
             duration: 3000
           });
