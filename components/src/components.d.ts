@@ -6,9 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CarbonChartOptions } from "./components/carbon-chart/carbon-chart";
+import { CarbonCheckboxOptions } from "./components/carbon-checkbox/carbon-checkbox";
 import { CarbonDatePickerOptions } from "./components/carbon-datepicker/carbon-datepicker";
 import { CarbonInputOptions } from "./components/carbon-input/carbon-input";
+import { CarbonRadioOptions } from "./components/carbon-radio/carbon-radio";
 import { CarbonSelectOptions } from "./components/carbon-select/carbon-select";
+import { CarbonSliderOptions } from "./components/carbon-slider/carbon-slider";
+import { CarbonTableOptions } from "./components/carbon-table/carbon-table";
+import { CarbonTextareaOptions } from "./components/carbon-textarea/carbon-textarea";
+import { CarbonToggleOptions } from "./components/carbon-toggle/carbon-toggle";
 export namespace Components {
     interface CarbonChart {
         "setOptions": (options: CarbonChartOptions) => Promise<void>;
@@ -17,6 +23,12 @@ export namespace Components {
     data: number[],
     labels: string[]
   };
+    }
+    interface CarbonCheckbox {
+        "options": CarbonCheckboxOptions;
+        "setOptions": (options: CarbonCheckboxOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": boolean;
     }
     interface CarbonDatepicker {
         "setOptions": (options: CarbonDatePickerOptions) => Promise<void>;
@@ -29,15 +41,50 @@ export namespace Components {
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
+    interface CarbonRadio {
+        "setOptions": (options: CarbonRadioOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": string;
+    }
     interface CarbonSelect {
         "setOptions": (options: CarbonSelectOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
+    interface CarbonSlider {
+        "options": CarbonSliderOptions;
+        "setOptions": (options: CarbonSliderOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": number;
+    }
+    interface CarbonTable {
+        "setOptions": (options: CarbonTableOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": {
+    data: number[],
+    labels: string[]
+  };
+    }
+    interface CarbonTextarea {
+        "options": CarbonTextareaOptions;
+        "setOptions": (options: CarbonTextareaOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": string;
+    }
+    interface CarbonToggle {
+        "options": CarbonToggleOptions;
+        "setOptions": (options: CarbonToggleOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": boolean;
+    }
 }
 export interface CarbonChartCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonChartElement;
+}
+export interface CarbonCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonCheckboxElement;
 }
 export interface CarbonDatepickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -47,9 +94,29 @@ export interface CarbonInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonInputElement;
 }
+export interface CarbonRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonRadioElement;
+}
 export interface CarbonSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonSelectElement;
+}
+export interface CarbonSliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonSliderElement;
+}
+export interface CarbonTableCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonTableElement;
+}
+export interface CarbonTextareaCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonTextareaElement;
+}
+export interface CarbonToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonToggleElement;
 }
 declare global {
     interface HTMLCarbonChartElement extends Components.CarbonChart, HTMLStencilElement {
@@ -57,6 +124,12 @@ declare global {
     var HTMLCarbonChartElement: {
         prototype: HTMLCarbonChartElement;
         new (): HTMLCarbonChartElement;
+    };
+    interface HTMLCarbonCheckboxElement extends Components.CarbonCheckbox, HTMLStencilElement {
+    }
+    var HTMLCarbonCheckboxElement: {
+        prototype: HTMLCarbonCheckboxElement;
+        new (): HTMLCarbonCheckboxElement;
     };
     interface HTMLCarbonDatepickerElement extends Components.CarbonDatepicker, HTMLStencilElement {
     }
@@ -70,17 +143,53 @@ declare global {
         prototype: HTMLCarbonInputElement;
         new (): HTMLCarbonInputElement;
     };
+    interface HTMLCarbonRadioElement extends Components.CarbonRadio, HTMLStencilElement {
+    }
+    var HTMLCarbonRadioElement: {
+        prototype: HTMLCarbonRadioElement;
+        new (): HTMLCarbonRadioElement;
+    };
     interface HTMLCarbonSelectElement extends Components.CarbonSelect, HTMLStencilElement {
     }
     var HTMLCarbonSelectElement: {
         prototype: HTMLCarbonSelectElement;
         new (): HTMLCarbonSelectElement;
     };
+    interface HTMLCarbonSliderElement extends Components.CarbonSlider, HTMLStencilElement {
+    }
+    var HTMLCarbonSliderElement: {
+        prototype: HTMLCarbonSliderElement;
+        new (): HTMLCarbonSliderElement;
+    };
+    interface HTMLCarbonTableElement extends Components.CarbonTable, HTMLStencilElement {
+    }
+    var HTMLCarbonTableElement: {
+        prototype: HTMLCarbonTableElement;
+        new (): HTMLCarbonTableElement;
+    };
+    interface HTMLCarbonTextareaElement extends Components.CarbonTextarea, HTMLStencilElement {
+    }
+    var HTMLCarbonTextareaElement: {
+        prototype: HTMLCarbonTextareaElement;
+        new (): HTMLCarbonTextareaElement;
+    };
+    interface HTMLCarbonToggleElement extends Components.CarbonToggle, HTMLStencilElement {
+    }
+    var HTMLCarbonToggleElement: {
+        prototype: HTMLCarbonToggleElement;
+        new (): HTMLCarbonToggleElement;
+    };
     interface HTMLElementTagNameMap {
         "carbon-chart": HTMLCarbonChartElement;
+        "carbon-checkbox": HTMLCarbonCheckboxElement;
         "carbon-datepicker": HTMLCarbonDatepickerElement;
         "carbon-input": HTMLCarbonInputElement;
+        "carbon-radio": HTMLCarbonRadioElement;
         "carbon-select": HTMLCarbonSelectElement;
+        "carbon-slider": HTMLCarbonSliderElement;
+        "carbon-table": HTMLCarbonTableElement;
+        "carbon-textarea": HTMLCarbonTextareaElement;
+        "carbon-toggle": HTMLCarbonToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -91,6 +200,11 @@ declare namespace LocalJSX {
     labels: string[]
   };
     }
+    interface CarbonCheckbox {
+        "onValue"?: (event: CarbonCheckboxCustomEvent<any>) => void;
+        "options"?: CarbonCheckboxOptions;
+        "value"?: boolean;
+    }
     interface CarbonDatepicker {
         "onValue"?: (event: CarbonDatepickerCustomEvent<any>) => void;
         "value"?: string;
@@ -100,15 +214,47 @@ declare namespace LocalJSX {
         "options"?: CarbonInputOptions;
         "value"?: string;
     }
+    interface CarbonRadio {
+        "onValue"?: (event: CarbonRadioCustomEvent<any>) => void;
+        "value"?: string;
+    }
     interface CarbonSelect {
         "onValue"?: (event: CarbonSelectCustomEvent<any>) => void;
         "value"?: string;
     }
+    interface CarbonSlider {
+        "onValue"?: (event: CarbonSliderCustomEvent<any>) => void;
+        "options"?: CarbonSliderOptions;
+        "value"?: number;
+    }
+    interface CarbonTable {
+        "onValue"?: (event: CarbonTableCustomEvent<any>) => void;
+        "value"?: {
+    data: number[],
+    labels: string[]
+  };
+    }
+    interface CarbonTextarea {
+        "onValue"?: (event: CarbonTextareaCustomEvent<any>) => void;
+        "options"?: CarbonTextareaOptions;
+        "value"?: string;
+    }
+    interface CarbonToggle {
+        "onValue"?: (event: CarbonToggleCustomEvent<any>) => void;
+        "options"?: CarbonToggleOptions;
+        "value"?: boolean;
+    }
     interface IntrinsicElements {
         "carbon-chart": CarbonChart;
+        "carbon-checkbox": CarbonCheckbox;
         "carbon-datepicker": CarbonDatepicker;
         "carbon-input": CarbonInput;
+        "carbon-radio": CarbonRadio;
         "carbon-select": CarbonSelect;
+        "carbon-slider": CarbonSlider;
+        "carbon-table": CarbonTable;
+        "carbon-textarea": CarbonTextarea;
+        "carbon-toggle": CarbonToggle;
     }
 }
 export { LocalJSX as JSX };
@@ -116,9 +262,15 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "carbon-chart": LocalJSX.CarbonChart & JSXBase.HTMLAttributes<HTMLCarbonChartElement>;
+            "carbon-checkbox": LocalJSX.CarbonCheckbox & JSXBase.HTMLAttributes<HTMLCarbonCheckboxElement>;
             "carbon-datepicker": LocalJSX.CarbonDatepicker & JSXBase.HTMLAttributes<HTMLCarbonDatepickerElement>;
             "carbon-input": LocalJSX.CarbonInput & JSXBase.HTMLAttributes<HTMLCarbonInputElement>;
+            "carbon-radio": LocalJSX.CarbonRadio & JSXBase.HTMLAttributes<HTMLCarbonRadioElement>;
             "carbon-select": LocalJSX.CarbonSelect & JSXBase.HTMLAttributes<HTMLCarbonSelectElement>;
+            "carbon-slider": LocalJSX.CarbonSlider & JSXBase.HTMLAttributes<HTMLCarbonSliderElement>;
+            "carbon-table": LocalJSX.CarbonTable & JSXBase.HTMLAttributes<HTMLCarbonTableElement>;
+            "carbon-textarea": LocalJSX.CarbonTextarea & JSXBase.HTMLAttributes<HTMLCarbonTextareaElement>;
+            "carbon-toggle": LocalJSX.CarbonToggle & JSXBase.HTMLAttributes<HTMLCarbonToggleElement>;
         }
     }
 }

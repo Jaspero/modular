@@ -8,6 +8,8 @@
   import {CarbonInput} from '@jaspero/modular-components/dist/components/carbon-input';
   import {CarbonSelect} from '@jaspero/modular-components/dist/components/carbon-select';
   import {CarbonDatepicker} from '@jaspero/modular-components/dist/components/carbon-datepicker';
+    import { CarbonRadio } from '@jaspero/modular-components/dist/types/components/carbon-radio/carbon-radio';
+    import { CarbonCheckbox } from '@jaspero/modular-components/dist/types/components/carbon-checkbox/carbon-checkbox';
 
   let containerElement: HTMLDivElement;
 
@@ -15,6 +17,8 @@
     registerComponent('carbon-input', CarbonInput);
     registerComponent('carbon-select', CarbonSelect);
     registerComponent('carbon-datepicker', CarbonDatepicker);
+    registerComponent('carbon-radio', CarbonRadio);
+    registerComponent('carbon-checkbox', CarbonCheckbox);
 
     const schema = new ModularSchema({
       properties: {
@@ -87,7 +91,7 @@
               }
             }
           ]
-        }
+        },
         {
           justify: 'center',
           items: [
