@@ -19,8 +19,7 @@
     "email": "info@jaspero.co"
   },
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "scripts": {
     "build": "stencil build --docs",
