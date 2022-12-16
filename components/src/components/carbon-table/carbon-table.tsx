@@ -1,12 +1,12 @@
-import {Component, Element, Event, EventEmitter, h, Host, Method, Prop, State} from '@stencil/core';
 import '@carbon/web-components/dist/data-table.min.js';
+import { Component, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
 
 export interface CarbonTableOptions {
-  value?: {
-    data: number[];
-    labels: string[];
-  };
-  label?: string;
+  size?: 'compact' | 'short' | 'regular' | 'tall';
+  colorSchema?: 'regular' | 'zebra';
+  columns?: Array<{ label: string; id: string }>;
+  rows?: any[];
+  value?: any;
 }
 
 @Component({
@@ -29,10 +29,6 @@ export class CarbonTable {
     bubbles: true,
   }) valueChange: EventEmitter<any>;
 
-  @Element()
-  private element: HTMLElement;
-  private canvas: HTMLCanvasElement;
-
   @Method()
   setOptions(options: CarbonTableOptions) {
     this.options = options;
@@ -48,18 +44,33 @@ export class CarbonTable {
     this.valueChange.emit(this.value);
   }
 
-  componentDidLoad() {
-    this.canvas = this.element.querySelector('canvas');
-    this.canvas.width = 400;
-    this.canvas.height = 300;
-  }
-
   render() {
     return (
       <Host>
-        <div style={{position: 'relative', height: '65vh', width: '100%'}}>
-          <canvas width="400" height="300"/>
-        </div>
+        <bx-table size={this.options?.size || 'regular'}>
+          <bx-table-head>
+            <bx-table-header-row>
+              {
+                [...(this.options?.columns || [])].map(item =>
+                  <bx-table-header-cell>{item.label}</bx-table-header-cell>
+                )
+              }
+            </bx-table-header-row>
+          </bx-table-head>
+          <bx-table-body color-schema={this.options?.colorSchema || 'regular'}>
+            {
+              [...(this.options?.rows || [])].map(row =>
+                <bx-table-row>
+                  {
+                    [...(this.options?.columns || [])].map(col =>
+                      <bx-table-cell>{row[col.id] || '-'}</bx-table-cell>
+                    )
+                  }
+                </bx-table-row>
+              )
+            }
+          </bx-table-body>
+        </bx-table>
       </Host>
     );
   }

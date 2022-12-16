@@ -29,5 +29,5 @@ export * from './register-component';
 
 initializeCSSUtil();
 
-registerComponent('carbon-input', CarbonInput);
-registerComponent('carbon-select', CarbonSelect);
+// registerComponent('carbon-input', CarbonInput);
+// registerComponent('carbon-select', CarbonSelect);

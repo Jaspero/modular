@@ -2,6 +2,7 @@ import {Component, Event, EventEmitter, h, Host, Method, Prop, State} from '@ste
 import '@carbon/web-components/dist/radio-button.min.js';
 
 export interface CarbonRadioOptions {
+  name?: string;
   label?: string;
   labelPosition?: 'left' | 'right';
   orientation?: 'vertical' | 'horizontal';
@@ -54,8 +55,9 @@ export class CarbonRadio {
       <Host>
         {this.options?.label && <span slot="label-text">{this.options.label}</span>}
         <bx-radio-button-group
+          name={this.options?.name || ''}
           label-position={this.options?.labelPosition || 'right'}
-          orientation={this.options?.orientation || 'horizontal'}
+          orientation={this.options?.orientation || 'vertical'}
           disabled={this.options?.disabled}
           value={this.value}
           onInput={(event) => this.handleChange(event)}>

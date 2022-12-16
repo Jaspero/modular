@@ -69,8 +69,8 @@ export class CarbonToggle {
           checked-text={this.options?.checkedText || 'On'}
           unchecked-text={this.options?.uncheckedText || 'Off'}
           size={this.options?.size || 'regular'}
-          lable-text={this.options?.label || ''}
           onInput={(event) => this.handleChange(event)}>
+          {this.options?.label && <span slot="label-text">{this.options.label}</span>}
         </bx-toggle>
       </Host>
     );
