@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default               |
-| -------- | --------- | ----------- | -------- | --------------------- |
-| `value`  | `value`   |             | `string` | `this.options?.value` |
+| Property  | Attribute | Description | Type                 | Default               |
+| --------- | --------- | ----------- | -------------------- | --------------------- |
+| `options` | --        |             | `CarbonInputOptions` | `{}`                  |
+| `value`   | `value`   |             | `string`             | `this.options?.value` |
 
 
 ## Events

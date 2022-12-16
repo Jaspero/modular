@@ -10,6 +10,10 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/components/components.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspero/modular.git"
+  },
   "author": {
     "name": "Jaspero Ltd",
     "email": "info@jaspero.co"
@@ -24,6 +28,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
+  "private": false,
   "dependencies": {
     "@carbon/web-components": "1.22.0",
     "@stencil/core": "2.20.0",

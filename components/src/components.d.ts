@@ -24,6 +24,7 @@ export namespace Components {
         "value": string;
     }
     interface CarbonInput {
+        "options": CarbonInputOptions;
         "setOptions": (options: CarbonInputOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
@@ -96,6 +97,7 @@ declare namespace LocalJSX {
     }
     interface CarbonInput {
         "onValue"?: (event: CarbonInputCustomEvent<any>) => void;
+        "options"?: CarbonInputOptions;
         "value"?: string;
     }
     interface CarbonSelect {

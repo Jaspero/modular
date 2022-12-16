@@ -42,7 +42,7 @@
           items: [
             {
               field: '/name',
-              component: Components.CarbonInput,
+              component: 'carbon-input',
               options: {
                 label: 'Name'
               },
@@ -52,7 +52,7 @@
             },
             {
               field: '/gender',
-              component: Components.CarbonSelect,
+              component: 'carbon-select',
               columns: {
                 desktop: 6,
                 tablet: 12
@@ -88,23 +88,23 @@
             }
           ]
         }
-        // {
-        //   justify: 'center',
-        //   items: [
-        //     {
-        //       field: '/name',
-        //       component: Components.CarbonInput,
-        //       options: {
-        //         label: 'Name'
-        //       },
-        //       // columns: {
-        //       //   desktop: 6,
-        //       //   tablet: 12,
-        //       //   mobile: 12
-        //       // }
-        //     }
-        //   ]
-        // }
+        {
+          justify: 'center',
+          items: [
+            {
+              field: '/name',
+              component: 'carbon-input',
+              options: {
+                label: 'Name'
+              },
+              columns: {
+                desktop: 6,
+                tablet: 12,
+                mobile: 12
+              }
+            }
+          ]
+        }
       ]
     });
 
