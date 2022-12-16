@@ -4,12 +4,14 @@ export enum Components {
   CarbonInput = 'carbon-input',
   CarbonSelect = 'carbon-select',
   CarbonChart = 'carbon-chart',
+  CarbonDatepicker = 'carbon-datepicker'
 }
 
 export interface ComponentOptions {
   [Components.CarbonInput]: CarbonInputOptions;
   [Components.CarbonSelect]: CarbonSelectOptions;
   [Components.CarbonChart]: CarbonChartOptions;
+  [Components.CarbonDatepicker]: CarbonDatePicker;
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {

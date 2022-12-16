@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CarbonChartOptions } from "./components/carbon-chart/carbon-chart";
+import { CarbonDatePickerOptions } from "./components/carbon-datepicker/carbon-datepicker";
 import { CarbonInputOptions } from "./components/carbon-input/carbon-input";
 import { CarbonSelectOptions } from "./components/carbon-select/carbon-select";
 export namespace Components {
@@ -16,6 +17,11 @@ export namespace Components {
     data: number[],
     labels: string[]
   };
+    }
+    interface CarbonDatepicker {
+        "setOptions": (options: CarbonDatePickerOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": string;
     }
     interface CarbonInput {
         "setOptions": (options: CarbonInputOptions) => Promise<void>;
@@ -32,6 +38,10 @@ export interface CarbonChartCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonChartElement;
 }
+export interface CarbonDatepickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonDatepickerElement;
+}
 export interface CarbonInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonInputElement;
@@ -47,6 +57,12 @@ declare global {
         prototype: HTMLCarbonChartElement;
         new (): HTMLCarbonChartElement;
     };
+    interface HTMLCarbonDatepickerElement extends Components.CarbonDatepicker, HTMLStencilElement {
+    }
+    var HTMLCarbonDatepickerElement: {
+        prototype: HTMLCarbonDatepickerElement;
+        new (): HTMLCarbonDatepickerElement;
+    };
     interface HTMLCarbonInputElement extends Components.CarbonInput, HTMLStencilElement {
     }
     var HTMLCarbonInputElement: {
@@ -61,6 +77,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "carbon-chart": HTMLCarbonChartElement;
+        "carbon-datepicker": HTMLCarbonDatepickerElement;
         "carbon-input": HTMLCarbonInputElement;
         "carbon-select": HTMLCarbonSelectElement;
     }
@@ -73,6 +90,10 @@ declare namespace LocalJSX {
     labels: string[]
   };
     }
+    interface CarbonDatepicker {
+        "onValue"?: (event: CarbonDatepickerCustomEvent<any>) => void;
+        "value"?: string;
+    }
     interface CarbonInput {
         "onValue"?: (event: CarbonInputCustomEvent<any>) => void;
         "value"?: string;
@@ -83,6 +104,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "carbon-chart": CarbonChart;
+        "carbon-datepicker": CarbonDatepicker;
         "carbon-input": CarbonInput;
         "carbon-select": CarbonSelect;
     }
@@ -92,6 +114,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "carbon-chart": LocalJSX.CarbonChart & JSXBase.HTMLAttributes<HTMLCarbonChartElement>;
+            "carbon-datepicker": LocalJSX.CarbonDatepicker & JSXBase.HTMLAttributes<HTMLCarbonDatepickerElement>;
             "carbon-input": LocalJSX.CarbonInput & JSXBase.HTMLAttributes<HTMLCarbonInputElement>;
             "carbon-select": LocalJSX.CarbonSelect & JSXBase.HTMLAttributes<HTMLCarbonSelectElement>;
         }

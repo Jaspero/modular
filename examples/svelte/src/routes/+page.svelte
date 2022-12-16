@@ -7,12 +7,14 @@
   import {onMount} from 'svelte';
   import {CarbonInput} from '@jaspero/modular-components/dist/components/carbon-input';
   import {CarbonSelect} from '@jaspero/modular-components/dist/components/carbon-select';
+  import {CarbonDatepicker} from '@jaspero/modular-components/dist/components/carbon-datepicker';
 
   let containerElement: HTMLDivElement;
 
   onMount(() => {
     registerComponent('carbon-input', CarbonInput);
     registerComponent('carbon-select', CarbonSelect);
+    registerComponent('carbon-datepicker', CarbonDatepicker);
 
     const schema = new ModularSchema({
       properties: {
@@ -28,7 +30,8 @@
 
     const instance = schema.createInstance({
       name: 'John',
-      gender: 'female'
+      gender: 'female',
+      date: '2022-05-05'
     });
 
     const view = new ModularView({
@@ -70,6 +73,17 @@
                     value: 'other'
                   }
                 ]
+              }
+            },
+            {
+              field: '/date',
+              component: Components.CarbonDatepicker,
+              columns: {
+                desktop: 6,
+                tablet: 12
+              },
+              options: {
+                kind: 'single'
               }
             }
           ]
