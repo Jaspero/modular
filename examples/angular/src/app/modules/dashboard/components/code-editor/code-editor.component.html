@@ -1,8 +1,27 @@
-<div class="grid container" style="max-width: unset;">
-  <div class="col-6" style="padding: 0;">
-    <div #editor id="editor">
+<div class="grid container code-editor" style="max-width: unset;">
+  <div class="col-6 relative" style="padding: 0;">
+    <div>
+      <button mat-button color="primary" *ngFor="let item of tabs$ | async; index as index" (click)="selectTab()">
+        {{item}}
+
+      </button>
+      <div style="height: calc(100vh - 64px - 48px)">
+        <div #editor id="editor"></div>
+        <div #valueEditor id="value-editor"></div>
+      </div>
+      <div style="position: absolute; right: 0;top:35px; z-index: 9999">
+        <button mat-icon-button color="warn"
+                (click)="removeTab(0)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
     </div>
-    <div #valueEditor id="value-editor">
+
+    <div style="position: absolute; right: 0; top: 0; z-index: 9999">
+      <button mat-icon-button color="primary" (click)="addTab(); $event.stopPropagation()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>
   <div class="col-6" style="padding: 0; height: 100%; overflow: scroll;">

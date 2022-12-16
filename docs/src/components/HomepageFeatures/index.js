@@ -8,28 +8,29 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Very simple tool to build json schemas for your application. You can
+        generate schemas from your existing data or build them from scratch.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'No need to learn',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Forms are a very common part of any application. We've built a tool that
+        will help you build them faster and easier.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Powered by Jaspero',
+
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Watch the changes in real time and see the results instantly. You can
+        save your work and come back to it later.
       </>
     ),
   },

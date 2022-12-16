@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {LoadClickModule} from '@jaspero/ng-helpers';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {MatTabsModule} from "@angular/material/tabs";
 
 const routes: Routes = [
   {
@@ -44,22 +45,23 @@ const COMPONENTS = [
     ...COMPONENTS,
     CodeEditorComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
 
-    HttpClientModule,
+        HttpClientModule,
 
-    /**
-     * Material
-     */
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonToggleModule,
-    MonacoEditorModule,
-    MatButtonModule,
-    LoadClickModule
-  ],
+        /**
+         * Material
+         */
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonToggleModule,
+        MonacoEditorModule,
+        MatButtonModule,
+        LoadClickModule,
+        MatTabsModule
+    ],
   providers: [
     MatSnackBar
   ]

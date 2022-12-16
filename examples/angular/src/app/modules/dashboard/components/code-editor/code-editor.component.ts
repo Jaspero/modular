@@ -1,13 +1,14 @@
 import {AfterViewInit, Component, ElementRef, Injectable, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import loader, {Monaco} from '@monaco-editor/loader';
-import {catchError, of, startWith, Subscription, switchMap, tap} from 'rxjs';
+import {BehaviorSubject, catchError, of, startWith, Subscription, switchMap, tap} from 'rxjs';
 import {ModularSchema, ModularView, registerComponent} from '@jaspero/modular';
 import {CarbonInput} from '@jaspero/modular-components/dist/components/carbon-input';
 import {CarbonSelect} from '@jaspero/modular-components/dist/components/carbon-select';
 import {CarbonChart} from '@jaspero/modular-components/dist/components/carbon-chart';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpClient} from '@angular/common/http';
+import {editor} from "monaco-editor";
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   monaco: Monaco;
+  values: any[] = [];
+  currentValue = '';
 
   control: FormControl;
 
@@ -44,6 +47,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.control = new FormControl<string>('');
+
     loader.init().then(monaco => {
 
         this.monaco = monaco;
@@ -52,7 +56,6 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
           theme: 'vs-dark',
           automaticLayout: true,
           value: '',
-
         };
 
 
@@ -387,59 +390,53 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
                 properties: {
                   properties: {
                     type: 'object',
-                        patternProperties: {
-                          '.*': {
-                            anyOf: [
-                              {
-                                type: 'object',
-                                properties: {
-                                  type: {
-                                    enum: ['string', 'number', 'boolean', null]
-                                  },
-                                },
+                    patternProperties: {
+                      '.*': {
+                        anyOf: [
+                          {
+                            type: 'object',
+                            properties: {
+                              type: {
+                                enum: ['string', 'number', 'boolean', null]
                               },
-                              {
-                                type: 'object',
-                                properties: {
-                                  type: {
-                                    enum: ['object']
-                                  },
-                                  properties: {
-                                    $ref: 'json-schema'
-                                  }
-                                },
+                            },
+                          },
+                          {
+                            type: 'object',
+                            properties: {
+                              type: {
+                                enum: ['object']
                               },
-                              {
+                              properties: {
+                                $ref: 'json-schema'
+                              }
+                            },
+                          },
+                          {
+                            type: 'object',
+                            properties: {
+                              type: {
+                                enum: ['array']
+                              },
+                              items: {
                                 type: 'object',
                                 properties: {
-                                  type: {
-                                    enum: ['array']
-                                  },
-                                  items: {
-                                    type: 'object',
-                                    properties: {
-                                      $ref: 'json-schema'
-                                    }
-                                  }
+                                  $ref: 'json-schema'
+                                }
+                              }
 
-                                },
-                              },
+                            },
+                          },
 
-                            ]
-                          }
-                        }
+                        ]
+                      }
+                    }
 
                   }
 
                 }
               },
 
-              // 'patternProperties': {
-              //   "*": {
-              //     type: 'string',
-              //     enum: ['string', 'number', 'boolean', null]
-              //   }
-              // }
 
             },
             {
@@ -501,8 +498,6 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
         const editor = monaco.editor.create(this.editorElement.nativeElement, options);
         const valueEditor = monaco.editor.create(this.valueEditorElement.nativeElement, options);
-        // editor.setValue(`{\n\t\n}`);
-        // editor.setValue(`{\n\t"schema": {\n\t\t"name": {\n\t\t\t"type": "string"\n\t\t}\n\t}\n}`);
         editor.setValue(`{\n\t\n}`);
         valueEditor.setValue(`{
     "name": "John",
@@ -512,6 +507,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
         "labels":  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     }
 }`);
+
 
         const handleChange = () => {
           const editorValue = editor.getValue();
@@ -544,8 +540,43 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
           handleChange();
         });
 
+          //   this.control.valueChanges.subscribe((value) => {
+          //   contentInsideTab.push(value)
+          // });
+          this.control.valueChanges.subscribe((value) => {
+            this.currentValue = value;
+          });
+
+          console.log(this.currentValue);
+
       }
     );
+  }
+
+  tabs$ = new BehaviorSubject(['Collections']);
+  selected = new FormControl(0);
+
+  addTab() {
+    let text;
+    let nameOfTab = prompt("Please enter the name of your tab", "Tab");
+    if (nameOfTab == null || nameOfTab == "") {
+      text = "User cancelled the prompt.";
+    } else {
+      text = nameOfTab;
+    }
+    this.tabs$.next([...this.tabs$.getValue(), text]);
+
+  }
+  selectTab() {
+    console.log(this.currentValue);
+    if(this.currentValue != null || this.currentValue != '{}') {
+      this.values.push(this.currentValue)
+    }
+    console.log(this.values);
+  }
+
+  removeTab(index: number) {
+    this.tabs$.value.splice(index, 1);
   }
 
   ngAfterViewInit() {
@@ -622,6 +653,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+
   saveSchema() {
     return () => {
       return of(true).pipe(
@@ -652,5 +684,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
         })
       );
     }
+  }
+
+  onRender(el: any) {
+    console.log(el)
   }
 }
