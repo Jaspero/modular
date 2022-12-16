@@ -1,4 +1,4 @@
-import {Event, Component, h, Host, Method, Prop, State, EventEmitter} from '@stencil/core';
+import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
 import '@carbon/web-components/dist/input.min.js';
 
 
@@ -18,8 +18,22 @@ export interface CarbonInputOptions {
 })
 export class CarbonInput {
 
+  constructor() {
+    console.log('CarbonInput');
+  }
 
-  @State() options: CarbonInputOptions = {};
+  @State()
+  @Prop()
+  options: CarbonInputOptions = {};
+
+  @Watch('options')
+  parseMyObjectProp(options: string) {
+    console.log('parseMyObjectProp', options);
+    return JSON.parse(options);
+    // if (typeof options === 'string') {
+    //   // this.options = JSON.parse(options);
+    // }
+  }
 
   @Prop() value: string = this.options?.value;
 
