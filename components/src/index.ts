@@ -11,6 +11,7 @@ export { CarbonTextareaOptions } from './components/carbon-textarea/carbon-texta
 export { CarbonToggleOptions } from './components/carbon-toggle/carbon-toggle';
 export { CarbonAccordionOptions } from './components/carbon-accordion/carbon-accordion';
 export { CarbonBreadcrumbOptions } from './components/carbon-breadcrumb/carbon-breadcrumb';
+export { CarbonButtonOptions } from './components/carbon-button/carbon-button';
 declare global {
   interface CarbonInput { }
   interface CarbonSelect { }
@@ -26,4 +27,5 @@ declare global {
   interface CarbonAccordion { }
 
   interface CarbonBreadcrumb { }
+  interface CarbonButton { }
 }

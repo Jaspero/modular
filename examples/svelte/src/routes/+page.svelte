@@ -20,6 +20,7 @@
     import {onMount} from "svelte";
     import {CarbonAccordion} from "@jaspero/modular-components/dist/components/carbon-accordion";
     import {CarbonBreadcrumb} from "@jaspero/modular-components/dist/components/carbon-breadcrumb";
+    import {CarbonButton} from "@jaspero/modular-components/dist/components/carbon-button";
 
     let containerElement: HTMLDivElement;
 
@@ -35,6 +36,7 @@
         registerComponent("carbon-table", CarbonTable);
         registerComponent("carbon-accordion", CarbonAccordion);
         registerComponent("carbon-breadcrumb", CarbonBreadcrumb);
+        registerComponent("carbon-button", CarbonButton);
         const schema = new ModularSchema({
             properties: {
                 name: {
@@ -168,6 +170,19 @@
                                         link: 'https://github.com'
                                     }
                                 ]
+                            }
+                        },
+                        {
+                            field: '/check',
+                            component: 'carbon-button',
+                            options: {
+
+                                label: 'Click me',
+                                kind: 'primary',
+                                href: 'https://github.com',
+                                disabled: false
+
+
                             }
                         }
                     ]

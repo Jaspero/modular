@@ -2,6 +2,7 @@ import {Event, Component, h, Host, Method, Prop, State, EventEmitter} from '@ste
 import '@carbon/web-components/dist/breadcrumb.min.js';
 
 export interface CarbonBreadcrumbOptions {
+  align?: 'start' | 'end';
   open?: boolean;
   value?: Array<{ label: string; link: string; }>;
 
