@@ -9,7 +9,7 @@ export { CarbonSliderOptions } from './components/carbon-slider/carbon-slider';
 export { CarbonTableOptions } from './components/carbon-table/carbon-table';
 export { CarbonTextareaOptions } from './components/carbon-textarea/carbon-textarea';
 export { CarbonToggleOptions } from './components/carbon-toggle/carbon-toggle';
-
+export { CarbonAccordionOptions } from './components/carbon-accordion/carbon-accordion';
 declare global {
   interface CarbonInput { }
   interface CarbonSelect { }
@@ -21,4 +21,6 @@ declare global {
   interface CarbonTextarea { }
   interface CarbonTable { }
   interface CarbonToggle { }
+
+  interface CarbonAccordion { }
 }

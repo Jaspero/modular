@@ -1,5 +1,7 @@
 import {CarbonInputOptions, CarbonSelectOptions, CarbonChartOptions, CarbonCheckboxOptions, CarbonTableOptions, CarbonTextareaOptions, CarbonRadioOptions} from '@jaspero/modular-components';
-
+import {
+  CarbonAccordionOptions
+} from "@jaspero/modular-components/dist/types/components/carbon-accordion/carbon-accordion";
 export enum Components {
   CarbonInput = 'carbon-input',
   CarbonSelect = 'carbon-select',
@@ -11,17 +13,19 @@ export enum Components {
   CarbonRadio = 'carbon-radio',
   CarbonSlider = 'carbon-slider',
   CarbonToggle = 'carbon-toggle',
+  CarbonAccordion = 'carbon-accordion',
 }
 
 export interface ComponentOptions {
   [Components.CarbonInput]: CarbonInputOptions;
   [Components.CarbonSelect]: CarbonSelectOptions;
   [Components.CarbonChart]: CarbonChartOptions;
-  [Components.CarbonDatepicker]: CarbonDatePicker;
+ [Components.CarbonDatepicker]: CarbonDatePicker;
   [Components.CarbonTable]: CarbonTableOptions;
   [Components.CarbonTextarea]: CarbonTextareaOptions;
   [Components.CarbonCheckbox]: CarbonCheckboxOptions;
   [Components.CarbonRadio]: CarbonRadioOptions;
+  [Components.CarbonAccordion]: CarbonAccordionOptions;
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
