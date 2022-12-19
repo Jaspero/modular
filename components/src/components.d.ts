@@ -11,6 +11,7 @@ import { CarbonButtonOptions } from "./components/carbon-button/carbon-button";
 import { CarbonChartOptions } from "./components/carbon-chart/carbon-chart";
 import { CarbonCheckboxOptions } from "./components/carbon-checkbox/carbon-checkbox";
 import { CarbonDatePickerOptions } from "./components/carbon-datepicker/carbon-datepicker";
+import { CarbonFileUploaderOptions } from "./components/carbon-fileuploader/carbon-fileuploader";
 import { CarbonInputOptions } from "./components/carbon-input/carbon-input";
 import { CarbonRadioOptions } from "./components/carbon-radio/carbon-radio";
 import { CarbonSelectOptions } from "./components/carbon-select/carbon-select";
@@ -57,6 +58,12 @@ export namespace Components {
         "setOptions": (options: CarbonDatePickerOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
+    }
+    interface CarbonFileuploader {
+        "options": CarbonFileUploaderOptions;
+        "setOptions": (options: CarbonFileUploaderOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": any;
     }
     interface CarbonInput {
         "options": CarbonInputOptions;
@@ -125,6 +132,10 @@ export interface CarbonDatepickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonDatepickerElement;
 }
+export interface CarbonFileuploaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonFileuploaderElement;
+}
 export interface CarbonInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonInputElement;
@@ -190,6 +201,12 @@ declare global {
         prototype: HTMLCarbonDatepickerElement;
         new (): HTMLCarbonDatepickerElement;
     };
+    interface HTMLCarbonFileuploaderElement extends Components.CarbonFileuploader, HTMLStencilElement {
+    }
+    var HTMLCarbonFileuploaderElement: {
+        prototype: HTMLCarbonFileuploaderElement;
+        new (): HTMLCarbonFileuploaderElement;
+    };
     interface HTMLCarbonInputElement extends Components.CarbonInput, HTMLStencilElement {
     }
     var HTMLCarbonInputElement: {
@@ -239,6 +256,7 @@ declare global {
         "carbon-chart": HTMLCarbonChartElement;
         "carbon-checkbox": HTMLCarbonCheckboxElement;
         "carbon-datepicker": HTMLCarbonDatepickerElement;
+        "carbon-fileuploader": HTMLCarbonFileuploaderElement;
         "carbon-input": HTMLCarbonInputElement;
         "carbon-radio": HTMLCarbonRadioElement;
         "carbon-select": HTMLCarbonSelectElement;
@@ -282,6 +300,11 @@ declare namespace LocalJSX {
         "onValue"?: (event: CarbonDatepickerCustomEvent<any>) => void;
         "value"?: string;
     }
+    interface CarbonFileuploader {
+        "onOpen"?: (event: CarbonFileuploaderCustomEvent<any>) => void;
+        "options"?: CarbonFileUploaderOptions;
+        "value"?: any;
+    }
     interface CarbonInput {
         "onValue"?: (event: CarbonInputCustomEvent<any>) => void;
         "options"?: CarbonInputOptions;
@@ -324,6 +347,7 @@ declare namespace LocalJSX {
         "carbon-chart": CarbonChart;
         "carbon-checkbox": CarbonCheckbox;
         "carbon-datepicker": CarbonDatepicker;
+        "carbon-fileuploader": CarbonFileuploader;
         "carbon-input": CarbonInput;
         "carbon-radio": CarbonRadio;
         "carbon-select": CarbonSelect;
@@ -343,6 +367,7 @@ declare module "@stencil/core" {
             "carbon-chart": LocalJSX.CarbonChart & JSXBase.HTMLAttributes<HTMLCarbonChartElement>;
             "carbon-checkbox": LocalJSX.CarbonCheckbox & JSXBase.HTMLAttributes<HTMLCarbonCheckboxElement>;
             "carbon-datepicker": LocalJSX.CarbonDatepicker & JSXBase.HTMLAttributes<HTMLCarbonDatepickerElement>;
+            "carbon-fileuploader": LocalJSX.CarbonFileuploader & JSXBase.HTMLAttributes<HTMLCarbonFileuploaderElement>;
             "carbon-input": LocalJSX.CarbonInput & JSXBase.HTMLAttributes<HTMLCarbonInputElement>;
             "carbon-radio": LocalJSX.CarbonRadio & JSXBase.HTMLAttributes<HTMLCarbonRadioElement>;
             "carbon-select": LocalJSX.CarbonSelect & JSXBase.HTMLAttributes<HTMLCarbonSelectElement>;

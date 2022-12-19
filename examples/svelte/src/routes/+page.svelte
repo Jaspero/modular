@@ -21,6 +21,7 @@
     import {CarbonAccordion} from "@jaspero/modular-components/dist/components/carbon-accordion";
     import {CarbonBreadcrumb} from "@jaspero/modular-components/dist/components/carbon-breadcrumb";
     import {CarbonButton} from "@jaspero/modular-components/dist/components/carbon-button";
+    import {CarbonFileuploader} from "@jaspero/modular-components/dist/components/carbon-fileuploader";
 
     let containerElement: HTMLDivElement;
 
@@ -37,6 +38,7 @@
         registerComponent("carbon-accordion", CarbonAccordion);
         registerComponent("carbon-breadcrumb", CarbonBreadcrumb);
         registerComponent("carbon-button", CarbonButton);
+        registerComponent("carbon-fileuploader", CarbonFileuploader);
         const schema = new ModularSchema({
             properties: {
                 name: {
@@ -181,8 +183,16 @@
                                 kind: 'primary',
                                 href: 'https://github.com',
                                 disabled: false
-
-
+                            }
+                        },
+                        {
+                            field: '/check',
+                            component: 'carbon-fileuploader',
+                            options: {
+                                helperText: 'Upload your favourite image',
+                                labelText: 'Upload',
+                                accept: ['image/*'],
+                                multiple: true
                             }
                         }
                     ]

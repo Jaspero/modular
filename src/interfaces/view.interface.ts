@@ -8,7 +8,8 @@ import {
     CarbonRadioOptions,
     CarbonAccordionOptions,
     CarbonBreadcrumbOptions,
-    CarbonButtonOptions
+    CarbonButtonOptions,
+    CarbonFileUploaderOptions
 } from '@jaspero/modular-components';
 
 
@@ -26,6 +27,8 @@ export enum Components {
     CarbonAccordion = 'carbon-accordion',
     CarbonBreadcrumb = 'carbon-breadcrumb',
     CarbonButton = 'carbon-button',
+
+    CarbonFileUploader = 'carbon-fileuploader',
 }
 
 export interface ComponentOptions {
@@ -40,6 +43,9 @@ export interface ComponentOptions {
     [Components.CarbonAccordion]: CarbonAccordionOptions;
     [Components.CarbonBreadcrumb]: CarbonBreadcrumbOptions;
     [Components.CarbonButton]: CarbonButtonOptions;
+
+    [Components.CarbonFileUploader]: CarbonFileUploaderOptions;
+
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
