@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CarbonAccordionOptions } from "./components/carbon-accordion/carbon-accordion";
+import { CarbonBreadcrumbOptions } from "./components/carbon-breadcrumb/carbon-breadcrumb";
 import { CarbonChartOptions } from "./components/carbon-chart/carbon-chart";
 import { CarbonCheckboxOptions } from "./components/carbon-checkbox/carbon-checkbox";
 import { CarbonDatePickerOptions } from "./components/carbon-datepicker/carbon-datepicker";
@@ -23,6 +24,13 @@ export namespace Components {
         "setOptions": (options: CarbonAccordionOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": Array<{ label: string; content: string; }> | undefined;
+    }
+    interface CarbonBreadcrumb {
+        "open": boolean;
+        "options": CarbonBreadcrumbOptions;
+        "setOptions": (options: CarbonBreadcrumbOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": Array<{ label: string; link: string; }> | undefined;
     }
     interface CarbonChart {
         "setOptions": (options: CarbonChartOptions) => Promise<void>;
@@ -90,6 +98,10 @@ export interface CarbonAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonAccordionElement;
 }
+export interface CarbonBreadcrumbCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonBreadcrumbElement;
+}
 export interface CarbonChartCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonChartElement;
@@ -136,6 +148,12 @@ declare global {
     var HTMLCarbonAccordionElement: {
         prototype: HTMLCarbonAccordionElement;
         new (): HTMLCarbonAccordionElement;
+    };
+    interface HTMLCarbonBreadcrumbElement extends Components.CarbonBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLCarbonBreadcrumbElement: {
+        prototype: HTMLCarbonBreadcrumbElement;
+        new (): HTMLCarbonBreadcrumbElement;
     };
     interface HTMLCarbonChartElement extends Components.CarbonChart, HTMLStencilElement {
     }
@@ -199,6 +217,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "carbon-accordion": HTMLCarbonAccordionElement;
+        "carbon-breadcrumb": HTMLCarbonBreadcrumbElement;
         "carbon-chart": HTMLCarbonChartElement;
         "carbon-checkbox": HTMLCarbonCheckboxElement;
         "carbon-datepicker": HTMLCarbonDatepickerElement;
@@ -217,6 +236,12 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "options"?: CarbonAccordionOptions;
         "value"?: Array<{ label: string; content: string; }> | undefined;
+    }
+    interface CarbonBreadcrumb {
+        "onOpen"?: (event: CarbonBreadcrumbCustomEvent<any>) => void;
+        "open"?: boolean;
+        "options"?: CarbonBreadcrumbOptions;
+        "value"?: Array<{ label: string; link: string; }> | undefined;
     }
     interface CarbonChart {
         "onValue"?: (event: CarbonChartCustomEvent<any>) => void;
@@ -271,6 +296,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "carbon-accordion": CarbonAccordion;
+        "carbon-breadcrumb": CarbonBreadcrumb;
         "carbon-chart": CarbonChart;
         "carbon-checkbox": CarbonCheckbox;
         "carbon-datepicker": CarbonDatepicker;
@@ -288,6 +314,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "carbon-accordion": LocalJSX.CarbonAccordion & JSXBase.HTMLAttributes<HTMLCarbonAccordionElement>;
+            "carbon-breadcrumb": LocalJSX.CarbonBreadcrumb & JSXBase.HTMLAttributes<HTMLCarbonBreadcrumbElement>;
             "carbon-chart": LocalJSX.CarbonChart & JSXBase.HTMLAttributes<HTMLCarbonChartElement>;
             "carbon-checkbox": LocalJSX.CarbonCheckbox & JSXBase.HTMLAttributes<HTMLCarbonCheckboxElement>;
             "carbon-datepicker": LocalJSX.CarbonDatepicker & JSXBase.HTMLAttributes<HTMLCarbonDatepickerElement>;

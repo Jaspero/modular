@@ -19,6 +19,7 @@
     import {CarbonToggle} from "@jaspero/modular-components/dist/components/carbon-toggle";
     import {onMount} from "svelte";
     import {CarbonAccordion} from "@jaspero/modular-components/dist/components/carbon-accordion";
+    import {CarbonBreadcrumb} from "@jaspero/modular-components/dist/components/carbon-breadcrumb";
 
     let containerElement: HTMLDivElement;
 
@@ -33,6 +34,7 @@
         registerComponent("carbon-textarea", CarbonTextarea);
         registerComponent("carbon-table", CarbonTable);
         registerComponent("carbon-accordion", CarbonAccordion);
+        registerComponent("carbon-breadcrumb", CarbonBreadcrumb);
         const schema = new ModularSchema({
             properties: {
                 name: {
@@ -152,6 +154,22 @@
 
                             }
                         },
+                        {
+                            field: '/check',
+                            component: 'carbon-breadcrumb',
+                            options: {
+                                value: [
+                                    {
+                                        label: 'youtube',
+                                        link: 'https://youtube.com'
+                                    },
+                                    {
+                                        label: 'github',
+                                        link: 'https://github.com'
+                                    }
+                                ]
+                            }
+                        }
                     ]
                 }
             ],
