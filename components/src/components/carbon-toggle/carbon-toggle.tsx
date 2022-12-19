@@ -1,30 +1,31 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
-import '@carbon/web-components/dist/input.min.js';
+import '@carbon/web-components/dist/toggle.min.js';
 
 
-export interface CarbonInputOptions {
+export interface CarbonToggleOptions {
   label?: string;
-  hint?: string;
-  placeholder?: string;
-  type?: string;
-  value?: string;
+  value?: boolean;
   disabled?: boolean;
+
+  checkedText?: string;
+  uncheckedText?: string;
+  size?: 'regular' | 'small'
 }
 
 
 @Component({
-  tag: 'carbon-input',
-  styleUrl: 'carbon-input.css',
+  tag: 'carbon-toggle',
+  styleUrl: 'carbon-toggle.css',
 })
-export class CarbonInput {
+export class CarbonToggle {
 
   constructor() {
-    console.log('CarbonInput');
+    console.log('CarbonToggle');
   }
 
   @State()
   @Prop()
-  options: CarbonInputOptions = {};
+  options: CarbonToggleOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
@@ -35,7 +36,7 @@ export class CarbonInput {
     // }
   }
 
-  @Prop() value: string = this.options?.value;
+  @Prop() value: boolean = this.options?.value;
 
   @Event({
     eventName: 'value',
@@ -45,7 +46,7 @@ export class CarbonInput {
   }) valueChange: EventEmitter<any>;
 
   @Method()
-  setOptions(options: CarbonInputOptions) {
+  setOptions(options: CarbonToggleOptions) {
     this.options = options;
   }
 
@@ -62,11 +63,15 @@ export class CarbonInput {
   render() {
     return (
       <Host>
-        <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.value} onInput={(event) => this.handleChange(event)}>
+        <bx-toggle
+          disabled={this.options?.disabled}
+          value={this.value}
+          checked-text={this.options?.checkedText || 'On'}
+          unchecked-text={this.options?.uncheckedText || 'Off'}
+          size={this.options?.size || 'regular'}
+          onInput={(event) => this.handleChange(event)}>
           {this.options?.label && <span slot="label-text">{this.options.label}</span>}
-          {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
-        </bx-input>
+        </bx-toggle>
       </Host>
     );
   }

@@ -1,4 +1,4 @@
-# carbon-input
+# carbon-chart
 
 
 
@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                 | Default               |
-| --------- | --------- | ----------- | -------------------- | --------------------- |
-| `options` | --        |             | `CarbonInputOptions` | `{}`                  |
-| `value`   | `value`   |             | `string`             | `this.options?.value` |
+| Property | Attribute | Description | Type                                    | Default               |
+| -------- | --------- | ----------- | --------------------------------------- | --------------------- |
+| `value`  | --        |             | `{ data: number[]; labels: string[]; }` | `this.options?.value` |
 
 
 ## Events
@@ -22,7 +21,7 @@
 
 ## Methods
 
-### `setOptions(options: CarbonInputOptions) => Promise<void>`
+### `setOptions(options: CarbonTableOptions) => Promise<void>`
 
 
 

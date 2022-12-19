@@ -1,6 +1,6 @@
 {
   "name": "@jaspero/modular",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,6 +19,7 @@
     "name": "Jaspero Ltd",
     "email": "info@jaspero.co"
   },
+  "private": false,
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Jaspero/modular/issues"

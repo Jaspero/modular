@@ -1,30 +1,27 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
-import '@carbon/web-components/dist/input.min.js';
+import '@carbon/web-components/dist/checkbox.min.js';
 
 
-export interface CarbonInputOptions {
+export interface CarbonCheckboxOptions {
   label?: string;
-  hint?: string;
-  placeholder?: string;
-  type?: string;
-  value?: string;
+  value?: boolean;
   disabled?: boolean;
 }
 
 
 @Component({
-  tag: 'carbon-input',
-  styleUrl: 'carbon-input.css',
+  tag: 'carbon-checkbox',
+  styleUrl: 'carbon-checkbox.css',
 })
-export class CarbonInput {
+export class CarbonCheckbox {
 
   constructor() {
-    console.log('CarbonInput');
+    console.log('CarbonCheckbox');
   }
 
   @State()
   @Prop()
-  options: CarbonInputOptions = {};
+  options: CarbonCheckboxOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
@@ -35,7 +32,7 @@ export class CarbonInput {
     // }
   }
 
-  @Prop() value: string = this.options?.value;
+  @Prop() value: boolean = this.options?.value;
 
   @Event({
     eventName: 'value',
@@ -45,7 +42,7 @@ export class CarbonInput {
   }) valueChange: EventEmitter<any>;
 
   @Method()
-  setOptions(options: CarbonInputOptions) {
+  setOptions(options: CarbonCheckboxOptions) {
     this.options = options;
   }
 
@@ -62,11 +59,7 @@ export class CarbonInput {
   render() {
     return (
       <Host>
-        <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.value} onInput={(event) => this.handleChange(event)}>
-          {this.options?.label && <span slot="label-text">{this.options.label}</span>}
-          {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
-        </bx-input>
+        <bx-checkbox label-text={this.options?.label || ''} disabled={this.options?.disabled} value={this.value} onInput={(event) => this.handleChange(event)}></bx-checkbox>
       </Host>
     );
   }

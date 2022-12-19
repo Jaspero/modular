@@ -1,30 +1,32 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
-import '@carbon/web-components/dist/input.min.js';
+import '@carbon/web-components/dist/textarea.min.js';
 
 
-export interface CarbonInputOptions {
+export interface CarbonTextareaOptions {
   label?: string;
   hint?: string;
   placeholder?: string;
-  type?: string;
   value?: string;
   disabled?: boolean;
+  rows?: number;
+  cols?: number;
+  colorSchema?: 'regular' | 'light';
 }
 
 
 @Component({
-  tag: 'carbon-input',
-  styleUrl: 'carbon-input.css',
+  tag: 'carbon-textarea',
+  styleUrl: 'carbon-textarea.css',
 })
-export class CarbonInput {
+export class CarbonTextarea {
 
   constructor() {
-    console.log('CarbonInput');
+    console.log('CarbonTextarea');
   }
 
   @State()
   @Prop()
-  options: CarbonInputOptions = {};
+  options: CarbonTextareaOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
@@ -45,7 +47,7 @@ export class CarbonInput {
   }) valueChange: EventEmitter<any>;
 
   @Method()
-  setOptions(options: CarbonInputOptions) {
+  setOptions(options: CarbonTextareaOptions) {
     this.options = options;
   }
 
@@ -62,11 +64,16 @@ export class CarbonInput {
   render() {
     return (
       <Host>
-        <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.value} onInput={(event) => this.handleChange(event)}>
+        <bx-textarea
+          disabled={this.options?.disabled}
+          placeholder={this.options?.placeholder}
+          value={this.value}
+          cols={this.options?.cols || 50}
+          rows={this.options?.rows || 4}
+          onInput={(event) => this.handleChange(event)}>
           {this.options?.label && <span slot="label-text">{this.options.label}</span>}
           {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
-        </bx-input>
+        </bx-textarea>
       </Host>
     );
   }

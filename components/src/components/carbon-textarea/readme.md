@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                 | Default               |
-| --------- | --------- | ----------- | -------------------- | --------------------- |
-| `options` | --        |             | `CarbonInputOptions` | `{}`                  |
-| `value`   | `value`   |             | `string`             | `this.options?.value` |
+| Property  | Attribute | Description | Type                    | Default               |
+| --------- | --------- | ----------- | ----------------------- | --------------------- |
+| `options` | --        |             | `CarbonTextareaOptions` | `{}`                  |
+| `value`   | `value`   |             | `string`                | `this.options?.value` |
 
 
 ## Events
@@ -22,7 +22,7 @@
 
 ## Methods
 
-### `setOptions(options: CarbonInputOptions) => Promise<void>`
+### `setOptions(options: CarbonTextareaOptions) => Promise<void>`
 
 
 

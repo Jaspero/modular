@@ -1,30 +1,30 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
-import '@carbon/web-components/dist/input.min.js';
+import '@carbon/web-components/dist/slider.min.js';
 
 
-export interface CarbonInputOptions {
+export interface CarbonSliderOptions {
   label?: string;
-  hint?: string;
-  placeholder?: string;
-  type?: string;
-  value?: string;
+  value?: number;
   disabled?: boolean;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 
 @Component({
-  tag: 'carbon-input',
-  styleUrl: 'carbon-input.css',
+  tag: 'carbon-slider',
+  styleUrl: 'carbon-slider.css',
 })
-export class CarbonInput {
+export class CarbonSlider {
 
   constructor() {
-    console.log('CarbonInput');
+    console.log('CarbonSlider');
   }
 
   @State()
   @Prop()
-  options: CarbonInputOptions = {};
+  options: CarbonSliderOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
@@ -35,7 +35,7 @@ export class CarbonInput {
     // }
   }
 
-  @Prop() value: string = this.options?.value;
+  @Prop() value: number = this.options?.value;
 
   @Event({
     eventName: 'value',
@@ -45,7 +45,7 @@ export class CarbonInput {
   }) valueChange: EventEmitter<any>;
 
   @Method()
-  setOptions(options: CarbonInputOptions) {
+  setOptions(options: CarbonSliderOptions) {
     this.options = options;
   }
 
@@ -62,11 +62,15 @@ export class CarbonInput {
   render() {
     return (
       <Host>
-        <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.value} onInput={(event) => this.handleChange(event)}>
-          {this.options?.label && <span slot="label-text">{this.options.label}</span>}
-          {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
-        </bx-input>
+        <bx-slider
+          disabled={this.options?.disabled}
+          value={this.value}
+          label-text={this.options?.label || ''}
+          max={this.options?.max || 100}
+          min={this.options?.min || 0}
+          step={this.options?.step || 1}
+          onInput={(event) => this.handleChange(event)}>
+        </bx-slider>
       </Host>
     );
   }
