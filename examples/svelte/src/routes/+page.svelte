@@ -22,6 +22,8 @@
     import {CarbonBreadcrumb} from "@jaspero/modular-components/dist/components/carbon-breadcrumb";
     import {CarbonButton} from "@jaspero/modular-components/dist/components/carbon-button";
     import {CarbonFileuploader} from "@jaspero/modular-components/dist/components/carbon-fileuploader";
+    import {CarbonStructuredlist} from "@jaspero/modular-components/dist/components/carbon-structuredlist";
+    import {CarbonTabs} from "@jaspero/modular-components/dist/components/carbon-tabs";
 
     let containerElement: HTMLDivElement;
 
@@ -39,6 +41,8 @@
         registerComponent("carbon-breadcrumb", CarbonBreadcrumb);
         registerComponent("carbon-button", CarbonButton);
         registerComponent("carbon-fileuploader", CarbonFileuploader);
+        registerComponent("carbon-structuredlist", CarbonStructuredlist);
+        registerComponent("carbon-tabs", CarbonTabs);
         const schema = new ModularSchema({
             properties: {
                 name: {
@@ -193,6 +197,48 @@
                                 labelText: 'Upload',
                                 accept: ['image/*'],
                                 multiple: true
+                            }
+                        },
+                        {
+                            field: '/check',
+                            component: 'carbon-structuredlist',
+                            options:{
+                                value: [
+                                    {
+                                        columnName: 'Column 1',
+                                        rowName: 'StrucutredListOne',
+                                        content: 'content of structured list 1'
+                                    },
+                                    {
+                                        columnName: 'Column 2',
+                                        rowName: 'StrucutredListTwo',
+                                        content: 'content of structured list 2'
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            field: '/check',
+                            component: 'carbon-tabs',
+                            options: {
+                                value: [
+                                    {
+                                        tabId: 'tab-all',
+                                        tabTarget: 'panel-all',
+                                        tabName: 'One',
+                                        tabContent: 'This tab works',
+                                        isDisabled: false,
+                                        value: 'all'
+                                    },
+                                    {
+                                        tabId: 'tab-cloudFoundry',
+                                        tabTarget: 'panel-cloudFoundry',
+                                        tabName: 'Two',
+                                        tabContent: 'This tab works too',
+                                        isDisabled: false,
+                                        value: 'cloudFoundry'
+                                    }
+                                ]
                             }
                         }
                     ]
