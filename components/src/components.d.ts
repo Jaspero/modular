@@ -16,7 +16,9 @@ import { CarbonInputOptions } from "./components/carbon-input/carbon-input";
 import { CarbonRadioOptions } from "./components/carbon-radio/carbon-radio";
 import { CarbonSelectOptions } from "./components/carbon-select/carbon-select";
 import { CarbonSliderOptions } from "./components/carbon-slider/carbon-slider";
+import { CarbonStructuredListOptions } from "./components/carbon-structuredlist/carbon-structuredlist";
 import { CarbonTableOptions } from "./components/carbon-table/carbon-table";
+import { CarbonTabsOptions } from "./components/carbon-tabs/carbon-tabs";
 import { CarbonTextareaOptions } from "./components/carbon-textarea/carbon-textarea";
 import { CarbonToggleOptions } from "./components/carbon-toggle/carbon-toggle";
 export namespace Components {
@@ -87,10 +89,24 @@ export namespace Components {
         "setValue": (value: any) => Promise<void>;
         "value": number;
     }
+    interface CarbonStructuredlist {
+        "open": boolean;
+        "options": CarbonStructuredListOptions;
+        "setOptions": (options: CarbonStructuredListOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": Array<{ columnName: string; rowName: string; content: string; }> | undefined;
+    }
     interface CarbonTable {
         "setOptions": (options: CarbonTableOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": any[];
+    }
+    interface CarbonTabs {
+        "open": boolean;
+        "options": CarbonTabsOptions;
+        "setOptions": (options: CarbonTabsOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": Array<{ tabTarget: string; tabId: string; tabName: string; isDisabled: boolean; tabContent: string; value: string; }> | undefined;
     }
     interface CarbonTextarea {
         "options": CarbonTextareaOptions;
@@ -149,9 +165,17 @@ export interface CarbonSliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonSliderElement;
 }
+export interface CarbonStructuredlistCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonStructuredlistElement;
+}
 export interface CarbonTableCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonTableElement;
+}
+export interface CarbonTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonTabsElement;
 }
 export interface CarbonTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -228,11 +252,23 @@ declare global {
         prototype: HTMLCarbonSliderElement;
         new (): HTMLCarbonSliderElement;
     };
+    interface HTMLCarbonStructuredlistElement extends Components.CarbonStructuredlist, HTMLStencilElement {
+    }
+    var HTMLCarbonStructuredlistElement: {
+        prototype: HTMLCarbonStructuredlistElement;
+        new (): HTMLCarbonStructuredlistElement;
+    };
     interface HTMLCarbonTableElement extends Components.CarbonTable, HTMLStencilElement {
     }
     var HTMLCarbonTableElement: {
         prototype: HTMLCarbonTableElement;
         new (): HTMLCarbonTableElement;
+    };
+    interface HTMLCarbonTabsElement extends Components.CarbonTabs, HTMLStencilElement {
+    }
+    var HTMLCarbonTabsElement: {
+        prototype: HTMLCarbonTabsElement;
+        new (): HTMLCarbonTabsElement;
     };
     interface HTMLCarbonTextareaElement extends Components.CarbonTextarea, HTMLStencilElement {
     }
@@ -258,7 +294,9 @@ declare global {
         "carbon-radio": HTMLCarbonRadioElement;
         "carbon-select": HTMLCarbonSelectElement;
         "carbon-slider": HTMLCarbonSliderElement;
+        "carbon-structuredlist": HTMLCarbonStructuredlistElement;
         "carbon-table": HTMLCarbonTableElement;
+        "carbon-tabs": HTMLCarbonTabsElement;
         "carbon-textarea": HTMLCarbonTextareaElement;
         "carbon-toggle": HTMLCarbonToggleElement;
     }
@@ -320,9 +358,21 @@ declare namespace LocalJSX {
         "options"?: CarbonSliderOptions;
         "value"?: number;
     }
+    interface CarbonStructuredlist {
+        "onOpen"?: (event: CarbonStructuredlistCustomEvent<any>) => void;
+        "open"?: boolean;
+        "options"?: CarbonStructuredListOptions;
+        "value"?: Array<{ columnName: string; rowName: string; content: string; }> | undefined;
+    }
     interface CarbonTable {
         "onValue"?: (event: CarbonTableCustomEvent<any>) => void;
         "value"?: any[];
+    }
+    interface CarbonTabs {
+        "onOpen"?: (event: CarbonTabsCustomEvent<any>) => void;
+        "open"?: boolean;
+        "options"?: CarbonTabsOptions;
+        "value"?: Array<{ tabTarget: string; tabId: string; tabName: string; isDisabled: boolean; tabContent: string; value: string; }> | undefined;
     }
     interface CarbonTextarea {
         "onValue"?: (event: CarbonTextareaCustomEvent<any>) => void;
@@ -346,7 +396,9 @@ declare namespace LocalJSX {
         "carbon-radio": CarbonRadio;
         "carbon-select": CarbonSelect;
         "carbon-slider": CarbonSlider;
+        "carbon-structuredlist": CarbonStructuredlist;
         "carbon-table": CarbonTable;
+        "carbon-tabs": CarbonTabs;
         "carbon-textarea": CarbonTextarea;
         "carbon-toggle": CarbonToggle;
     }
@@ -366,7 +418,9 @@ declare module "@stencil/core" {
             "carbon-radio": LocalJSX.CarbonRadio & JSXBase.HTMLAttributes<HTMLCarbonRadioElement>;
             "carbon-select": LocalJSX.CarbonSelect & JSXBase.HTMLAttributes<HTMLCarbonSelectElement>;
             "carbon-slider": LocalJSX.CarbonSlider & JSXBase.HTMLAttributes<HTMLCarbonSliderElement>;
+            "carbon-structuredlist": LocalJSX.CarbonStructuredlist & JSXBase.HTMLAttributes<HTMLCarbonStructuredlistElement>;
             "carbon-table": LocalJSX.CarbonTable & JSXBase.HTMLAttributes<HTMLCarbonTableElement>;
+            "carbon-tabs": LocalJSX.CarbonTabs & JSXBase.HTMLAttributes<HTMLCarbonTabsElement>;
             "carbon-textarea": LocalJSX.CarbonTextarea & JSXBase.HTMLAttributes<HTMLCarbonTextareaElement>;
             "carbon-toggle": LocalJSX.CarbonToggle & JSXBase.HTMLAttributes<HTMLCarbonToggleElement>;
         }

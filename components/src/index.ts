@@ -13,6 +13,8 @@ export { CarbonAccordionOptions } from './components/carbon-accordion/carbon-acc
 export { CarbonBreadcrumbOptions } from './components/carbon-breadcrumb/carbon-breadcrumb';
 export { CarbonButtonOptions } from './components/carbon-button/carbon-button';
 export { CarbonFileUploaderOptions } from './components/carbon-fileuploader/carbon-fileuploader';
+export { CarbonStructuredListOptions } from './components/carbon-structuredlist/carbon-structuredlist';
+export { CarbonTabsOptions } from './components/carbon-tabs/carbon-tabs';
 declare global {
   interface CarbonInput { }
   interface CarbonSelect { }
@@ -28,4 +30,9 @@ declare global {
   interface CarbonBreadcrumb { }
   interface CarbonButton { }
   interface CarbonFileUploader { }
+
+  interface CarbonStructuredList { }
+
+  interface CarbonTabs { }
+
 }
