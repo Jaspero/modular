@@ -1,7 +1,6 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
 import '@carbon/web-components/dist/slider.min.js';
 
-
 export interface CarbonSliderOptions {
   label?: string;
   value?: number;
@@ -10,7 +9,6 @@ export interface CarbonSliderOptions {
   max?: number;
   step?: number;
 }
-
 
 @Component({
   tag: 'carbon-slider',

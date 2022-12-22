@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                    | Default               |
-| -------- | --------- | ----------- | --------------------------------------- | --------------------- |
-| `value`  | --        |             | `{ data: number[]; labels: string[]; }` | `this.options?.value` |
+| Property | Attribute | Description | Type    | Default               |
+| -------- | --------- | ----------- | ------- | --------------------- |
+| `value`  | --        |             | `any[]` | `this.options?.value` |
 
 
 ## Events

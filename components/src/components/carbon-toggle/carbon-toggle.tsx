@@ -1,7 +1,6 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
 import '@carbon/web-components/dist/toggle.min.js';
 
-
 export interface CarbonToggleOptions {
   label?: string;
   value?: boolean;
@@ -11,7 +10,6 @@ export interface CarbonToggleOptions {
   uncheckedText?: string;
   size?: 'regular' | 'small'
 }
-
 
 @Component({
   tag: 'carbon-toggle',

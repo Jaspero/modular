@@ -12,7 +12,6 @@ export interface CarbonBreadcrumbOptions {
   tag: 'carbon-breadcrumb',
   styleUrl: 'carbon-breadcrumb.css',
 })
-
 export class CarbonBreadcrumb {
 
 

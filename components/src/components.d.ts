@@ -90,10 +90,7 @@ export namespace Components {
     interface CarbonTable {
         "setOptions": (options: CarbonTableOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
-        "value": {
-    data: number[],
-    labels: string[]
-  };
+        "value": any[];
     }
     interface CarbonTextarea {
         "options": CarbonTextareaOptions;
@@ -325,10 +322,7 @@ declare namespace LocalJSX {
     }
     interface CarbonTable {
         "onValue"?: (event: CarbonTableCustomEvent<any>) => void;
-        "value"?: {
-    data: number[],
-    labels: string[]
-  };
+        "value"?: any[];
     }
     interface CarbonTextarea {
         "onValue"?: (event: CarbonTextareaCustomEvent<any>) => void;

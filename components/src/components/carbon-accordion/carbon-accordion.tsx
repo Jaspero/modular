@@ -12,9 +12,7 @@ export interface CarbonAccordionOptions {
   tag: 'carbon-accordion',
   styleUrl: 'carbon-accordion.css',
 })
-
 export class CarbonAccordion {
-
 
   @State()
   @Prop()

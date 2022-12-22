@@ -24,11 +24,8 @@ declare global {
   interface CarbonTextarea { }
   interface CarbonTable { }
   interface CarbonToggle { }
-
   interface CarbonAccordion { }
-
   interface CarbonBreadcrumb { }
   interface CarbonButton { }
-
   interface CarbonFileUploader { }
 }

@@ -1,7 +1,6 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
 import '@carbon/web-components/dist/textarea.min.js';
 
-
 export interface CarbonTextareaOptions {
   label?: string;
   hint?: string;
@@ -12,7 +11,6 @@ export interface CarbonTextareaOptions {
   cols?: number;
   colorSchema?: 'regular' | 'light';
 }
-
 
 @Component({
   tag: 'carbon-textarea',
