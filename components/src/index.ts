@@ -15,13 +15,15 @@ export { CarbonButtonOptions } from './components/carbon-button/carbon-button';
 export { CarbonFileUploaderOptions } from './components/carbon-fileuploader/carbon-fileuploader';
 export { CarbonStructuredListOptions } from './components/carbon-structuredlist/carbon-structuredlist';
 export { CarbonTabsOptions } from './components/carbon-tabs/carbon-tabs';
+export { CarbonSubmitOptions } from './components/carbon-submit/carbon-submit';
+
 declare global {
   interface CarbonInput { }
   interface CarbonSelect { }
   interface CarbonChart { }
   interface CarbonDatePicker { }
   interface CarbonCheckbox { }
-  interface CarnbonRadio { }
+  interface CarbonRadio { }
   interface CarbonSlider { }
   interface CarbonTextarea { }
   interface CarbonTable { }
@@ -30,6 +32,7 @@ declare global {
   interface CarbonBreadcrumb { }
   interface CarbonButton { }
   interface CarbonFileUploader { }
+  interface CarbonSubmit { }
 
   interface CarbonStructuredList { }
 

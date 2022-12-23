@@ -8,6 +8,8 @@ import { CarbonTable } from '@jaspero/modular-components/dist/components/carbon-
 import { CarbonToggle } from '@jaspero/modular-components/dist/components/carbon-toggle';
 import { registerComponent } from './register-component';
 import { initializeCSSUtil } from './utils/css.util';
+import {CarbonButton} from '@jaspero/modular-components/dist/components/carbon-button';
+import {CarbonSubmit} from '@jaspero/modular-components/dist/components/carbon-submit';
 
 declare global {
   interface Window {
@@ -36,6 +38,8 @@ export * from './view';
 initializeCSSUtil();
 
 registerComponent('carbon-input', CarbonInput);
+registerComponent('carbon-submit', CarbonSubmit);
+registerComponent('carbon-button', CarbonButton);
 registerComponent('carbon-select', CarbonSelect);
 registerComponent('carbon-radio', CarbonRadio);
 registerComponent('carbon-slider', CarbonSlider);

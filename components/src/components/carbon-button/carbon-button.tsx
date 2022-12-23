@@ -7,7 +7,6 @@ export interface CarbonButtonOptions {
   href?: string;
   kind?: string;
   disabled?: boolean;
-
 }
 
 @Component({
@@ -16,15 +15,11 @@ export interface CarbonButtonOptions {
 })
 
 export class CarbonButton {
-
-
   @State()
   @Prop()
   options: CarbonButtonOptions = {};
 
   @Prop() value: string = this.options?.value
-
-
 
   @Event({
     eventName: 'open',

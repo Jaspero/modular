@@ -68,6 +68,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         });
         (element as any)?.setOptions?.(view.options);
         (element as any)?.setValue?.(get(instance.value, view.field));
+        (element as any)?.setInstance?.(instance);
         rowContainer.appendChild(element);
 
 

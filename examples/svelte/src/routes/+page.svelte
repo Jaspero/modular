@@ -37,6 +37,28 @@
           items: [
             {
               field: "/check",
+              component: "carbon-submit",
+              options: {
+                label: "Click me",
+                kind: "primary",
+                href: "https://github.com",
+                disabled: false,
+                method: 'POST',
+                loadingText: 'Loading...',
+                form: [
+                  {
+                    key: 'name',
+                    pointer: '/name'
+                  },
+                  {
+                    key: 'check2',
+                    pointer: '/check'
+                  }
+                ]
+              },
+            },
+            {
+              field: "/check",
               component: "carbon-checkbox",
               options: {
                 label: "Name",
@@ -151,16 +173,6 @@
                     link: "https://github.com",
                   },
                 ],
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-button",
-              options: {
-                label: "Click me",
-                kind: "primary",
-                href: "https://github.com",
-                disabled: false,
               },
             },
             {
