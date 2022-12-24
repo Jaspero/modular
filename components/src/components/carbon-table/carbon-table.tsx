@@ -23,6 +23,7 @@ export interface CarbonTableOptions {
     disabled?: boolean;
     label: string;
     url: string;
+    useHistory?: boolean;
   };
   overflowMenu?: {
     disabled?: boolean;
@@ -129,6 +130,19 @@ export class CarbonTable {
     this.total = total;
   }
 
+  buttonClick(event: MouseEvent) {
+    if (!this.options.button.useHistory) {
+      return;
+    }
+
+    if (event.ctrlKey) {
+      window.open(this.options.button.url, '_blank');
+      return;
+    }
+
+    history.pushState(history.state, '', this.options.button.url);
+  }
+
   render() {
 
     const rows = this.options.fromEndpoint ? (this.data || []) : this.options.value;
@@ -146,7 +160,10 @@ export class CarbonTable {
                 }
                 {
                   this.options.button && (
-                    <bx-btn disabled={this.options.button.disabled} href={this.options.button.url}>
+                    <bx-btn
+                      disabled={this.options.button.disabled}
+                      href={!this.options.button.useHistory && this.options.button.url}
+                      onClick={e => this.buttonClick(e)}>
                       {this.options.button.label}
                     </bx-btn>
                   )

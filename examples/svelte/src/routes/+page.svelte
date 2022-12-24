@@ -117,7 +117,8 @@
                 },
                 button: {
                   label: 'Add New',
-                  url: '/new'
+                  url: '/new',
+                  useHistory: true
                 },
                 pagination: {
                   sizeOptions: [
