@@ -16,6 +16,7 @@ export { CarbonFileUploaderOptions } from './components/carbon-fileuploader/carb
 export { CarbonStructuredListOptions } from './components/carbon-structuredlist/carbon-structuredlist';
 export { CarbonTabsOptions } from './components/carbon-tabs/carbon-tabs';
 export { CarbonSubmitOptions } from './components/carbon-submit/carbon-submit';
+export { CarbonObjectArrayOptions } from './components/carbon-object-array/carbon-object-array';
 
 declare global {
   interface CarbonInput { }
@@ -33,6 +34,7 @@ declare global {
   interface CarbonButton { }
   interface CarbonFileUploader { }
   interface CarbonSubmit { }
+  interface CarbonObjectArray { }
 
   interface CarbonStructuredList { }
 

@@ -12,6 +12,7 @@ import {
     CarbonFileUploaderOptions,
     CarbonStructuredListOptions,
     CarbonTabsOptions,
+    CarbonObjectArrayOptions
 } from '@jaspero/modular-components';
 
 
@@ -33,6 +34,7 @@ export enum Components {
     CarbonFileUploader = 'carbon-fileuploader',
     CarbonStructuredList = 'carbon-structuredlist',
     CarbonTabs = 'carbon-tabs',
+    CarbonObjectArray = 'carbon-object-array'
 }
 
 export interface ComponentOptions {
@@ -52,6 +54,7 @@ export interface ComponentOptions {
     [Components.CarbonStructuredList]: CarbonStructuredListOptions;
 
     [Components.CarbonTabs]: CarbonTabsOptions;
+    [Components.CarbonObjectArray]: CarbonObjectArrayOptions;
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {

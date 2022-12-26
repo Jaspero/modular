@@ -112,7 +112,7 @@ export class CarbonSubmit {
               ? <bx-inline-loading status="finished"></bx-inline-loading>
               : this.state === 'error'
                 ? <bx-inline-loading status="error"></bx-inline-loading>
-                : this.options?.label
+                : (this.options?.label || 'Submit')
           }
         </bx-btn>
       </Host>

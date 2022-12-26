@@ -1,7 +1,6 @@
 import {Event, Component, h, Host, Method, Prop, State, EventEmitter, Watch} from '@stencil/core';
 import '@carbon/web-components/dist/input.min.js';
 
-
 export interface CarbonInputOptions {
   label?: string;
   hint?: string;
@@ -11,16 +10,11 @@ export interface CarbonInputOptions {
   disabled?: boolean;
 }
 
-
 @Component({
   tag: 'carbon-input',
   styleUrl: 'carbon-input.css',
 })
 export class CarbonInput {
-
-  constructor() {
-    console.log('CarbonInput');
-  }
 
   @State()
   @Prop()
@@ -28,11 +22,7 @@ export class CarbonInput {
 
   @Watch('options')
   parseMyObjectProp(options: string) {
-    console.log('parseMyObjectProp', options);
     return JSON.parse(options);
-    // if (typeof options === 'string') {
-    //   // this.options = JSON.parse(options);
-    // }
   }
 
   @Prop() value: string = this.options?.value;
@@ -62,8 +52,12 @@ export class CarbonInput {
   render() {
     return (
       <Host>
-        <bx-input type={this.options?.type} disabled={this.options?.disabled} placeholder={this.options?.placeholder}
-                  value={this.value} onInput={(event) => this.handleChange(event)}>
+        <bx-input
+          type={this.options?.type}
+          disabled={this.options?.disabled}
+          placeholder={this.options?.placeholder}
+          value={this.value}
+          onInput={(event) => this.handleChange(event)}>
           {this.options?.label && <span slot="label-text">{this.options.label}</span>}
           {this.options?.hint && <span slot="helper-text">{this.options.hint}</span>}
         </bx-input>

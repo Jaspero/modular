@@ -8,25 +8,22 @@
   let containerElement: HTMLDivElement;
 
   onMount(() => {
+
+    // TODO: Better solution
+    window.ModularSchema = ModularSchema;
+    window.ModularView = ModularView;
+
     const schema = new ModularSchema({
       properties: {
-        name: {
-          type: "string",
-        },
-        gender: {
-          enum: ["male", "female", "other"],
-        },
-        check: {
-          type: "boolean",
-        },
+        name: {type: 'string'},
+        people: {type: 'array'}
       },
       required: ["name"],
     });
 
     const instance = schema.createInstance({
       name: "John",
-      gender: "female",
-      date: "2022-05-05",
+      items: []
     });
 
     const view = new ModularView({
@@ -36,156 +33,48 @@
           justify: "center",
           items: [
             {
+              field: '/name',
+              component: 'carbon-input'
+            },
+            {
               field: "/check",
-              component: "carbon-submit",
+              component: "carbon-object-array",
               options: {
-                label: "Click me",
-                kind: "primary",
-                href: "https://github.com",
-                disabled: false,
-                method: 'POST',
-                loadingText: 'Loading...',
-                form: [
+                label: 'People',
+                description: `Please list some people`,
+                addLabel: 'Add person',
+                properties: {
+                  firstName: {type: 'string'},
+                  lastName: {type: 'string'} 
+                },
+                views: [
                   {
-                    key: 'name',
-                    pointer: '/name'
-                  },
-                  {
-                    key: 'check2',
-                    pointer: '/check'
+                    items: [
+                      {
+                        field: '/firstName',
+                        component: 'carbon-input',
+                        columns: 6,
+                        options: {
+                          label: 'First Name'
+                        }
+                      },
+                      {
+                        field: '/lastName',
+                        component: 'carbon-input',
+                        columns: 6,
+                        options: {
+                          label: 'Last Name'
+                        }
+                      }
+                    ]
                   }
                 ]
               },
             },
             {
-              field: "/check",
-              component: "carbon-checkbox",
-              options: {
-                label: "Name",
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-toggle",
-              options: {
-                label: "Name",
-                checkedText: "Cool",
-                uncheckedText: "Bla",
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-slider",
-              options: {
-                label: "Name",
-                min: 10,
-                max: 50,
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-radio",
-              options: {
-                label: "Bla",
-                orientation: "vertical",
-                name: "cool",
-                items: [
-                  {
-                    value: "one",
-                    label: "One",
-                  },
-                  {
-                    value: "two",
-                    label: "Two",
-                  },
-                  {
-                    value: "three",
-                    label: "Three",
-                    disabled: true,
-                  },
-                ],
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-table",
-              options: {
-                size: 'compact',
-                colorSchema: 'zebra',
-                search: {
-                  placeholder: 'Search'
-                },
-                button: {
-                  label: 'Add New',
-                  url: '/new',
-                  useHistory: true
-                },
-                pagination: {
-                  sizeOptions: [
-                    5,
-                    10,
-                    15,
-                    20
-                  ],
-                  total: 1000
-                },
-                fromEndpoint: {
-                  url: 'http://localhost:2001/api/documents/pagination/invoices'
-                },
-                columns: [
-                  {
-                    label: "ID",
-                    id: "_id",
-                  },
-                  {
-                    label: "Name",
-                    id: "name",
-                  },
-                ]
-              }
-            },
-            {
-              field: "/check",
-              component: "carbon-accordion",
-              options: {
-                value: [
-                  {
-                    label: "One",
-                    content: "Content",
-                  },
-                  {
-                    label: "Two",
-                    content: "Content",
-                  },
-                ],
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-breadcrumb",
-              options: {
-                value: [
-                  {
-                    label: "youtube",
-                    link: "https://youtube.com",
-                  },
-                  {
-                    label: "github",
-                    link: "https://github.com",
-                  },
-                ],
-              },
-            },
-            {
-              field: "/check",
-              component: "carbon-fileuploader",
-              options: {
-                helperText: "Upload your favourite image",
-                labelText: "Upload",
-                accept: ["image/*"],
-                multiple: true,
-              },
-            },
+              field: '/name',
+              component: 'carbon-submit'
+            }
           ],
         },
       ],
@@ -198,4 +87,5 @@
   });
 </script>
 
+<p>Rendered content</p>
 <div bind:this={containerElement} />

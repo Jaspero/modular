@@ -1,15 +1,16 @@
+import { CarbonObjectArray } from '@jaspero/modular-components/dist/components/carbon-object-array';
+import { CarbonButton } from '@jaspero/modular-components/dist/components/carbon-button';
 import { CarbonCheckbox } from '@jaspero/modular-components/dist/components/carbon-checkbox';
 import { CarbonDatepicker } from '@jaspero/modular-components/dist/components/carbon-datepicker';
 import { CarbonInput } from '@jaspero/modular-components/dist/components/carbon-input';
 import { CarbonRadio } from '@jaspero/modular-components/dist/components/carbon-radio';
 import { CarbonSelect } from '@jaspero/modular-components/dist/components/carbon-select';
 import { CarbonSlider } from '@jaspero/modular-components/dist/components/carbon-slider';
+import { CarbonSubmit } from '@jaspero/modular-components/dist/components/carbon-submit';
 import { CarbonTable } from '@jaspero/modular-components/dist/components/carbon-table';
 import { CarbonToggle } from '@jaspero/modular-components/dist/components/carbon-toggle';
 import { registerComponent } from './register-component';
 import { initializeCSSUtil } from './utils/css.util';
-import {CarbonButton} from '@jaspero/modular-components/dist/components/carbon-button';
-import {CarbonSubmit} from '@jaspero/modular-components/dist/components/carbon-submit';
 
 declare global {
   interface Window {
@@ -47,3 +48,4 @@ registerComponent('carbon-table', CarbonTable);
 registerComponent('carbon-checkbox', CarbonCheckbox);
 registerComponent('carbon-toggle', CarbonToggle);
 registerComponent('carbon-datepicker', CarbonDatepicker);
+registerComponent('carbon-object-array', CarbonObjectArray)

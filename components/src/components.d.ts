@@ -13,6 +13,7 @@ import { CarbonCheckboxOptions } from "./components/carbon-checkbox/carbon-check
 import { CarbonDatePickerOptions } from "./components/carbon-datepicker/carbon-datepicker";
 import { CarbonFileUploaderOptions } from "./components/carbon-fileuploader/carbon-fileuploader";
 import { CarbonInputOptions } from "./components/carbon-input/carbon-input";
+import { CarbonObjectArrayOptions } from "./components/carbon-object-array/carbon-object-array";
 import { CarbonRadioOptions } from "./components/carbon-radio/carbon-radio";
 import { CarbonSelectOptions } from "./components/carbon-select/carbon-select";
 import { CarbonSliderOptions } from "./components/carbon-slider/carbon-slider";
@@ -73,6 +74,12 @@ export namespace Components {
         "setOptions": (options: CarbonInputOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
+    }
+    interface CarbonObjectArray {
+        "options": CarbonObjectArrayOptions;
+        "setOptions": (options: CarbonObjectArrayOptions) => Promise<void>;
+        "setValue": (value: any) => Promise<void>;
+        "value": any[];
     }
     interface CarbonRadio {
         "setOptions": (options: CarbonRadioOptions) => Promise<void>;
@@ -161,6 +168,10 @@ export interface CarbonInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonInputElement;
 }
+export interface CarbonObjectArrayCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCarbonObjectArrayElement;
+}
 export interface CarbonRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCarbonRadioElement;
@@ -246,6 +257,12 @@ declare global {
         prototype: HTMLCarbonInputElement;
         new (): HTMLCarbonInputElement;
     };
+    interface HTMLCarbonObjectArrayElement extends Components.CarbonObjectArray, HTMLStencilElement {
+    }
+    var HTMLCarbonObjectArrayElement: {
+        prototype: HTMLCarbonObjectArrayElement;
+        new (): HTMLCarbonObjectArrayElement;
+    };
     interface HTMLCarbonRadioElement extends Components.CarbonRadio, HTMLStencilElement {
     }
     var HTMLCarbonRadioElement: {
@@ -309,6 +326,7 @@ declare global {
         "carbon-datepicker": HTMLCarbonDatepickerElement;
         "carbon-fileuploader": HTMLCarbonFileuploaderElement;
         "carbon-input": HTMLCarbonInputElement;
+        "carbon-object-array": HTMLCarbonObjectArrayElement;
         "carbon-radio": HTMLCarbonRadioElement;
         "carbon-select": HTMLCarbonSelectElement;
         "carbon-slider": HTMLCarbonSliderElement;
@@ -364,6 +382,11 @@ declare namespace LocalJSX {
         "options"?: CarbonInputOptions;
         "value"?: string;
     }
+    interface CarbonObjectArray {
+        "onValue"?: (event: CarbonObjectArrayCustomEvent<any>) => void;
+        "options"?: CarbonObjectArrayOptions;
+        "value"?: any[];
+    }
     interface CarbonRadio {
         "onValue"?: (event: CarbonRadioCustomEvent<any>) => void;
         "value"?: string;
@@ -417,6 +440,7 @@ declare namespace LocalJSX {
         "carbon-datepicker": CarbonDatepicker;
         "carbon-fileuploader": CarbonFileuploader;
         "carbon-input": CarbonInput;
+        "carbon-object-array": CarbonObjectArray;
         "carbon-radio": CarbonRadio;
         "carbon-select": CarbonSelect;
         "carbon-slider": CarbonSlider;
@@ -440,6 +464,7 @@ declare module "@stencil/core" {
             "carbon-datepicker": LocalJSX.CarbonDatepicker & JSXBase.HTMLAttributes<HTMLCarbonDatepickerElement>;
             "carbon-fileuploader": LocalJSX.CarbonFileuploader & JSXBase.HTMLAttributes<HTMLCarbonFileuploaderElement>;
             "carbon-input": LocalJSX.CarbonInput & JSXBase.HTMLAttributes<HTMLCarbonInputElement>;
+            "carbon-object-array": LocalJSX.CarbonObjectArray & JSXBase.HTMLAttributes<HTMLCarbonObjectArrayElement>;
             "carbon-radio": LocalJSX.CarbonRadio & JSXBase.HTMLAttributes<HTMLCarbonRadioElement>;
             "carbon-select": LocalJSX.CarbonSelect & JSXBase.HTMLAttributes<HTMLCarbonSelectElement>;
             "carbon-slider": LocalJSX.CarbonSlider & JSXBase.HTMLAttributes<HTMLCarbonSliderElement>;

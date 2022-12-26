@@ -17,7 +17,7 @@ export interface CarbonDatePickerOptions {
   tag: 'carbon-datepicker',
   styleUrl: 'carbon-datepicker.css',
 })
-export class CarbonInput {
+export class CarbonDatePicker {
 
 
   @State() options: CarbonDatePickerOptions = {};
