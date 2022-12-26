@@ -74,6 +74,8 @@ export class CarbonObjectArray {
       this.value.forEach((val, index) =>
         this.addElement(val, index)
       );
+    } else {
+      this.value = [];
     }
   }
 
