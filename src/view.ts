@@ -105,7 +105,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         element.style.boxSizing = 'border-box';
         element.addEventListener('value', () => dispatchEvents('change'));
         (element as any)?.setOptions?.(view.options);
-        (element as any)?.setValue?.(get(instance.value, view.field));
+
+        if (view.field) {
+          (element as any)?.setValue?.(get(instance.value, view.field));
+        }
+
         (element as any)?.setInstance?.(instance);
 
         // @ts-ignore
