@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                       | Default                       |
-| --------- | --------- | ----------- | -------------------------- | ----------------------------- |
-| `options` | --        |             | `CarbonObjectArrayOptions` | `{}`                          |
-| `value`   | --        |             | `any[]`                    | `this.options?.value \|\| []` |
+| Property  | Attribute | Description | Type                       | Default |
+| --------- | --------- | ----------- | -------------------------- | ------- |
+| `options` | --        |             | `CarbonObjectArrayOptions` | `{}`    |
+| `value`   | --        |             | `any[]`                    | `[]`    |
 
 
 ## Events
@@ -21,6 +21,16 @@
 
 
 ## Methods
+
+### `getValue() => Promise<any[]>`
+
+
+
+#### Returns
+
+Type: `Promise<any[]>`
+
+
 
 ### `setOptions(options: CarbonObjectArrayOptions) => Promise<void>`
 

@@ -18,21 +18,13 @@ export interface CarbonTextareaOptions {
 })
 export class CarbonTextarea {
 
-  constructor() {
-    console.log('CarbonTextarea');
-  }
-
   @State()
   @Prop()
   options: CarbonTextareaOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
-    console.log('parseMyObjectProp', options);
     return JSON.parse(options);
-    // if (typeof options === 'string') {
-    //   // this.options = JSON.parse(options);
-    // }
   }
 
   @Prop() value: string = this.options?.value;
@@ -53,6 +45,11 @@ export class CarbonTextarea {
   setValue(value: any) {
     this.value = value;
   }
+
+  @Method()
+  async getValue() {
+    return this.value;
+  }  
 
   handleChange(event) {
     this.value = event.target.value;

@@ -13,8 +13,6 @@ export interface CarbonStructuredListOptions {
 })
 
 export class CarbonStructuredList {
-
-
   @State()
   @Prop()
   options: CarbonStructuredListOptions = {};

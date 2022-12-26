@@ -1,7 +1,8 @@
-import {Component, Event, EventEmitter, h, Host, Method, Prop, State} from '@stencil/core';
+import {Component, Event, EventEmitter, h, Host, Method, Prop, State, Element} from '@stencil/core';
 import '@carbon/web-components/dist/button.min.js';
 import '@carbon/web-components/dist/inline-loading.min.js';
 import {get} from '../../utils/json-pointer.util';
+import { HostElement } from '@stencil/core/internal';
 
 export interface CarbonSubmitOptions {
   value?: string;
@@ -12,7 +13,7 @@ export interface CarbonSubmitOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
   form?: {
     pointer: string;
-    key: string;
+    key?: string;
   }[];
   duration?: number;
   loadingText?: string;
@@ -30,6 +31,9 @@ export class CarbonSubmit {
   @State()
   loading = false;
 
+  @Element()
+  el: HostElement;
+
   @State()
   state: 'idle' | 'error' | 'finished' = 'idle';
 
@@ -45,6 +49,8 @@ export class CarbonSubmit {
     cancelable: true,
     bubbles: true,
   }) valueChange: EventEmitter<any>;
+
+  formEl: HTMLFormElement;
 
   @Method()
   setOptions(options: CarbonSubmitOptions) {
@@ -66,7 +72,25 @@ export class CarbonSubmit {
     this.valueChange.emit(this.value);
   }
 
-  async handleSubmit() {
+  componentDidRender() {
+
+    if (this.formEl) {
+      return;
+    }
+
+    const formEl = this.el.parentElement;
+
+    if (formEl.nodeName === 'FORM') {
+      this.formEl = formEl as HTMLFormElement;
+      formEl.addEventListener('submit', e => {
+        e.preventDefault();
+        this.submit().catch();
+      })
+    }
+  }
+
+  async submit() {
+    console.log('in submit');
     if (this.loading) {
       return;
     }
@@ -74,10 +98,17 @@ export class CarbonSubmit {
     const data = {};
     const form = this.options?.form;
     for (const item of form) {
+
+      if (!item.key) {
+        item.key = item.pointer.replace(/^\//, '');
+      }
+
       data[item.key] = get(this.instance.value, item.pointer);
     }
 
-    const url = this.options?.href;
+    console.log(data);
+
+    const url = this.options?.href || '/';
     const method = this.options?.method || 'GET';
     const body = method === 'GET' ? null : JSON.stringify(data);
     const headers = {
@@ -102,17 +133,29 @@ export class CarbonSubmit {
     }, this.options?.duration || 2000);
   }
 
+  // TODO: Events dispatching multiple times
+  async handleSubmit() {
+    if (this.formEl) {
+      // TODO: Maybe this needs polyfilling
+      this.formEl.dispatchEvent(new CustomEvent('submit', {bubbles: true, cancelable: true}));
+      return;
+    }
+
+    this.submit().catch();
+  }
+
   render() {
     return (
       <Host>
-        <bx-btn kind={this.options?.kind} onClick={() => this.handleSubmit()}>
-          {this.loading
-            ? <bx-inline-loading description={this.options.loadingText ?? 'Submitting...'}></bx-inline-loading>
-            : this.state === 'finished'
-              ? <bx-inline-loading status="finished"></bx-inline-loading>
-              : this.state === 'error'
-                ? <bx-inline-loading status="error"></bx-inline-loading>
-                : (this.options?.label || 'Submit')
+        <bx-btn type="submit" kind={this.options?.kind} onClick={() => this.handleSubmit()}>
+          {
+            this.loading
+              ? <bx-inline-loading description={this.options.loadingText ?? 'Submitting...'}></bx-inline-loading>
+              : this.state === 'finished'
+                ? <bx-inline-loading status="finished"></bx-inline-loading>
+                : this.state === 'error'
+                  ? <bx-inline-loading status="error"></bx-inline-loading>
+                  : (this.options?.label || 'Submit')
           }
         </bx-btn>
       </Host>

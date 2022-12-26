@@ -5,7 +5,6 @@ import '@carbon/web-components/dist/button.min.js';
 
 export interface CarbonObjectArrayOptions {
   properties?: any;
-  value?: any[];
   views?: any[];
   label?: string;
   description?: string;
@@ -35,7 +34,7 @@ export class CarbonObjectArray {
     return JSON.parse(options);
   }
 
-  @Prop() value: any[] = this.options?.value || [];
+  @Prop() value: any[] = [];
 
   @Event({
     eventName: 'value',
@@ -54,46 +53,75 @@ export class CarbonObjectArray {
     this.value = value;
   }
 
+  @Method()
+  async getValue() {
+    return this.value;
+  }
+
   handleChange(event) {
     this.value = event.target.value;
     this.valueChange.emit(this.value);
   }
 
   componentDidRender() {
-    console.log('loaded');
     // @ts-ignore
     this.schema = new window.ModularSchema(this.options.properties || {});
     // @ts-ignore
     this.view = new window.ModularView({ schema: this.schema, views: this.options.views || [] });
     this.itemsEl = this.hostEl.querySelector('.items');
 
-    if (this.options.value?.length) {
-      this.options.value.forEach(val => {
-        this.addElement(val);
-      });
+    if (this.value?.length) {
+      this.value.forEach((val, index) =>
+        this.addElement(val, index)
+      );
     }
   }
 
-  addElement(item: any) {
-    console.log(item);
+  addElement(item: any, index = null) {
     const instance = this.schema.createInstance(item);
+
+    if (index === null) {
+      index = this.value.length;
+      this.value.push(item);
+    }
 
     const wrapperElement = document.createElement('div');
     const parentElement = document.createElement('div');
+    const deleteButtonWrapperElement = document.createElement('div');
     const deleteButton = document.createElement('bx-btn');
 
     deleteButton.innerText = 'Delete';
+    deleteButton.setAttribute('type', 'button');
     deleteButton.setAttribute('kind', 'danger');
+    deleteButton.addEventListener('click', () => this.removeItem(index));
+
+    parentElement.classList.add('items-parent');
+
+    wrapperElement.classList.add('items-wrapper');
+
+    deleteButtonWrapperElement.classList.add('delete-button-wrapper');
+
+    deleteButtonWrapperElement.appendChild(deleteButton);
 
     wrapperElement.appendChild(parentElement);
-    wrapperElement.appendChild(deleteButton);
+    wrapperElement.appendChild(deleteButtonWrapperElement);
 
     this.itemsEl.appendChild(wrapperElement);
-    this.view.render({ parentElement, instance });
+    const render = this.view.render({ parentElement, instance });
+
+    render.addEventListener('change', value => {
+      this.value[index] = value;
+    });
   }
 
   newItem() {
     this.addElement({});
+  }
+
+  removeItem(index: number) {
+    this.itemsEl.removeChild(this.itemsEl.children[index]);
+    this.value.splice(index, 1);
+    this.valueChange.emit(this.value);
   }
 
   render() {
@@ -102,7 +130,7 @@ export class CarbonObjectArray {
         {this.options.label && (<p class="label">{this.options.label}</p>)}
         {this.options.description && (<p class="description">{this.options.description}</p>)}
         <div class="items"></div>
-        <bx-btn onClick={() => this.newItem()}>
+        <bx-btn onClick={() => this.newItem()} type="button">
           {this.options.addLabel || 'Add'}
         </bx-btn>
       </Host>

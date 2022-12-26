@@ -59,6 +59,7 @@ export namespace Components {
         "value": boolean;
     }
     interface CarbonDatepicker {
+        "getValue": () => Promise<string>;
         "setOptions": (options: CarbonDatePickerOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
@@ -70,28 +71,33 @@ export namespace Components {
         "value": any;
     }
     interface CarbonInput {
+        "getValue": () => Promise<string>;
         "options": CarbonInputOptions;
         "setOptions": (options: CarbonInputOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
     interface CarbonObjectArray {
+        "getValue": () => Promise<any[]>;
         "options": CarbonObjectArrayOptions;
         "setOptions": (options: CarbonObjectArrayOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": any[];
     }
     interface CarbonRadio {
+        "getValue": () => Promise<string>;
         "setOptions": (options: CarbonRadioOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
     interface CarbonSelect {
+        "getValue": () => Promise<string>;
         "setOptions": (options: CarbonSelectOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
     interface CarbonSlider {
+        "getValue": () => Promise<number>;
         "options": CarbonSliderOptions;
         "setOptions": (options: CarbonSliderOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
@@ -124,12 +130,14 @@ export namespace Components {
         "value": Array<{ tabTarget: string; tabId: string; tabName: string; isDisabled: boolean; tabContent: string; value: string; }> | undefined;
     }
     interface CarbonTextarea {
+        "getValue": () => Promise<string>;
         "options": CarbonTextareaOptions;
         "setOptions": (options: CarbonTextareaOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }
     interface CarbonToggle {
+        "getValue": () => Promise<boolean>;
         "options": CarbonToggleOptions;
         "setOptions": (options: CarbonToggleOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;

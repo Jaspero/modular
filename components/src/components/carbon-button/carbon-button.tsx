@@ -7,6 +7,7 @@ export interface CarbonButtonOptions {
   href?: string;
   kind?: string;
   disabled?: boolean;
+  type?: string;
 }
 
 @Component({
@@ -46,9 +47,9 @@ export class CarbonButton {
   render() {
     return (
       <Host>
-          <bx-btn kind={this.options?.kind} href={this.options?.href}>
-            {this.options?.label}
-          </bx-btn>
+        <bx-btn kind={this.options?.kind} href={this.options?.href} type={this.options?.type || 'button'}>
+          {this.options?.label}
+        </bx-btn>
       </Host>
     );
   }

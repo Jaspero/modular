@@ -45,6 +45,11 @@ export class CarbonRadio {
     this.value = value;
   }
 
+  @Method()
+  async getValue() {
+    return this.value;
+  }  
+
   handleChange(event) {
     this.value = event.target.value;
     this.valueChange.emit(this.value);

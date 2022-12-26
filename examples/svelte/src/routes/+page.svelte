@@ -23,7 +23,9 @@
 
     const instance = schema.createInstance({
       name: "John",
-      items: []
+      people: [
+        {firstName: 'pero'}
+      ]
     });
 
     const view = new ModularView({
@@ -31,13 +33,15 @@
       views: [
         {
           justify: "center",
+          container: 'form',
           items: [
             {
               field: '/name',
-              component: 'carbon-input'
+              component: 'carbon-input',
+              columns: 6
             },
             {
-              field: "/check",
+              field: "/people",
               component: "carbon-object-array",
               options: {
                 label: 'People',
@@ -73,17 +77,27 @@
             },
             {
               field: '/name',
-              component: 'carbon-submit'
+              component: 'carbon-submit',
+              options: {
+                form: [
+                  {pointer: '/name'},
+                  {pointer: '/people'}
+                ]
+              }
             }
           ],
         },
       ],
     } as any);
 
-    view.render({
+    const render = view.render({
       parentElement: containerElement,
-      instance,
+      instance
     });
+
+    render.addEventListener('change', value => {
+      console.log('the final', value);
+    })
   });
 </script>
 

@@ -5,8 +5,11 @@ import {get} from './utils/json-pointer.util';
 
 interface ViewRow<Options, Fields extends keyof Options> {
   align?: 'start' | 'center' | 'end';
+  container?: string;
   items: View<Options, Fields>[];
 }
+
+type Events = 'change';
 
 export class ModularView<Options = ComponentOptions, Fields extends keyof Options = keyof Options> {
   private _schema: ModularSchema;
@@ -25,18 +28,54 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
   public render(options: {
     parentElement: HTMLElement,
-    instance: ModularInstance
+    instance: ModularInstance,
+    container?: string
   }) {
     const {parentElement, instance} = options;
-    // const elements: HTMLElement[] = [];
+    const elements: Array<{key: string, element: HTMLElement}> = [];
 
     const container = document.createElement('div');
     container.style.display = 'flex';
     container.style.flexWrap = 'wrap';
 
+    const _eventCallbacks: Array<{event: string, callback: (value?: any) => void}> = [];
+
+    const addEventListener = (event: Events, callback: (value?: any) => void) => {
+      _eventCallbacks.push({event, callback});
+    };
+
+    const removeEventListener = (event: Events, callback: (value?: any) => void) => {
+      const index = _eventCallbacks.findIndex(it => it.event === event && callback === callback);
+
+      if (index !== -1) {
+        _eventCallbacks.splice(index, 1);
+      }
+    };
+
+    const getValue = async () => {
+      const values = await Promise.all(
+        elements.map(e => (e.element as any).getValue())
+      );
+
+      return values.reduce((acc, cur, index) => {
+        acc[elements[index].key] = cur;
+        return acc
+      }, {});
+    };
+
+    const dispatchEvents = async (event: Events) => {
+      console.log(event, _eventCallbacks);
+      const value = await getValue();
+      _eventCallbacks.forEach(e => {
+        if (e.event === event) {
+          e.callback(value);
+        }
+      })
+    }
+
     for (const row of this._views) {
 
-      const rowContainer = document.createElement('div');
+      const rowContainer = document.createElement(row.container || 'div');
       rowContainer.style.display = 'flex';
       rowContainer.style.flexWrap = 'wrap';
       rowContainer.style.width = '100%';
@@ -63,15 +102,21 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         }
 
         element.style.padding = '0.5rem';
-        element.addEventListener('value', (value: any) => {
-          console.log('Value', value);
-        });
+        element.style.boxSizing = 'border-box';
+        element.addEventListener('value', () => dispatchEvents('change'));
         (element as any)?.setOptions?.(view.options);
         (element as any)?.setValue?.(get(instance.value, view.field));
         (element as any)?.setInstance?.(instance);
+
+        // @ts-ignore
+        if (view.field && element.getValue) {
+          elements.push({
+            key: view.field.replace(/^\//, ''),
+            element
+          });
+        }
+
         rowContainer.appendChild(element);
-
-
       }
 
       container.appendChild(rowContainer);
@@ -81,19 +126,9 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
     // todo: return cleanup function
     return {
-      getValue: () => {
-        const value: {
-          [key: string]: any
-        } = {};
-
-        // TODO:
-        // for (const element of elements) {
-        //   const field = element.getValue();
-        //   value[field] = (element as any)?.getValue?.();
-        // }
-
-        return value;
-      },
+      getValue,
+      addEventListener,
+      removeEventListener,
       destroy: () => {
         container.remove();
       }

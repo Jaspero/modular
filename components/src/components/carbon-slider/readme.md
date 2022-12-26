@@ -22,6 +22,16 @@
 
 ## Methods
 
+### `getValue() => Promise<number>`
+
+
+
+#### Returns
+
+Type: `Promise<number>`
+
+
+
 ### `setOptions(options: CarbonSliderOptions) => Promise<void>`
 
 

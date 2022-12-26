@@ -21,6 +21,16 @@
 
 ## Methods
 
+### `getValue() => Promise<string>`
+
+
+
+#### Returns
+
+Type: `Promise<string>`
+
+
+
 ### `setOptions(options: CarbonRadioOptions) => Promise<void>`
 
 

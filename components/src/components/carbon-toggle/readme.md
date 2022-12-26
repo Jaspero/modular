@@ -22,6 +22,16 @@
 
 ## Methods
 
+### `getValue() => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
+
 ### `setOptions(options: CarbonToggleOptions) => Promise<void>`
 
 
