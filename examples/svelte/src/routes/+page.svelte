@@ -37,7 +37,7 @@
           items: [
             {
               field: '/name',
-              component: 'carbon-input',
+              component: 'carbon-textarea',
               columns: 6
             },
             {
