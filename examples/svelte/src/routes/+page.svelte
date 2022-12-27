@@ -79,6 +79,7 @@
               field: '/name',
               component: 'carbon-submit',
               options: {
+                method: 'POST',
                 form: [
                   {pointer: '/name'},
                   {pointer: '/people'}

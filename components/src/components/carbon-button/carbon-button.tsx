@@ -14,7 +14,6 @@ export interface CarbonButtonOptions {
   tag: 'carbon-button',
   styleUrl: 'carbon-button.css',
 })
-
 export class CarbonButton {
   @State()
   @Prop()

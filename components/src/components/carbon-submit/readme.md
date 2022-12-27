@@ -42,6 +42,16 @@ Type: `Promise<void>`
 
 
 
+### `setRender(render: any) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `setValue(value: any) => Promise<void>`
 
 

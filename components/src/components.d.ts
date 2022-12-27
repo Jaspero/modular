@@ -114,6 +114,7 @@ export namespace Components {
         "options": CarbonSubmitOptions;
         "setInstance": (instance: any) => Promise<void>;
         "setOptions": (options: CarbonSubmitOptions) => Promise<void>;
+        "setRender": (render: any) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
     }

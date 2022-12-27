@@ -72,6 +72,15 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       })
     }
 
+    const r = {
+      getValue,
+      addEventListener,
+      removeEventListener,
+      destroy: () => {
+        container.remove();
+      }
+    };
+
     for (const row of this._views) {
 
       const rowContainer = document.createElement(row.container || 'div');
@@ -94,7 +103,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           if (view.columns?.tablet) {
             element.classList.add(`modular-util-col-m-${view.columns.tablet}`);
           }
-
+ 
           if (view.columns?.mobile) {
             element.classList.add(`modular-util-col-s-${view.columns.mobile}`);
           }
@@ -110,6 +119,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         }
 
         (element as any)?.setInstance?.(instance);
+        (element as any)?.setRender?.(r);
 
         // @ts-ignore
         if (view.field && element.getValue) {
@@ -128,13 +138,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     parentElement.appendChild(container);
 
     // todo: return cleanup function
-    return {
-      getValue,
-      addEventListener,
-      removeEventListener,
-      destroy: () => {
-        container.remove();
-      }
-    }
+    return r;
   }
 }

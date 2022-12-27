@@ -27,6 +27,7 @@ export interface CarbonSubmitOptions {
 export class CarbonSubmit {
 
   instance: any;
+  r: any;
 
   @State()
   loading = false;
@@ -67,6 +68,11 @@ export class CarbonSubmit {
     this.instance = instance;
   }
 
+  @Method()
+  setRender(render) {
+    this.r = render;
+  }
+
   handleChange(event) {
     this.value = event.target.value;
     this.valueChange.emit(this.value);
@@ -96,13 +102,14 @@ export class CarbonSubmit {
 
     const data = {};
     const form = this.options?.form;
+    const renderValue = await this.r.getValue();
     for (const item of form) {
 
       if (!item.key) {
         item.key = item.pointer.replace(/^\//, '');
       }
 
-      data[item.key] = get(this.instance.value, item.pointer);
+      data[item.key] = get(renderValue, item.pointer);
     }
 
     const url = this.options?.href || '/';
