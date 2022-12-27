@@ -64,7 +64,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     };
 
     const dispatchEvents = async (event: Events) => {
-      console.log(event, _eventCallbacks);
       const value = await getValue();
       _eventCallbacks.forEach(e => {
         if (e.event === event) {

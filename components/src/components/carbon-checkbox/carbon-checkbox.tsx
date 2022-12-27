@@ -14,22 +14,13 @@ export interface CarbonCheckboxOptions {
   styleUrl: 'carbon-checkbox.css',
 })
 export class CarbonCheckbox {
-
-  constructor() {
-    console.log('CarbonCheckbox');
-  }
-
   @State()
   @Prop()
   options: CarbonCheckboxOptions = {};
 
   @Watch('options')
   parseMyObjectProp(options: string) {
-    console.log('parseMyObjectProp', options);
     return JSON.parse(options);
-    // if (typeof options === 'string') {
-    //   // this.options = JSON.parse(options);
-    // }
   }
 
   @Prop() value: boolean = this.options?.value;

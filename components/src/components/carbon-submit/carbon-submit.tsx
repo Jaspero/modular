@@ -90,7 +90,6 @@ export class CarbonSubmit {
   }
 
   async submit() {
-    console.log('in submit');
     if (this.loading) {
       return;
     }
@@ -105,8 +104,6 @@ export class CarbonSubmit {
 
       data[item.key] = get(this.instance.value, item.pointer);
     }
-
-    console.log(data);
 
     const url = this.options?.href || '/';
     const method = this.options?.method || 'GET';
