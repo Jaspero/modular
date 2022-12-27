@@ -140,7 +140,9 @@ export class CarbonTable {
       return;
     }
 
-    history.pushState(history.state, '', this.options.button.url);
+    const {state} = history;
+    history.pushState(state, '', this.options.button.url);
+    dispatchEvent(new PopStateEvent('popstate', {state}));
   }
 
   render() {

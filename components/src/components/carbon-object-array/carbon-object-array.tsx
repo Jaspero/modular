@@ -74,8 +74,6 @@ export class CarbonObjectArray {
       this.value.forEach((val, index) =>
         this.addElement(val, index)
       );
-    } else {
-      this.value = [];
     }
   }
 
@@ -83,6 +81,11 @@ export class CarbonObjectArray {
     const instance = this.schema.createInstance(item);
 
     if (index === null) {
+
+      if (!this.value) {
+        this.value = [];
+      }
+
       index = this.value.length;
       this.value.push(item);
     }
