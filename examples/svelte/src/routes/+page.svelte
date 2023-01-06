@@ -45,6 +45,11 @@
                   {
                     label: "Name",
                     id: "name",
+                    pipes: [
+                      {
+                        name: 'title'
+                      }
+                    ]
                   },
                   {
                     label: "Date",
@@ -87,7 +92,7 @@
                 ],
                 value: [
                   {
-                    name: "John",
+                    name: "asdasd",
                     status: true,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
@@ -95,7 +100,7 @@
                     active: 1,
                   },
                   {
-                    name: "John",
+                    name: "qwe",
                     status: true,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
@@ -103,7 +108,7 @@
                     active: 1,
                   },
                   {
-                    name: "John",
+                    name: "dasd",
                     status: true,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,

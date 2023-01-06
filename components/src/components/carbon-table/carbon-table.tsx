@@ -67,6 +67,7 @@ export class CarbonTable {
   selectChange;
   pipeMap = {
     date: (value) => new Date(value).toLocaleDateString(),
+    title: (value) => value.charAt(0).toUpperCase() + value.slice(1),
     currency: (value, options: any = {}) => new Intl.NumberFormat(options.local || 'en-US', { style: options.style || 'currency', currency: options.currency || 'USD' }).format(value),
   }
 
