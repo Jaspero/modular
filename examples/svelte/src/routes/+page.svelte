@@ -58,7 +58,7 @@
                       {
                         name: "date",
                         options: {
-                          format: "yyyy",
+                          format: "MM/dd",
                         },
                       },
                     ],
@@ -82,9 +82,9 @@
                     id: 'active',
                     pipes: [
                       {
-                        name: 'currency',
+                        name: 'timeSince',
                         options: {
-                          currency: 'EUR'
+                          unit: 'months'
                         }
                       }
                     ]
@@ -97,7 +97,7 @@
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
-                    active: 1,
+                    active: 1623019940773,
                   },
                   {
                     name: "qwe",
@@ -105,7 +105,7 @@
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
-                    active: 1,
+                    active: 1623019940773,
                   },
                   {
                     name: "dasd",
@@ -113,7 +113,7 @@
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
-                    active: 1,
+                    active: 1623019940773,
                   },
                 ],
               },
