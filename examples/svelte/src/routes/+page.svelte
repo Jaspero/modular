@@ -2,106 +2,107 @@
   /**
    * Must be able to serialize to JSON
    */
-  import { ModularSchema, ModularView } from "@jaspero/modular";
+  import {
+    ModularInstance,
+    ModularSchema,
+    ModularView,
+  } from "@jaspero/modular";
   import { onMount } from "svelte";
 
   let containerElement: HTMLDivElement;
 
   onMount(() => {
-
     // TODO: Better solution
     window.ModularSchema = ModularSchema;
     window.ModularView = ModularView;
 
     const schema = new ModularSchema({
       properties: {
-        name: {type: 'string'},
-        people: {type: 'array'}
+        createdOn: { type: "number" },
+        name: { type: "string" },
+        active: { type: "number" },
+        "functions.activeFunctions": { type: "number" },
+        "functions.maxFunctions": { type: "number" },
+        status: { type: "boolean" },
       },
-      required: ["name"],
     });
 
-    const instance = schema.createInstance({
-      name: "John",
-      people: [
-        {firstName: 'pero'}
-      ]
-    });
+    const instance = schema.createInstance({});
 
     const view = new ModularView({
       schema,
       views: [
         {
           justify: "center",
-          container: 'form',
+          container: "form",
           items: [
             {
-              component: 'tab-views',
+              component: "carbon-table",
               options: {
-                views: [
+                size: "short",
+                colorSchema: "zebra",
+                columns: [
                   {
-                    title: 'Tab 1'
+                    label: "Name",
+                    id: "name",
                   },
                   {
-                    title: 'Tab 2'
+                    label: "Status",
+                    id: "status",
                   },
                   {
-                    title: 'Tab 3'
-                  }
-                ]
-              }
-            },
-            {
-              field: '/name',
-              component: 'carbon-textarea',
-              columns: 6
-            },
-            {
-              field: "/people",
-              component: "carbon-object-array",
-              options: {
-                label: 'People',
-                description: `Please list some people`,
-                addLabel: 'Add person',
-                properties: {
-                  firstName: {type: 'string'},
-                  lastName: {type: 'string'} 
-                },
-                views: [
-                  {
-                    items: [
+                    label: "Date",
+                    id: "createdOn",
+                    pipes: [
                       {
-                        field: '/firstName',
-                        component: 'carbon-input',
-                        columns: 6,
+                        name: "date",
                         options: {
-                          label: 'First Name'
-                        }
+                          format: "dd/MM/yyyy",
+                        },
                       },
-                      {
-                        field: '/lastName',
-                        component: 'carbon-input',
-                        columns: 6,
-                        options: {
-                          label: 'Last Name'
-                        }
-                      }
-                    ]
-                  }
-                ]
+                    ],
+                  },
+                  {
+                    label: "Functions",
+                    id: "functions.activeFunctions",
+                  },
+                  {
+                    label: "Max Functions",
+                    id: "functions.maxFunctions",
+                  },
+                  {
+                    label: "Active",
+                    id: "active",
+                  },
+                ],
+                value: [
+                  {
+                    name: "John",
+                    status: true,
+                    createdOn: Date.now(),
+                    "functions.activeFunctions": 1,
+                    "functions.maxFunctions": 10,
+                    active: 1,
+                  },
+                  {
+                    name: "John",
+                    status: true,
+                    createdOn: Date.now(),
+                    "functions.activeFunctions": 1,
+                    "functions.maxFunctions": 10,
+                    active: 1,
+                  },
+                  {
+                    name: "John",
+                    status: true,
+                    createdOn: Date.now(),
+                    "functions.activeFunctions": 1,
+                    "functions.maxFunctions": 10,
+                    active: 1,
+                  },
+                ],
               },
             },
-            {
-              field: '/name',
-              component: 'carbon-submit',
-              options: {
-                method: 'POST',
-                form: [
-                  {pointer: '/name'},
-                  {pointer: '/people'}
-                ]
-              }
-            }
           ],
         },
       ],
@@ -109,12 +110,12 @@
 
     const render = view.render({
       parentElement: containerElement,
-      instance
+      instance,
     });
 
-    render.addEventListener('change', value => {
-      console.log('the final', value);
-    })
+    render.addEventListener("change", (value) => {
+      console.log("the final", value);
+    });
   });
 </script>
 

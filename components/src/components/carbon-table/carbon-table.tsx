@@ -3,11 +3,12 @@ import '@carbon/web-components/dist/button.min.js';
 import '@carbon/web-components/dist/pagination.min.js';
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Element } from '@stencil/core';
 import { HostElement } from '@stencil/core/internal';
+import { DateType } from "luxon";
 
 export interface CarbonTableOptions {
   size?: 'compact' | 'short' | 'regular' | 'tall';
   colorSchema?: 'regular' | 'zebra';
-  columns?: Array<{ label: string; id: string }>;
+  columns?: Array<{ label: string; id: string, pipes?: any[] }>;
   value?: any[];
   pagination?: {
     pageSize?: number;
@@ -86,6 +87,11 @@ export class CarbonTable {
       this.loadData()
         .catch(console.error);
     }
+
+
+    console.log(DateType);
+
+
   }
 
   componentDidRender() {
@@ -111,7 +117,7 @@ export class CarbonTable {
         this.loadData().catch();
       };
 
-      paginationEl.addEventListener('bx-pagination-changed-current', this.startChange);  
+      paginationEl.addEventListener('bx-pagination-changed-current', this.startChange);
       paginationEl.addEventListener('bx-page-sizes-select-changed', this.selectChange);
     }
   }
@@ -124,7 +130,7 @@ export class CarbonTable {
 
     const res = await fetch(url.toString());
 
-    const {rows, total} = await res.json();
+    const { rows, total } = await res.json();
 
     this.data = rows;
     this.total = total;
@@ -140,9 +146,9 @@ export class CarbonTable {
       return;
     }
 
-    const {state} = history;
+    const { state } = history;
     history.pushState(state, '', this.options.button.url);
-    dispatchEvent(new PopStateEvent('popstate', {state}));
+    dispatchEvent(new PopStateEvent('popstate', { state }));
   }
 
   render() {
