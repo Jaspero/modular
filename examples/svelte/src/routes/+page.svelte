@@ -58,7 +58,7 @@
                       {
                         name: "date",
                         options: {
-                          format: "dd/MM/yyyy",
+                          format: "yyyy",
                         },
                       },
                     ],

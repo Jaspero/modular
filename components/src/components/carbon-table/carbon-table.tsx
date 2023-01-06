@@ -3,6 +3,7 @@ import '@carbon/web-components/dist/button.min.js';
 import '@carbon/web-components/dist/pagination.min.js';
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Element } from '@stencil/core';
 import { HostElement } from '@stencil/core/internal';
+import { DateTime } from 'luxon';
 
 export interface CarbonTableOptions {
   size?: 'compact' | 'short' | 'regular' | 'tall';
@@ -66,7 +67,19 @@ export class CarbonTable {
   startChange;
   selectChange;
   pipeMap = {
-    date: (value) => new Date(value).toLocaleDateString(),
+    date: (value, options) => {
+      let dateTime: DateTime;
+
+      if (typeof value === 'number') {
+        dateTime = DateTime.fromMillis(value);
+      } else if (value instanceof Date) {
+        dateTime = DateTime.fromJSDate(value);
+      } else {
+        dateTime = DateTime.fromISO(value);
+      }
+
+      return dateTime.toFormat(options.format);
+    },
     title: (value) => value.charAt(0).toUpperCase() + value.slice(1),
     currency: (value, options: any = {}) => new Intl.NumberFormat(options.local || 'en-US', { style: options.style || 'currency', currency: options.currency || 'USD' }).format(value),
   }
