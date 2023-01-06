@@ -65,6 +65,10 @@ export class CarbonTable {
 
   startChange;
   selectChange;
+  pipeMap = {
+    date: (value) => new Date(value).toLocaleDateString(),
+    currency: (value, options: any = {}) => new Intl.NumberFormat(options.local || 'en-US', { style: options.style || 'currency', currency: options.currency || 'USD' }).format(value),
+  }
 
   @Method()
   setOptions(options: CarbonTableOptions) {
@@ -79,6 +83,15 @@ export class CarbonTable {
   handleChange(event) {
     this.value = event.target.value;
     this.valueChange.emit(this.value);
+  }
+
+  getValue(value: any, column: any) {
+    if (column.pipes) {
+      column.pipes.forEach(pipe => {
+        value = this.pipeMap[pipe.name](value, pipe.options);
+      });
+    }
+    return value || '';
   }
 
   componentWillLoad() {
@@ -190,7 +203,7 @@ export class CarbonTable {
                 <bx-table-row>
                   {
                     [...(this.options?.columns || [])].map(col =>
-                      <bx-table-cell>{row[col.id] || '-'}</bx-table-cell>
+                      <bx-table-cell>{this.getValue(row[col.id], col)}</bx-table-cell>
                     )
                   }
                 </bx-table-row>

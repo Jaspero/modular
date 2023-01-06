@@ -75,6 +75,14 @@
                   {
                     label: 'Active',
                     id: 'active',
+                    pipes: [
+                      {
+                        name: 'currency',
+                        options: {
+                          currency: 'EUR'
+                        }
+                      }
+                    ]
                   }
                 ],
                 value: [
