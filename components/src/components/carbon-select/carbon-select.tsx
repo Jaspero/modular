@@ -16,8 +16,7 @@ export interface CarbonSelectOptions {
 
 @Component({
   tag: 'carbon-select',
-  styleUrl: 'carbon-select.css',
-  shadow: true,
+  styleUrl: 'carbon-select.css'
 })
 export class CarbonSelect {
 

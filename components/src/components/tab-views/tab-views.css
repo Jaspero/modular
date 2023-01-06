@@ -1,0 +1,23 @@
+.tab-views {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #DADCE0;
+}
+
+.tab-views-inner {
+  display: flex;
+}
+
+.tab-views-inner-tab {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-views-inner-tab.active {
+  border-color: #4489FE;
+}
