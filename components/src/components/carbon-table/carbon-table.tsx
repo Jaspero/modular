@@ -3,7 +3,6 @@ import '@carbon/web-components/dist/button.min.js';
 import '@carbon/web-components/dist/pagination.min.js';
 import { Component, Event, EventEmitter, h, Host, Method, Prop, State, Element } from '@stencil/core';
 import { HostElement } from '@stencil/core/internal';
-import { DateType } from "luxon";
 
 export interface CarbonTableOptions {
   size?: 'compact' | 'short' | 'regular' | 'tall';
@@ -87,11 +86,6 @@ export class CarbonTable {
       this.loadData()
         .catch(console.error);
     }
-
-
-    console.log(DateType);
-
-
   }
 
   componentDidRender() {

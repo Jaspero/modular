@@ -47,10 +47,6 @@
                     id: "name",
                   },
                   {
-                    label: "Status",
-                    id: "status",
-                  },
-                  {
                     label: "Date",
                     id: "createdOn",
                     pipes: [
@@ -71,9 +67,15 @@
                     id: "functions.maxFunctions",
                   },
                   {
-                    label: "Active",
-                    id: "active",
+                    label: "Status",
+                    id: "status",
+                    component: "carbon-toggle",
+                    options: {}
                   },
+                  {
+                    label: 'Active',
+                    id: 'active',
+                  }
                 ],
                 value: [
                   {
