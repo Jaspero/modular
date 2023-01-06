@@ -17,8 +17,7 @@ export interface CarbonRadioOptions {
 
 @Component({
   tag: 'carbon-radio',
-  styleUrl: 'carbon-radio.css',
-  shadow: true,
+  styleUrl: 'carbon-radio.css'
 })
 export class CarbonRadio {
 

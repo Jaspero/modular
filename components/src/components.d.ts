@@ -23,7 +23,7 @@ import { CarbonTableOptions } from "./components/carbon-table/carbon-table";
 import { CarbonTabsOptions } from "./components/carbon-tabs/carbon-tabs";
 import { CarbonTextareaOptions } from "./components/carbon-textarea/carbon-textarea";
 import { CarbonToggleOptions } from "./components/carbon-toggle/carbon-toggle";
-import { TabViewsOptions } from "./components/views/tab-views/tab-views";
+import { TabViewsOptions } from "./components/tab-views/tab-views";
 export namespace Components {
     interface CarbonAccordion {
         "open": boolean;
