@@ -23,6 +23,7 @@ import { CarbonTableOptions } from "./components/carbon-table/carbon-table";
 import { CarbonTabsOptions } from "./components/carbon-tabs/carbon-tabs";
 import { CarbonTextareaOptions } from "./components/carbon-textarea/carbon-textarea";
 import { CarbonToggleOptions } from "./components/carbon-toggle/carbon-toggle";
+import { TabViewsOptions } from "./components/views/tab-views/tab-views";
 export namespace Components {
     interface CarbonAccordion {
         "open": boolean;
@@ -143,6 +144,10 @@ export namespace Components {
         "setOptions": (options: CarbonToggleOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": boolean;
+    }
+    interface TabViews {
+        "options": TabViewsOptions;
+        "setOptions": (options: TabViewsOptions) => Promise<void>;
     }
 }
 export interface CarbonAccordionCustomEvent<T> extends CustomEvent<T> {
@@ -326,6 +331,12 @@ declare global {
         prototype: HTMLCarbonToggleElement;
         new (): HTMLCarbonToggleElement;
     };
+    interface HTMLTabViewsElement extends Components.TabViews, HTMLStencilElement {
+    }
+    var HTMLTabViewsElement: {
+        prototype: HTMLTabViewsElement;
+        new (): HTMLTabViewsElement;
+    };
     interface HTMLElementTagNameMap {
         "carbon-accordion": HTMLCarbonAccordionElement;
         "carbon-breadcrumb": HTMLCarbonBreadcrumbElement;
@@ -345,6 +356,7 @@ declare global {
         "carbon-tabs": HTMLCarbonTabsElement;
         "carbon-textarea": HTMLCarbonTextareaElement;
         "carbon-toggle": HTMLCarbonToggleElement;
+        "tab-views": HTMLTabViewsElement;
     }
 }
 declare namespace LocalJSX {
@@ -440,6 +452,9 @@ declare namespace LocalJSX {
         "options"?: CarbonToggleOptions;
         "value"?: boolean;
     }
+    interface TabViews {
+        "options"?: TabViewsOptions;
+    }
     interface IntrinsicElements {
         "carbon-accordion": CarbonAccordion;
         "carbon-breadcrumb": CarbonBreadcrumb;
@@ -459,6 +474,7 @@ declare namespace LocalJSX {
         "carbon-tabs": CarbonTabs;
         "carbon-textarea": CarbonTextarea;
         "carbon-toggle": CarbonToggle;
+        "tab-views": TabViews;
     }
 }
 export { LocalJSX as JSX };
@@ -483,6 +499,7 @@ declare module "@stencil/core" {
             "carbon-tabs": LocalJSX.CarbonTabs & JSXBase.HTMLAttributes<HTMLCarbonTabsElement>;
             "carbon-textarea": LocalJSX.CarbonTextarea & JSXBase.HTMLAttributes<HTMLCarbonTextareaElement>;
             "carbon-toggle": LocalJSX.CarbonToggle & JSXBase.HTMLAttributes<HTMLCarbonToggleElement>;
+            "tab-views": LocalJSX.TabViews & JSXBase.HTMLAttributes<HTMLTabViewsElement>;
         }
     }
 }

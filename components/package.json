@@ -22,8 +22,9 @@
     "dist/"
   ],
   "scripts": {
+    "dev:build": "stencil build --watch",
     "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "start": "npm run dev:build -- --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"

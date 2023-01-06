@@ -6,9 +6,10 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run dev:examples:svelte\" \"npm run dev:components\"",
     "dev": "rollup --watch -c rollup.config.js",
     "dev:examples:svelte": "npm run dev --prefix examples/svelte",
-    "dev:components": "npm run start --prefix components",
+    "dev:components": "npm run dev:build --prefix components",
     "build": "rollup -c rollup.config.js"
   },
   "repository": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "10.0.1",
+    "concurrently": "7.6.0",
     "rollup": "3.5.1",
     "rollup-plugin-dts": "5.0.0",
     "tslib": "2.4.1",

@@ -17,6 +17,7 @@ export { CarbonStructuredListOptions } from './components/carbon-structuredlist/
 export { CarbonTabsOptions } from './components/carbon-tabs/carbon-tabs';
 export { CarbonSubmitOptions } from './components/carbon-submit/carbon-submit';
 export { CarbonObjectArrayOptions } from './components/carbon-object-array/carbon-object-array';
+export { TabViewsOptions } from './components/views/tab-views/tab-views';
 
 declare global {
   interface CarbonInput { }
@@ -40,4 +41,5 @@ declare global {
 
   interface CarbonTabs { }
 
+  interface TabViewsOptions { }
 }

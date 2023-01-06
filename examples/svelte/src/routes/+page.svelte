@@ -36,6 +36,22 @@
           container: 'form',
           items: [
             {
+              component: 'tab-views',
+              options: {
+                views: [
+                  {
+                    title: 'Tab 1'
+                  },
+                  {
+                    title: 'Tab 2'
+                  },
+                  {
+                    title: 'Tab 3'
+                  }
+                ]
+              }
+            },
+            {
               field: '/name',
               component: 'carbon-textarea',
               columns: 6

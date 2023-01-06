@@ -12,6 +12,7 @@ import { CarbonSubmit } from '@jaspero/modular-components/dist/components/carbon
 import { CarbonTable } from '@jaspero/modular-components/dist/components/carbon-table';
 import { CarbonTextarea } from '@jaspero/modular-components/dist/components/carbon-textarea';
 import { CarbonToggle } from '@jaspero/modular-components/dist/components/carbon-toggle';
+import { TabViews } from '@jaspero/modular-components/dist/components/tab-views';
 import { registerComponent } from './register-component';
 import { initializeCSSUtil } from './utils/css.util';
 
@@ -55,3 +56,4 @@ registerComponent('carbon-checkbox', CarbonCheckbox);
 registerComponent('carbon-toggle', CarbonToggle);
 registerComponent('carbon-datepicker', CarbonDatepicker);
 registerComponent('carbon-object-array', CarbonObjectArray)
+registerComponent('tab-views', TabViews)
