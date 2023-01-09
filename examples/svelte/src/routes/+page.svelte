@@ -74,8 +74,12 @@
                   {
                     label: "Status",
                     id: "status",
-                    component: "carbon-toggle",
-                    options: {}
+                    pipes: [
+                      {
+                        name: 'custom',
+                        options: `(v) => \`<p>\${v}</p>\``
+                      }
+                    ]
                   },
                   {
                     label: 'Active',

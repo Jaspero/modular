@@ -67,6 +67,19 @@ export class CarbonTable {
   startChange;
   selectChange;
   pipeMap = {
+    custom: (value, options) => {
+      let method;
+
+      try {
+        method = eval(options);
+      } catch {}
+
+      if (method) {
+        return method(value);
+      }
+
+      return value;
+    },
     date: (value, options) => {
       let dateTime: DateTime;
 
@@ -105,7 +118,7 @@ export class CarbonTable {
         value = this.pipeMap[pipe.name](value, pipe.options);
       });
     }
-    return value || '';
+    return <div>${value || ''}</div>;
   }
 
   componentWillLoad() {
@@ -202,7 +215,7 @@ export class CarbonTable {
           )
         }
         <bx-table size={this.options?.size || 'regular'}>
-          <bx-table-head>
+          <bx-table-head> 
             <bx-table-header-row>
               {
                 [...(this.options?.columns || [])].map(item =>
