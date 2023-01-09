@@ -16,13 +16,15 @@ jobs:
           node-version: 18.x
       - name: Install Dependencies
         run: |
-          npm i --force
+          npm i
+          npm --prefix components i
       - name: Build
         run: |
           npm run build
+          npm --prefix components run build
       - name: Release
         run: |
           npm run semantic-release
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN_ROOT}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}

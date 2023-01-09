@@ -25,7 +25,7 @@ jobs:
           npm --prefix components run build
       - name: Release
         run: |
-          npm --prefix run semantic-release
+          npm --prefix components run semantic-release
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN_COMPONENTS}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}
