@@ -45,7 +45,8 @@
     "jest-cli": "27.5.1",
     "puppeteer": "10.4.0",
     "semantic-release": "20.0.2",
-    "@semantic-release/git": "10.0.1"
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/changelog": "6.0.2"
   },
   "release": {
     "branches": [
@@ -53,7 +54,9 @@
     ],
     "pkgRoot": "dist/@jaspero/modular-components",
     "plugins": [
-      "@semantic-release/git"
+      "@semantic-release/git",
+      "@semantic-release/changelog",
+      "@semantic-release/commit-analyzer"
     ]
   },
   "license": "MIT"
