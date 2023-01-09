@@ -41,5 +41,19 @@
     "ajv": "8.11.2",
     "jsonpointer": "5.0.1",
     "semantic-release": "20.0.2"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "pkgRoot": "dist/@jaspero/modular",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
   }
 }

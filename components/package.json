@@ -46,5 +46,19 @@
     "puppeteer": "10.4.0",
     "semantic-release": "20.0.2"
   },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "pkgRoot": "dist/@jaspero/modular-components",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
   "license": "MIT"
 }
