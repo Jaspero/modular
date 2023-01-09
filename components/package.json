@@ -55,8 +55,7 @@
     "pkgRoot": "dist/@jaspero/modular-components",
     "plugins": [
       "@semantic-release/git",
-      "@semantic-release/changelog",
-      "@semantic-release/commit-analyzer"
+      "@semantic-release/changelog"
     ]
   },
   "license": "MIT"

@@ -51,8 +51,7 @@
     "pkgRoot": "dist/@jaspero/modular",
     "plugins": [
       "@semantic-release/git",
-      "@semantic-release/changelog",
-      "@semantic-release/commit-analyzer"
+      "@semantic-release/changelog"
     ]
   }
 }
