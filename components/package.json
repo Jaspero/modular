@@ -35,7 +35,7 @@
     "@carbon/web-components": "1.22.0",
     "@stencil/core": "2.20.0",
     "chart.js": "4.0.1",
-    "luxon": "3.2.1"
+    "luxon": "3.2.1",
   },
   "devDependencies": {
     "@types/chart.js": "2.9.37",
@@ -44,7 +44,8 @@
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "puppeteer": "10.4.0",
-    "semantic-release": "20.0.2"
+    "semantic-release": "20.0.2",
+    "@semantic-release/git": "10.0.1"
   },
   "release": {
     "branches": [
