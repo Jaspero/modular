@@ -10,7 +10,8 @@
     "dev": "rollup --watch -c rollup.config.js",
     "dev:examples:svelte": "npm run dev --prefix examples/svelte",
     "dev:components": "npm run dev:build --prefix components",
-    "build": "rollup -c rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
   "dependencies": {
     "@jaspero/modular-components": "file:./components",
     "ajv": "8.11.2",
-    "jsonpointer": "5.0.1"
+    "jsonpointer": "5.0.1",
+    "semantic-release": "20.0.2"
   }
 }

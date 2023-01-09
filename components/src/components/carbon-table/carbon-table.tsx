@@ -93,6 +93,9 @@ export class CarbonTable {
 
       return dateTime.toFormat(options.format);
     },
+    timeSince: (value, options) => {
+      return DateTime.fromMillis(value, {}).toRelative({ locale: options.locale || 'en', unit: options.unit || 'days' });
+    },
     title: (value) => value.charAt(0).toUpperCase() + value.slice(1),
     currency: (value, options: any = {}) => new Intl.NumberFormat(options.local || 'en-US', { style: options.style || 'currency', currency: options.currency || 'USD' }).format(value),
   }
