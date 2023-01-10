@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/Jaspero/modular/compare/v1.3.0...v1.4.0) (2023-01-10)
+
+
+### Features
+
+* change root package of updating version ([c4f8ee1](https://github.com/Jaspero/modular/commit/c4f8ee1c607fe7f58d1e0b6709ce4ea7c5fc52c2))
+* version updates with additional plugins ([0a43613](https://github.com/Jaspero/modular/commit/0a43613664d072d6d93dc98cb3a8eb7f8c62a35e))
+
 # [1.3.0](https://github.com/Jaspero/modular/compare/v1.2.0...v1.3.0) (2023-01-10)
 
 
