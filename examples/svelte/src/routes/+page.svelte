@@ -20,7 +20,7 @@
       properties: {
         createdOn: { type: "number" },
         name: { type: "string" },
-        active: { type: "string" },
+        active: { type: "boolean" },
         "functions.activeFunctions": { type: "number" },
         "functions.maxFunctions": { type: "number" },
         status: { type: "boolean" },
@@ -77,7 +77,7 @@
                     pipes: [
                       {
                         name: 'custom',
-                        options: `(value) => \`<h1>\${value}</h1>\``
+                        options: (value) => `<input type="checkbox" ${value ? 'checked' : ''} >`
                       }
                     ]
                   },
@@ -97,7 +97,7 @@
                 value: [
                   {
                     name: "asdasd",
-                    status: 'alalla',
+                    status: true,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
@@ -105,7 +105,7 @@
                   },
                   {
                     name: "qwe",
-                    status: 'alalla',
+                    status: false,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
@@ -113,7 +113,7 @@
                   },
                   {
                     name: "dasd",
-                    status: 'alalla',
+                    status: true,
                     createdOn: Date.now(),
                     "functions.activeFunctions": 1,
                     "functions.maxFunctions": 10,
