@@ -52,7 +52,7 @@
     "branches": [
       "main"
     ],
-    "pkgRoot": "file: ./components",
+    "pkgRoot": ".",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
