@@ -69,10 +69,10 @@ export class CarbonTable {
   pipeMap = {
     custom: (value, options) => {
       let method;
-
       try {
         method = eval(options);
-      } catch {}
+      } catch {
+      }
 
       if (method) {
         return method(value);
@@ -121,7 +121,7 @@ export class CarbonTable {
         value = this.pipeMap[pipe.name](value, pipe.options);
       });
     }
-    return <div>${value || ''}</div>;
+    return value;
   }
 
   componentWillLoad() {
@@ -218,7 +218,7 @@ export class CarbonTable {
           )
         }
         <bx-table size={this.options?.size || 'regular'}>
-          <bx-table-head> 
+          <bx-table-head>
             <bx-table-header-row>
               {
                 [...(this.options?.columns || [])].map(item =>
@@ -233,7 +233,10 @@ export class CarbonTable {
                 <bx-table-row>
                   {
                     [...(this.options?.columns || [])].map(col =>
-                      <bx-table-cell>{this.getValue(row[col.id], col)}</bx-table-cell>
+                      typeof this.getValue(row[col.id], col) === 'string'
+                      && this.getValue(row[col.id], col).includes('<')
+                        ? <bx-table-cell innerHTML={this.getValue(row[col.id], col)}></bx-table-cell> :
+                        <bx-table-cell>{this.getValue(row[col.id], col)}</bx-table-cell>
                     )
                   }
                 </bx-table-row>
