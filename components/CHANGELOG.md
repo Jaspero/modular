@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Jaspero/modular/compare/v1.5.0...v1.6.0) (2023-01-11)
+
+
+### Features
+
+* carbon-datepicker fixed ([6f92925](https://github.com/Jaspero/modular/commit/6f9292504f429fd8ba89510caf1d12805240c5cf))
+
 # [1.4.0](https://github.com/Jaspero/modular/compare/v1.3.0...v1.4.0) (2023-01-10)
 
 
