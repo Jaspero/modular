@@ -37,95 +37,111 @@
           container: "form",
           items: [
             {
-              component: "carbon-table",
-              options: {
-                size: "short",
-                colorSchema: "zebra",
-                columns: [
-                  {
-                    label: "Name",
-                    id: "name",
-                    pipes: [
-                      {
-                        name: 'title'
-                      }
-                    ]
-                  },
-                  {
-                    label: "Date",
-                    id: "createdOn",
-                    pipes: [
-                      {
-                        name: "date",
-                        options: {
-                          format: "MM/dd",
-                        },
-                      },
-                    ],
-                  },
-                  {
-                    label: "Functions",
-                    id: "functions.activeFunctions",
-                  },
-                  {
-                    label: "Max Functions",
-                    id: "functions.maxFunctions",
-                  },
-                  {
-                    label: "Status",
-                    id: "status",
-                    pipes: [
-                      {
-                        name: 'custom',
-                        options: `(value) => \`<input type="checkbox" \${value ? 'checked' : ''} >\``
-                      }
-                    ]
-                  },
-                  {
-                    label: 'Active',
-                    id: 'active',
-                    pipes: [
-                      {
-                        name: 'timeSince',
-                        options: {
-                          unit: 'months'
-                        }
-                      }
-                    ]
-                  }
-                ],
-                value: [
-                  {
-                    name: "asdasd",
-                    status: true,
-                    createdOn: Date.now(),
-                    "functions.activeFunctions": 1,
-                    "functions.maxFunctions": 10,
-                    active: 1623019940773,
-                  },
-                  {
-                    name: "qwe",
-                    status: false,
-                    createdOn: Date.now(),
-                    "functions.activeFunctions": 1,
-                    "functions.maxFunctions": 10,
-                    active: 1623019940773,
-                  },
-                  {
-                    name: "dasd",
-                    status: true,
-                    createdOn: Date.now(),
-                    "functions.activeFunctions": 1,
-                    "functions.maxFunctions": 10,
-                    active: 1623019940773,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      ],
-    } as any);
+              component: "carbon-datepicker",
+              options: {}
+            }
+          ]
+        }
+      ]
+    });
+
+    // const view = new ModularView({
+    //   schema,
+    //   views: [
+    //     {
+    //       justify: "center",
+    //       container: "form",
+    //       items: [
+    //         {
+    //           component: "carbon-table",
+    //           options: {
+    //             size: "short",
+    //             colorSchema: "zebra",
+    //             columns: [
+    //               {
+    //                 label: "Name",
+    //                 id: "name",
+    //                 pipes: [
+    //                   {
+    //                     name: 'title'
+    //                   }
+    //                 ]
+    //               },
+    //               {
+    //                 label: "Date",
+    //                 id: "createdOn",
+    //                 pipes: [
+    //                   {
+    //                     name: "date",
+    //                     options: {
+    //                       format: "MM/dd",
+    //                     },
+    //                   },
+    //                 ],
+    //               },
+    //               {
+    //                 label: "Functions",
+    //                 id: "functions.activeFunctions",
+    //               },
+    //               {
+    //                 label: "Max Functions",
+    //                 id: "functions.maxFunctions",
+    //               },
+    //               {
+    //                 label: "Status",
+    //                 id: "status",
+    //                 pipes: [
+    //                   {
+    //                     name: 'custom',
+    //                     options: `(value) => \`<input type="checkbox" \${value ? 'checked' : ''} >\``
+    //                   }
+    //                 ]
+    //               },
+    //               {
+    //                 label: 'Active',
+    //                 id: 'active',
+    //                 pipes: [
+    //                   {
+    //                     name: 'timeSince',
+    //                     options: {
+    //                       unit: 'months'
+    //                     }
+    //                   }
+    //                 ]
+    //               }
+    //             ],
+    //             value: [
+    //               {
+    //                 name: "asdasd",
+    //                 status: true,
+    //                 createdOn: Date.now(),
+    //                 "functions.activeFunctions": 1,
+    //                 "functions.maxFunctions": 10,
+    //                 active: 1623019940773,
+    //               },
+    //               {
+    //                 name: "qwe",
+    //                 status: false,
+    //                 createdOn: Date.now(),
+    //                 "functions.activeFunctions": 1,
+    //                 "functions.maxFunctions": 10,
+    //                 active: 1623019940773,
+    //               },
+    //               {
+    //                 name: "dasd",
+    //                 status: true,
+    //                 createdOn: Date.now(),
+    //                 "functions.activeFunctions": 1,
+    //                 "functions.maxFunctions": 10,
+    //                 active: 1623019940773,
+    //               },
+    //             ],
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // } as any);
 
     const render = view.render({
       parentElement: containerElement,

@@ -54,11 +54,12 @@ export class CarbonDatePicker {
   render() {
     return (
       <Host>
-        <bx-date-picker date-format={this.options?.format || 'm/d/Y'}>
+        <bx-date-picker date-format={this.options?.format || "DD/mm/yyyy"}>
           <bx-date-picker-input
-            kind={this.options?.kind || 'simple'}
+            kind="single"
+            label-text="Date Picker label"
             disabled={this.options?.disabled}
-            placeholder={this.options?.placeholder}
+            placeholder={this.options?.format || "DD/mm/yyyy"}
             value={this.value}
             onInput={(event) => this.handleChange(event)}>
             {this.options?.label && <span slot="label-text">{this.options.label}</span>}
