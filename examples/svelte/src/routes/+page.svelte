@@ -77,7 +77,7 @@
                     pipes: [
                       {
                         name: 'custom',
-                        options: (value) => `<input type="checkbox" ${value ? 'checked' : ''} >`
+                        options: `(value) => \`<input type="checkbox" \${value ? 'checked' : ''} >\``
                       }
                     ]
                   },
