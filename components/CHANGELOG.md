@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/Jaspero/modular/compare/v1.8.0...v1.9.0) (2023-01-12)
+
+
+### Features
+
+* get value for date-picker updated ([cafa55a](https://github.com/Jaspero/modular/commit/cafa55adec7e7135a3e01822784ac13243fcdccc))
+
 # [1.8.0](https://github.com/Jaspero/modular/compare/v1.7.0...v1.8.0) (2023-01-12)
 
 
