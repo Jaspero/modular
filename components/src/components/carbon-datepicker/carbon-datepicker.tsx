@@ -48,8 +48,7 @@ export class CarbonDatePicker {
 
   handleChange(event) {
     this.value = event.target.value;
-    console.log(this.value, "a")
-    this.valueChange.emit(this.value);
+    this.valueChange.emit(new Date(this.value).getTime());
   }
 
   render() {
