@@ -62,6 +62,7 @@ export namespace Components {
     }
     interface CarbonContentswitcher {
         "options": CarbonContentSwitcherOptions;
+        "setOptions": (options: CarbonContentSwitcherOptions) => Promise<void>;
     }
     interface CarbonDatepicker {
         "getValue": () => Promise<number>;

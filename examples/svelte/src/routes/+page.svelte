@@ -30,6 +30,18 @@
           items: [
             {
               component: "carbon-contentswitcher",
+              options: {
+                values: [
+                  {
+                    label: "One",
+                    selected: true
+                  },
+                  {
+                    label: "Two",
+                    selected: false
+                  },
+                ],
+              }
             }
           ]
         }

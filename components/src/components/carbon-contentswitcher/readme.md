@@ -19,6 +19,19 @@
 | `open` |             | `CustomEvent<any>` |
 
 
+## Methods
+
+### `setOptions(options: CarbonContentSwitcherOptions) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

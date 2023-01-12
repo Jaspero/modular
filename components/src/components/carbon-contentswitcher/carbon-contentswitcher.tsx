@@ -1,13 +1,9 @@
-import { Component, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop, State, Method } from '@stencil/core';
 import '@carbon/web-components/dist/content-switcher.min.js';
 
 export interface CarbonContentSwitcherOptions {
-  value?: string;
-  label?: string;
-  href?: string;
-  kind?: string;
-  disabled?: boolean;
-  type?: string;
+  size?: string;
+  values?: any[];
 }
 
 @Component({
@@ -26,12 +22,20 @@ export class CarbonContentSwitcher {
     bubbles: true,
   }) valueChange: EventEmitter<any>;
 
+  @Method()
+  setOptions(options: CarbonContentSwitcherOptions) {
+    this.options = options;
+  }
+
   render() {
     return (
       <Host>
         <bx-content-switcher size="sm">
-          <bx-content-switcher-item selected={true} text="Latest news">qwe</bx-content-switcher-item>
-          <bx-content-switcher-item text="Trending">abc</bx-content-switcher-item>
+          {
+            [...(this.options?.values || [])].map(item =>
+              <bx-content-switcher-item selected={item.selected}>{item.label}</bx-content-switcher-item>
+            )
+          }
         </bx-content-switcher>
       </Host>
     );
