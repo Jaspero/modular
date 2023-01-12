@@ -43,7 +43,7 @@ export class CarbonDatePicker {
 
   @Method()
   async getValue() {
-    return this.value;
+    return new Date(this.value).getTime();
   }
 
   handleChange(event) {

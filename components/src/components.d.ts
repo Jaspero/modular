@@ -60,7 +60,7 @@ export namespace Components {
         "value": boolean;
     }
     interface CarbonDatepicker {
-        "getValue": () => Promise<string>;
+        "getValue": () => Promise<number>;
         "setOptions": (options: CarbonDatePickerOptions) => Promise<void>;
         "setValue": (value: any) => Promise<void>;
         "value": string;
