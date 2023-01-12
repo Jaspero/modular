@@ -29,17 +29,38 @@
           container: "form",
           items: [
             {
-              component: "carbon-contentswitcher",
+              component: "tab-views",
               options: {
-                values: [
+                views: [
                   {
-                    label: "One",
-                    selected: true
+                    title: "pero",
+                    views: [
+                      {
+                        justify: "center",
+                        container: "form",
+                        items: [
+                          {
+                            component: "carbon-datepicker",
+                            options: {}
+                          },
+                        ],
+                      },
+                    ],
                   },
                   {
-                    label: "Two",
-                    selected: false
-                  },
+                    title: "stevo",
+                    views: [
+                      {
+                        justify: "center",
+                        container: "form",
+                        items: [
+                          {
+                            component: "carbon-input"
+                          }
+                        ]
+                      }
+                    ],
+                  }
                 ],
               }
             }
@@ -144,7 +165,7 @@
     //       ],
     //     },
     //   ],
-    // } as any);
+    // // } as any);
 
     const render = view.render({
       parentElement: containerElement,

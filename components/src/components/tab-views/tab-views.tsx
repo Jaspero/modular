@@ -63,7 +63,7 @@ export class TabViews {
 
     if (!this._cachedViews[this.activeView.title]) {
       // @ts-ignore
-      const schema = new window.ModularSchema(this.activeView.schema.properties || {});
+      const schema = new window.ModularSchema(this.activeView?.schema?.properties || {});
       // @ts-ignore
       const view = new window.ModularView({ schema: this.schema, views: this.activeView.views || [] });
 
