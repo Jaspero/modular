@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Jaspero/modular/compare/v1.7.0...v1.8.0) (2023-01-12)
+
+
+### Features
+
+* triggering version for datepicker value ([d7ab35e](https://github.com/Jaspero/modular/commit/d7ab35e95816e2c84b8d922ace049a62e2fd6c1c))
+
 # [1.7.0](https://github.com/Jaspero/modular/compare/v1.6.0...v1.7.0) (2023-01-12)
 
 
