@@ -18,6 +18,7 @@ export { CarbonTabsOptions } from './components/carbon-tabs/carbon-tabs';
 export { CarbonSubmitOptions } from './components/carbon-submit/carbon-submit';
 export { CarbonObjectArrayOptions } from './components/carbon-object-array/carbon-object-array';
 export { TabViewsOptions } from './components/tab-views/tab-views';
+export { CarbonContentSwitcherOptions } from './components/carbon-contentswitcher/carbon-contentswitcher';
 
 declare global {
   interface CarbonInput { }
@@ -42,4 +43,5 @@ declare global {
   interface CarbonTabs { }
 
   interface TabViewsOptions { }
+  interface CarbonContentSwitcher { }
 }

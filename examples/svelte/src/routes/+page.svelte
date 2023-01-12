@@ -17,14 +17,6 @@
     window.ModularView = ModularView;
 
     const schema = new ModularSchema({
-      properties: {
-        createdOn: { type: "number" },
-        name: { type: "string" },
-        active: { type: "boolean" },
-        "functions.activeFunctions": { type: "number" },
-        "functions.maxFunctions": { type: "number" },
-        status: { type: "boolean" },
-      },
     });
 
     const instance = schema.createInstance({});
@@ -37,8 +29,7 @@
           container: "form",
           items: [
             {
-              component: "carbon-datepicker",
-              options: {}
+              component: "carbon-contentswitcher",
             }
           ]
         }
