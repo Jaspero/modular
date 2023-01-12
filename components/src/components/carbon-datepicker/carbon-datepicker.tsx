@@ -48,14 +48,16 @@ export class CarbonDatePicker {
 
   handleChange(event) {
     this.value = event.target.value;
+    console.log(this.value, "a")
     this.valueChange.emit(this.value);
   }
 
   render() {
     return (
       <Host>
-        <bx-date-picker date-format={this.options?.format || "DD/mm/yyyy"}>
+        <bx-date-picker>
           <bx-date-picker-input
+            date-format={this.options?.format || "DD/mm/yyyy"}
             kind="single"
             label-text="Date Picker label"
             disabled={this.options?.disabled}
