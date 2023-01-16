@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/Jaspero/modular/compare/v1.9.0...v1.10.0) (2023-01-12)
+
+
+### Features
+
+* added carbon-contentswticher component ([22bb06c](https://github.com/Jaspero/modular/commit/22bb06c7e0889dfd2f4176589dbcb835437902e1))
+* added carbon-contentswticher component ([815292d](https://github.com/Jaspero/modular/commit/815292df5428bf2f840e071ea3b4b031733d4268))
+* fixing tab-views ([32e4388](https://github.com/Jaspero/modular/commit/32e4388874033c46e1850069270a5e7b7cdd3b2f))
+
 # [1.9.0](https://github.com/Jaspero/modular/compare/v1.8.0...v1.9.0) (2023-01-12)
 
 
