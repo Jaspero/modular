@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/Jaspero/modular/compare/v1.11.0...v1.11.1) (2023-01-17)
+
+
+### Bug Fixes
+
+* **modular:** call options after render if they weren't already called ([24aa17f](https://github.com/Jaspero/modular/commit/24aa17fe21d85163bc2bee6942dc3135a6b647a5))
+
 # [1.11.0](https://github.com/Jaspero/modular/compare/v1.10.0...v1.11.0) (2023-01-16)
 
 
