@@ -12,8 +12,15 @@ interface ViewRow<Options, Fields extends keyof Options> {
 type Events = 'change';
 
 export class ModularView<Options = ComponentOptions, Fields extends keyof Options = keyof Options> {
-  private _schema: ModularSchema;
 
+  public elements: Array<{
+    key: string;
+    element: HTMLElement;
+    options?: any;
+    optionsCalled: boolean;
+  }> = [];
+
+  private _schema: ModularSchema;
   private readonly _views: ViewRow<Options, Fields>[];
 
   constructor(
@@ -26,13 +33,23 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     this._views = configuration.views;
   }
 
+  public setOptions() {
+    this.elements.forEach(el => {
+      if (!el.optionsCalled) {
+        // @ts-ignore
+        el.element?.setOptions?.(el.options);
+      }
+    })
+  }
+
   public render(options: {
     parentElement: HTMLElement,
     instance: ModularInstance,
     container?: string
   }) {
     const {parentElement, instance} = options;
-    const elements: Array<{key: string, element: HTMLElement}> = [];
+    
+    this.elements = [];
 
     const container = document.createElement('div');
     container.style.display = 'flex';
@@ -54,11 +71,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
     const getValue = async () => {
       const values = await Promise.all(
-        elements.map(e => (e.element as any).getValue())
+        this.elements.map(e => (e.element as any).getValue())
       );
 
       return values.reduce((acc, cur, index) => {
-        acc[elements[index].key] = cur;
+        acc[this.elements[index].key] = cur;
         return acc
       }, {});
     };
@@ -131,17 +148,15 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         // @ts-ignore
         if (view.field && element.getValue) {
-          elements.push({
+          this.elements.push({
             key: view.field.replace(/^\//, ''),
+            options: view.options,
+            optionsCalled,
             element
           });
         }
 
         rowContainer.appendChild(element);
-
-        if (!optionsCalled) {
-          el.setOptions?.(view.options);
-        }
       }
 
       container.appendChild(rowContainer);
