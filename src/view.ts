@@ -17,6 +17,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     key: string;
     element: HTMLElement;
     options?: any;
+    hasValue: boolean;
     optionsCalled: boolean;
   }> = [];
 
@@ -71,11 +72,16 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
     const getValue = async () => {
       const values = await Promise.all(
-        this.elements.map(e => (e.element as any).getValue())
+        this.elements
+          .filter(e => e.hasValue)
+          .map(e => (e.element as any).getValue())
       );
 
       return values.reduce((acc, cur, index) => {
-        acc[this.elements[index].key] = cur;
+        const el = this.elements[index];
+        if (el.hasValue) {
+          acc[el.key] = cur;
+        }
         return acc
       }, {});
     };
@@ -146,15 +152,14 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         (element as any)?.setRender?.(r);
 
-        // @ts-ignore
-        if (view.field && element.getValue) {
-          this.elements.push({
-            key: view.field.replace(/^\//, ''),
-            options: view.options,
-            optionsCalled,
-            element
-          });
-        }
+        this.elements.push({
+          key: view.field.replace(/^\//, ''),
+          options: view.options,
+          // @ts-ignore
+          hasValue: view.field && element.getValue,
+          optionsCalled,
+          element
+        });
 
         rowContainer.appendChild(element);
       }
