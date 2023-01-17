@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/Jaspero/modular/compare/v1.11.1...v1.12.0) (2023-01-17)
+
+
+### Features
+
+* **modular:** added setOptions method ([30b32e9](https://github.com/Jaspero/modular/commit/30b32e97cba6d5c7408080af261e6f428f9183e8))
+
 ## [1.11.1](https://github.com/Jaspero/modular/compare/v1.11.0...v1.11.1) (2023-01-17)
 
 
