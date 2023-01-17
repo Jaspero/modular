@@ -112,17 +112,21 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         element.style.padding = '0.5rem';
         element.style.boxSizing = 'border-box';
         element.addEventListener('value', () => dispatchEvents('change'));
-        const hasSetOptions = (element as any)?.setOptions;
-        (element as any)?.setOptions?.(view.options);
+        
+        let el = element as any;
+        let optionsCalled = false;
+
+        if (el.setOptions) {
+          el.setOptions?.(view.options);
+          optionsCalled = true;
+        }
 
         if (view.field) {
           (element as any)?.setValue?.(get(instance.value, view.field));
         }
 
-        const hasSetInstance = (element as any)?.setInstance;
         (element as any)?.setInstance?.(instance);
 
-        const hasSetRender = (element as any)?.setRender;
         (element as any)?.setRender?.(r);
 
         // @ts-ignore
@@ -135,16 +139,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         rowContainer.appendChild(element);
 
-        if (!hasSetOptions) {
-          (element as any)?.setOptions?.(view.options);
-        }
-
-        if (!hasSetInstance) {
-          (element as any)?.setInstance?.(instance);
-        }
-
-        if (!hasSetRender) {
-          (element as any)?.setRender?.(r);
+        if (!optionsCalled) {
+          el.setOptions?.(view.options);
         }
       }
 
