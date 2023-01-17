@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/Jaspero/modular/compare/v1.12.0...v1.12.1) (2023-01-17)
+
+
+### Bug Fixes
+
+* **modular:** elements have value after render ([1d161b6](https://github.com/Jaspero/modular/commit/1d161b6536f4684dd6f5efe9058bb44ef893592e))
+
 # [1.12.0](https://github.com/Jaspero/modular/compare/v1.11.1...v1.12.0) (2023-01-17)
 
 
