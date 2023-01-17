@@ -14,10 +14,9 @@ type Events = 'change';
 export class ModularView<Options = ComponentOptions, Fields extends keyof Options = keyof Options> {
 
   public elements: Array<{
-    key: string;
+    key?: string;
     element: HTMLElement;
     options?: any;
-    hasValue: boolean;
     optionsCalled: boolean;
   }> = [];
 
@@ -73,13 +72,13 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     const getValue = async () => {
       const values = await Promise.all(
         this.elements
-          .filter(e => e.hasValue)
+          .filter(e => e.key)
           .map(e => (e.element as any).getValue())
       );
 
       return values.reduce((acc, cur, index) => {
         const el = this.elements[index];
-        if (el.hasValue) {
+        if (el.key) {
           acc[el.key] = cur;
         }
         return acc
@@ -153,10 +152,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         (element as any)?.setRender?.(r);
 
         this.elements.push({
-          key: view.field.replace(/^\//, ''),
+          ...view.field && {key: view.field.replace(/^\//, '')},
           options: view.options,
-          // @ts-ignore
-          hasValue: view.field && element.getValue,
           optionsCalled,
           element
         });
