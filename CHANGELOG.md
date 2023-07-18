@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/Jaspero/modular/compare/v1.12.2...v1.13.0) (2023-07-18)
+
+
+### Features
+
+* exporting viewrow ([eed8cd2](https://github.com/Jaspero/modular/commit/eed8cd23c4087bf4210256ee1cb44f586abf5f72))
+
 ## [1.12.2](https://github.com/Jaspero/modular/compare/v1.12.1...v1.12.2) (2023-01-17)
 
 
