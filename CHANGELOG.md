@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/Jaspero/modular/compare/v1.13.0...v1.13.1) (2023-07-18)
+
+
+### Bug Fixes
+
+* document dependency on init ([53eaee8](https://github.com/Jaspero/modular/commit/53eaee8e33678debe5011b72d3d6d48626569d99))
+
 # [1.13.0](https://github.com/Jaspero/modular/compare/v1.12.2...v1.13.0) (2023-07-18)
 
 
