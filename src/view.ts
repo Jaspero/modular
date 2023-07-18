@@ -3,7 +3,7 @@ import {ComponentOptions, View} from './interfaces/view.interface';
 import {ModularSchema} from './schema';
 import {get} from './utils/json-pointer.util';
 
-interface ViewRow<Options, Fields extends keyof Options> {
+export interface ViewRow<Options, Fields extends keyof Options> {
   align?: 'start' | 'center' | 'end';
   container?: string;
   items: View<Options, Fields>[];
