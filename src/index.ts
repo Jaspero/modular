@@ -24,4 +24,4 @@ export * from './schema';
 export * from './view';
 
 
-initializeCSSUtil();
+export * from './utils/css.util';
