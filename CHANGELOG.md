@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/Jaspero/modular/compare/v1.12.1...v1.12.2) (2023-01-17)
+
+
+### Bug Fixes
+
+* **modular:** key not always definied ([85c8016](https://github.com/Jaspero/modular/commit/85c801633bf6b6b5e5393373cbc3477f557db4d6))
+
 ## [1.12.1](https://github.com/Jaspero/modular/compare/v1.12.0...v1.12.1) (2023-01-17)
 
 
