@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/Jaspero/modular/compare/v1.13.1...v1.14.0) (2023-08-11)
+
+
+### Features
+
+* adding id and classes to row container ([91a88b9](https://github.com/Jaspero/modular/commit/91a88b9789e57c7f53f71dde691f778572c86dbd))
+
 ## [1.13.1](https://github.com/Jaspero/modular/compare/v1.13.0...v1.13.1) (2023-07-18)
 
 
