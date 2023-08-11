@@ -1,5 +1,3 @@
-import { initializeCSSUtil } from './utils/css.util';
-
 declare global {
   interface Window {
     modular: {

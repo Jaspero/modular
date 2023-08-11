@@ -6,6 +6,8 @@ import {get} from './utils/json-pointer.util';
 export interface ViewRow<Options, Fields extends keyof Options> {
   align?: 'start' | 'center' | 'end';
   container?: string;
+  id?: string;
+  classes?: string[];
   items: View<Options, Fields>[];
 }
 
@@ -109,6 +111,14 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       rowContainer.style.display = 'flex';
       rowContainer.style.flexWrap = 'wrap';
       rowContainer.style.width = '100%';
+
+      if (row.id) {
+        rowContainer.id = row.id;
+      }
+
+      if (row.classes) {
+        rowContainer.classList.add(...row.classes);
+      }
 
       for (const view of row.items) {
         const element = document.createElement(`modular-${view.component as string}`);
