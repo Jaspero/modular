@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/Jaspero/modular/compare/v1.15.0...v1.15.1) (2023-08-12)
+
+
+### Bug Fixes
+
+* allowsing for componentPrefix to be undefined ([0762912](https://github.com/Jaspero/modular/commit/076291229905ffc9486ca1449ae9e6eb8f9cd64d))
+
 # [1.15.0](https://github.com/Jaspero/modular/compare/v1.14.0...v1.15.0) (2023-08-12)
 
 
