@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/Jaspero/modular/compare/v1.14.0...v1.15.0) (2023-08-12)
+
+
+### Features
+
+* allow overriding default component prefix ([79ff82d](https://github.com/Jaspero/modular/commit/79ff82dc6c56f494d3f536477d1eee6ad1d2c79b))
+
 # [1.14.0](https://github.com/Jaspero/modular/compare/v1.13.1...v1.14.0) (2023-08-11)
 
 
