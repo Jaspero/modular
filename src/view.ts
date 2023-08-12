@@ -121,7 +121,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       }
 
       for (const view of row.items) {
-        const element = document.createElement(`${view.componentPrefix || 'modular-'}${view.component as string}`);
+        const element = document.createElement(`${view.hasOwnProperty('componentPrefix') ? view.componentPrefix : 'modular-'}${view.component as string}`);
 
         if (!view.columns) {
           element.classList.add(`modular-util-col-12`);
