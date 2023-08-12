@@ -21,16 +21,19 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     options?: any;
     optionsCalled: boolean;
   }> = [];
+  public componentPrefix: string;
 
   private _schema: ModularSchema;
   private readonly _views: ViewRow<Options, Fields>[];
 
   constructor(
     configuration: {
+      componentPrefix?: string;
       schema: ModularSchema;
       views: ViewRow<Options, Fields>[];
     }
   ) {
+    this.componentPrefix = (configuration.hasOwnProperty('componentPrefix') ? configuration.componentPrefix : 'modular-') as string;
     this._schema = configuration.schema;
     this._views = configuration.views;
   }
@@ -121,7 +124,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       }
 
       for (const view of row.items) {
-        const element = document.createElement(`${view.hasOwnProperty('componentPrefix') ? view.componentPrefix : 'modular-'}${view.component as string}`);
+        const element = document.createElement(this.componentPrefix + (view.component as string));
 
         if (!view.columns) {
           element.classList.add(`modular-util-col-12`);

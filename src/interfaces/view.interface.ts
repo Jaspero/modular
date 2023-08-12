@@ -60,7 +60,6 @@ export interface ComponentOptions {
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
   field: string;
-  componentPrefix?: string;
   component: FIELD;
   options?: OPTIONS[FIELD];
   columns?: {
