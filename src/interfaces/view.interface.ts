@@ -1,72 +1,73 @@
 import {
-    CarbonInputOptions,
-    CarbonSelectOptions,
-    CarbonChartOptions,
-    CarbonCheckboxOptions,
-    CarbonTableOptions,
-    CarbonTextareaOptions,
-    CarbonRadioOptions,
-    CarbonAccordionOptions,
-    CarbonBreadcrumbOptions,
-    CarbonButtonOptions,
-    CarbonFileUploaderOptions,
-    CarbonStructuredListOptions,
-    CarbonTabsOptions,
-    CarbonObjectArrayOptions,
+  CarbonInputOptions,
+  CarbonSelectOptions,
+  CarbonChartOptions,
+  CarbonCheckboxOptions,
+  CarbonTableOptions,
+  CarbonTextareaOptions,
+  CarbonRadioOptions,
+  CarbonAccordionOptions,
+  CarbonBreadcrumbOptions,
+  CarbonButtonOptions,
+  CarbonFileUploaderOptions,
+  CarbonStructuredListOptions,
+  CarbonTabsOptions,
+  CarbonObjectArrayOptions,
 } from '@jaspero/modular-components';
 
 
 export enum Components {
-    CarbonInput = 'carbon-input',
-    CarbonSelect = 'carbon-select',
-    CarbonChart = 'carbon-chart',
-    CarbonDatepicker = 'carbon-datepicker',
-    CarbonTable = 'carbon-table',
-    CarbonTextarea = 'carbon-textarea',
-    CarbonCheckbox = 'carbon-checkbox',
-    CarbonRadio = 'carbon-radio',
-    CarbonSlider = 'carbon-slider',
-    CarbonToggle = 'carbon-toggle',
-    CarbonAccordion = 'carbon-accordion',
-    CarbonBreadcrumb = 'carbon-breadcrumb',
-    CarbonButton = 'carbon-button',
+  CarbonInput = 'carbon-input',
+  CarbonSelect = 'carbon-select',
+  CarbonChart = 'carbon-chart',
+  CarbonDatepicker = 'carbon-datepicker',
+  CarbonTable = 'carbon-table',
+  CarbonTextarea = 'carbon-textarea',
+  CarbonCheckbox = 'carbon-checkbox',
+  CarbonRadio = 'carbon-radio',
+  CarbonSlider = 'carbon-slider',
+  CarbonToggle = 'carbon-toggle',
+  CarbonAccordion = 'carbon-accordion',
+  CarbonBreadcrumb = 'carbon-breadcrumb',
+  CarbonButton = 'carbon-button',
 
-    CarbonFileUploader = 'carbon-fileuploader',
-    CarbonStructuredList = 'carbon-structuredlist',
-    CarbonTabs = 'carbon-tabs',
-    CarbonObjectArray = 'carbon-object-array',
-    CarbonContentSwitcher = 'carbon-contentswitcher'
+  CarbonFileUploader = 'carbon-fileuploader',
+  CarbonStructuredList = 'carbon-structuredlist',
+  CarbonTabs = 'carbon-tabs',
+  CarbonObjectArray = 'carbon-object-array',
+  CarbonContentSwitcher = 'carbon-contentswitcher'
 }
 
 export interface ComponentOptions {
-    [Components.CarbonInput]: CarbonInputOptions;
-    [Components.CarbonSelect]: CarbonSelectOptions;
-    [Components.CarbonChart]: CarbonChartOptions;
-    [Components.CarbonDatepicker]: CarbonDatePicker;
-    [Components.CarbonTable]: CarbonTableOptions;
-    [Components.CarbonTextarea]: CarbonTextareaOptions;
-    [Components.CarbonCheckbox]: CarbonCheckboxOptions;
-    [Components.CarbonRadio]: CarbonRadioOptions;
-    [Components.CarbonAccordion]: CarbonAccordionOptions;
-    [Components.CarbonBreadcrumb]: CarbonBreadcrumbOptions;
-    [Components.CarbonButton]: CarbonButtonOptions;
+  [Components.CarbonInput]: CarbonInputOptions;
+  [Components.CarbonSelect]: CarbonSelectOptions;
+  [Components.CarbonChart]: CarbonChartOptions;
+  [Components.CarbonDatepicker]: CarbonDatePicker;
+  [Components.CarbonTable]: CarbonTableOptions;
+  [Components.CarbonTextarea]: CarbonTextareaOptions;
+  [Components.CarbonCheckbox]: CarbonCheckboxOptions;
+  [Components.CarbonRadio]: CarbonRadioOptions;
+  [Components.CarbonAccordion]: CarbonAccordionOptions;
+  [Components.CarbonBreadcrumb]: CarbonBreadcrumbOptions;
+  [Components.CarbonButton]: CarbonButtonOptions;
 
-    [Components.CarbonFileUploader]: CarbonFileUploaderOptions;
-    [Components.CarbonStructuredList]: CarbonStructuredListOptions;
+  [Components.CarbonFileUploader]: CarbonFileUploaderOptions;
+  [Components.CarbonStructuredList]: CarbonStructuredListOptions;
 
-    [Components.CarbonTabs]: CarbonTabsOptions;
-    [Components.CarbonObjectArray]: CarbonObjectArrayOptions;
+  [Components.CarbonTabs]: CarbonTabsOptions;
+  [Components.CarbonObjectArray]: CarbonObjectArrayOptions;
 }
 
 export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
-    field: string;
-    component: FIELD;
-    options?: OPTIONS[FIELD];
-    columns?: {
-        desktop?: number;
-        tablet?: number;
-        mobile?: number;
-    } | number;
+  field: string;
+  componentPrefix?: string;
+  component: FIELD;
+  options?: OPTIONS[FIELD];
+  columns?: {
+    desktop?: number;
+    tablet?: number;
+    mobile?: number;
+  } | number;
 }
 
 export type View<OPTIONS = ComponentOptions, FIELD extends keyof OPTIONS = keyof OPTIONS> = FIELD extends keyof OPTIONS ? ViewInterface<OPTIONS, FIELD> : never;
