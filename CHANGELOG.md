@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/Jaspero/modular/compare/v1.15.2...v1.16.0) (2023-08-13)
+
+
+### Features
+
+* assigining properties to elements directly when direct methods don't exist ([fa9b4df](https://github.com/Jaspero/modular/commit/fa9b4dfe7f775aebc81d8f5d2821b1d95f59ebe0))
+
 ## [1.15.2](https://github.com/Jaspero/modular/compare/v1.15.1...v1.15.2) (2023-08-12)
 
 
