@@ -155,14 +155,39 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           el.setOptions?.(view.options);
           optionsCalled = true;
         }
-
-        if (view.field) {
-          (element as any)?.setValue?.(get(instance.value, view.field));
+        
+        /**
+         * If the element doesn't have a "setOptions" method
+         * we make the assumption that all of the options should
+         * be assigned to the element directly
+         */
+        else if (view.options) {
+          for (const key in view.options) {
+            // @ts-ignore
+            el[key] = view.options[key];
+          }
         }
 
-        (element as any)?.setInstance?.(instance);
+        if (view.field) {
 
-        (element as any)?.setRender?.(r);
+          const entryValue = get(instance.value, view.field);
+
+          if (el.setValue) {
+            el.setValue(entryValue);
+          }
+          
+          /**
+           * If the element doesn't have a "setValue" method we again
+           * assume it should be assigned to the element directly
+           */
+          else {
+            el.value = entryValue;
+          }
+        }
+
+        el.setInstance?.(instance);
+
+        el.setRender?.(r);
 
         this.elements.push({
           ...view.field && {key: view.field.replace(/^\//, '')},
