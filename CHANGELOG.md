@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/Jaspero/modular/compare/v1.15.1...v1.15.2) (2023-08-12)
+
+
+### Bug Fixes
+
+* allowing component prefix option ([29ab208](https://github.com/Jaspero/modular/commit/29ab208b448eb3d0aa1990c319d5ec5a075867e8))
+
 ## [1.15.1](https://github.com/Jaspero/modular/compare/v1.15.0...v1.15.1) (2023-08-12)
 
 
