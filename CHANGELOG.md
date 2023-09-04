@@ -1,3 +1,11 @@
+## [1.16.1](https://github.com/Jaspero/modular/compare/v1.16.0...v1.16.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* adds save trigger on form elements ([9e03798](https://github.com/Jaspero/modular/commit/9e0379883f66953be69a63d34581680da808e0ea))
+* type error on element ([650324d](https://github.com/Jaspero/modular/commit/650324d4313c61f6d93f4558648ee05b8fe0aae9))
+
 # [1.16.0](https://github.com/Jaspero/modular/compare/v1.15.2...v1.16.0) (2023-08-13)
 
 
