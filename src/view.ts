@@ -99,9 +99,20 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       })
     }
 
+    const save = async () => {
+      await Promise.all(
+        this.elements
+          .filter(e => e.key)
+          .map(async e => {
+            (e.element.save && await e.element.save())
+          })
+      );
+    }
+
     const r = {
       getValue,
       addEventListener,
+      save,
       removeEventListener,
       destroy: () => {
         container.remove();
