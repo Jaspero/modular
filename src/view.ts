@@ -103,7 +103,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       await Promise.all(
         this.elements
           .filter(e => e.key)
-          .map(async e => {
+          .map(async (e: any) => {
             (e.element.save && await e.element.save())
           })
       );
