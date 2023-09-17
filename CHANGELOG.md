@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/Jaspero/modular/compare/v1.16.1...v1.17.0) (2023-09-17)
+
+
+### Features
+
+* forwarding id on save ([a3b3a63](https://github.com/Jaspero/modular/commit/a3b3a63173fe33bdc8da3b78516191fab69a761d))
+
 ## [1.16.1](https://github.com/Jaspero/modular/compare/v1.16.0...v1.16.1) (2023-09-04)
 
 
