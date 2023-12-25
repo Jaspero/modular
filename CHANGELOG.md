@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/Jaspero/modular/compare/v1.17.0...v1.18.0) (2023-12-25)
+
+
+### Features
+
+* implemented hidden property for items ([82efa3d](https://github.com/Jaspero/modular/commit/82efa3df46a81fe9c20b14f6ae0299b0ea859b42))
+
 # [1.17.0](https://github.com/Jaspero/modular/compare/v1.16.1...v1.17.0) (2023-09-17)
 
 
