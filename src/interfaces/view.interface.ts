@@ -67,6 +67,13 @@ export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
     tablet?: number;
     mobile?: number;
   } | number;
+  hidden?: {
+    /**
+     * Check is only triggered when these fields are changed
+     */
+    deps: string[];
+    check: (value: any) => boolean;
+  };
 }
 
 export type View<OPTIONS = ComponentOptions, FIELD extends keyof OPTIONS = keyof OPTIONS> = FIELD extends keyof OPTIONS ? ViewInterface<OPTIONS, FIELD> : never;

@@ -61,6 +61,12 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     container.style.flexWrap = 'wrap';
 
     const _eventCallbacks: Array<{event: string, callback: (value?: any) => void}> = [];
+    const _hiddenChecks: {
+      [key: string]: Array<{
+        element: HTMLElement;
+        check: (value?: any) => boolean;
+      }>
+    } = {};
 
     const addEventListener = (event: Events, callback: (value?: any) => void) => {
       _eventCallbacks.push({event, callback});
@@ -155,9 +161,33 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           }
         }
 
+        if (view.hidden) {
+
+          view.hidden.deps.forEach(dep => {
+            if (!_hiddenChecks[dep]) {
+              _hiddenChecks[dep] = [];
+            }
+
+            _hiddenChecks[dep].push({element, check: view.hidden!.check});
+          });
+
+          if (!view.hidden.check(instance.value)) {
+            element.style.display = 'none';
+          }
+        }
+
         element.style.padding = '0.5rem';
         element.style.boxSizing = 'border-box';
-        element.addEventListener('value', () => dispatchEvents('change'));
+        element.addEventListener('value', () => {
+
+          if (view.field && _hiddenChecks[view.field]?.length) {
+            _hiddenChecks[view.field].forEach(({element, check}) =>
+              element.style.display = check(instance.value) ? 'none' : 'block'
+            );
+          }
+
+          dispatchEvents('change');
+        });
         
         let el = element as any;
         let optionsCalled = false;
