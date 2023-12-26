@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/Jaspero/modular/compare/v1.18.0...v1.18.1) (2023-12-26)
+
+
+### Bug Fixes
+
+* retrieving latest value for hidden checks ([2458e7e](https://github.com/Jaspero/modular/commit/2458e7e9fede64917f18fe83c6605031a6eeed51))
+
 # [1.18.0](https://github.com/Jaspero/modular/compare/v1.17.0...v1.18.0) (2023-12-25)
 
 
