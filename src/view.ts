@@ -178,11 +178,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         element.style.padding = '0.5rem';
         element.style.boxSizing = 'border-box';
-        element.addEventListener('value', () => {
-
+        element.addEventListener('value', async () => {
+          const value = await getValue();
           if (view.field && _hiddenChecks[view.field]?.length) {
             _hiddenChecks[view.field].forEach(({element, check}) =>
-              element.style.display = check(instance.value) ? 'none' : 'block'
+              element.style.display = check(value) ? 'block' : 'none'
             );
           }
 
