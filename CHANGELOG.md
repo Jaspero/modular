@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/Jaspero/modular/compare/v1.18.1...v1.19.0) (2023-12-28)
+
+
+### Features
+
+* updating instance value ([467a1b3](https://github.com/Jaspero/modular/commit/467a1b3322598f6040622fb4358808b0b4b3c468))
+
 ## [1.18.1](https://github.com/Jaspero/modular/compare/v1.18.0...v1.18.1) (2023-12-26)
 
 
