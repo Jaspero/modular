@@ -22,6 +22,10 @@ export class ModularInstance {
     return this._value;
   }
 
+  set value(val: any) {
+    this._value = val;
+  }
+
   public update(value: any, options?: {
     merge?: boolean
   }) {

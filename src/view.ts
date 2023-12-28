@@ -87,13 +87,15 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           .map(e => (e.element as any).getValue())
       );
 
-      return values.reduce((acc, cur, index) => {
+      instance.value = values.reduce((acc, cur, index) => {
         const el = this.elements[index];
         if (el.key) {
           acc[el.key] = cur;
         }
         return acc
-      }, {});
+      }, instance.value);
+
+      return instance.value;
     };
 
     const dispatchEvents = async (event: Events) => {
@@ -120,9 +122,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       addEventListener,
       save,
       removeEventListener,
-      destroy: () => {
-        container.remove();
-      }
+      destroy: () => container.remove()
     };
 
     for (const row of this._views) {
