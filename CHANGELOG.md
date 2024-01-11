@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/Jaspero/modular/compare/v1.19.0...v1.20.0) (2024-01-11)
+
+
+### Features
+
+* added a setValue properly to render ([45b3f2e](https://github.com/Jaspero/modular/commit/45b3f2e528af4d5cc42dd7b9d870e4801d5d9cba))
+
 # [1.19.0](https://github.com/Jaspero/modular/compare/v1.18.1...v1.19.0) (2023-12-28)
 
 
