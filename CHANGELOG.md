@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/Jaspero/modular/compare/v1.20.0...v1.20.1) (2024-01-11)
+
+
+### Bug Fixes
+
+* setting value for fields without setValue ([9bde953](https://github.com/Jaspero/modular/commit/9bde953558068b42e9d4abb9f45c75e662800fbb))
+
 # [1.20.0](https://github.com/Jaspero/modular/compare/v1.19.0...v1.20.0) (2024-01-11)
 
 
