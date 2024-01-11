@@ -98,6 +98,21 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       return instance.value;
     };
 
+    const setValue = (value: any) => {
+      for (const element of this.elements) {
+        if (!element.key) {
+          continue;
+        }
+
+        const valueForField = get(value, '/' + element.key);
+        const el = element.element as any;
+
+        if (el.setValue) {
+          el.setValue(valueForField);
+        }
+      }
+    };
+
     const dispatchEvents = async (event: Events) => {
       const value = await getValue();
       _eventCallbacks.forEach(e => {
@@ -122,7 +137,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       addEventListener,
       save,
       removeEventListener,
-      destroy: () => container.remove()
+      destroy: () => container.remove(),
+      setValue,
     };
 
     for (const row of this._views) {
