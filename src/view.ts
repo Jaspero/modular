@@ -109,6 +109,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         if (el.setValue) {
           el.setValue(valueForField);
+        } else {
+          el.value = valueForField;
         }
       }
     };
