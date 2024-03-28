@@ -8,6 +8,7 @@
     ModularView,
   } from "@jaspero/modular";
   import { onMount } from "svelte";
+  import "@jaspero/web-components/dist/input.wc.js";
 
   let containerElement: HTMLDivElement;
 
@@ -16,161 +17,55 @@
     window.ModularSchema = ModularSchema;
     window.ModularView = ModularView;
 
-    const schema = new ModularSchema({
-    });
+    const schema = new ModularSchema({});
 
     const instance = schema.createInstance({});
 
     const view = new ModularView({
+      componentPrefix: "",
       schema,
       views: [
         {
-          justify: "center",
-          container: "form",
           items: [
             {
-              component: "tab-views",
+              component: "jp-input",
+              field: "/title",
+              id: "title",
               options: {
-                views: [
-                  {
-                    title: "pero",
-                    views: [
-                      {
-                        justify: "center",
-                        container: "form",
-                        items: [
-                          {
-                            component: "carbon-datepicker",
-                            options: {}
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    title: "stevo",
-                    views: [
-                      {
-                        justify: "center",
-                        container: "form",
-                        items: [
-                          {
-                            component: "carbon-input"
-                          }
-                        ]
-                      }
-                    ],
-                  }
-                ],
-              }
+                label: "Title",
+              },
+            },
+            {
+              component: "jp-input",
+              field: "/meta/title",
+              id: "meta.title",
+              options: {
+                label: "Meta Title",
+              },
+            },
+            {
+              component: "jp-input",
+              field: "/meta/keywords",
+              options: {
+                label: "Meta Keywords",
+              },
             }
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     });
-
-    // const view = new ModularView({
-    //   schema,
-    //   views: [
-    //     {
-    //       justify: "center",
-    //       container: "form",
-    //       items: [
-    //         {
-    //           component: "carbon-table",
-    //           options: {
-    //             size: "short",
-    //             colorSchema: "zebra",
-    //             columns: [
-    //               {
-    //                 label: "Name",
-    //                 id: "name",
-    //                 pipes: [
-    //                   {
-    //                     name: 'title'
-    //                   }
-    //                 ]
-    //               },
-    //               {
-    //                 label: "Date",
-    //                 id: "createdOn",
-    //                 pipes: [
-    //                   {
-    //                     name: "date",
-    //                     options: {
-    //                       format: "MM/dd",
-    //                     },
-    //                   },
-    //                 ],
-    //               },
-    //               {
-    //                 label: "Functions",
-    //                 id: "functions.activeFunctions",
-    //               },
-    //               {
-    //                 label: "Max Functions",
-    //                 id: "functions.maxFunctions",
-    //               },
-    //               {
-    //                 label: "Status",
-    //                 id: "status",
-    //                 pipes: [
-    //                   {
-    //                     name: 'custom',
-    //                     options: `(value) => \`<input type="checkbox" \${value ? 'checked' : ''} >\``
-    //                   }
-    //                 ]
-    //               },
-    //               {
-    //                 label: 'Active',
-    //                 id: 'active',
-    //                 pipes: [
-    //                   {
-    //                     name: 'timeSince',
-    //                     options: {
-    //                       unit: 'months'
-    //                     }
-    //                   }
-    //                 ]
-    //               }
-    //             ],
-    //             value: [
-    //               {
-    //                 name: "asdasd",
-    //                 status: true,
-    //                 createdOn: Date.now(),
-    //                 "functions.activeFunctions": 1,
-    //                 "functions.maxFunctions": 10,
-    //                 active: 1623019940773,
-    //               },
-    //               {
-    //                 name: "qwe",
-    //                 status: false,
-    //                 createdOn: Date.now(),
-    //                 "functions.activeFunctions": 1,
-    //                 "functions.maxFunctions": 10,
-    //                 active: 1623019940773,
-    //               },
-    //               {
-    //                 name: "dasd",
-    //                 status: true,
-    //                 createdOn: Date.now(),
-    //                 "functions.activeFunctions": 1,
-    //                 "functions.maxFunctions": 10,
-    //                 active: 1623019940773,
-    //               },
-    //             ],
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // // } as any);
 
     const render = view.render({
       parentElement: containerElement,
       instance,
     });
+
+    render.setValue({
+      meta: {
+        title: 'cool',
+        keywords: 'bla'
+      }
+    })
 
     render.addEventListener("change", (value) => {
       console.log("the final", value);

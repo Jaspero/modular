@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@jaspero/modular": "file:../..",
+    "@jaspero/modular-components": "file:../../components",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "svelte": "3.53.1",
@@ -24,5 +25,8 @@
     "typescript": "4.9.3",
     "vite": "3.2.5"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@jaspero/web-components": "1.102.0"
+  }
 }
