@@ -1,3 +1,10 @@
+## [1.20.2](https://github.com/Jaspero/modular/compare/v1.20.1...v1.20.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* unflatten "/" in props closes [#10](https://github.com/Jaspero/modular/issues/10) ([560d0c4](https://github.com/Jaspero/modular/commit/560d0c4e93accf8d5a3f99fb704152a6312b3e38))
+
 ## [1.20.1](https://github.com/Jaspero/modular/compare/v1.20.0...v1.20.1) (2024-01-11)
 
 
