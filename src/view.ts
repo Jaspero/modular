@@ -87,8 +87,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           .map(e => (e.element as any).getValue())
       );
 
-      const result: any = {};
-
       for (let i = 0; i < values.length; i++) {
         const el = this.elements[i];
         const value = values[i];
@@ -99,12 +97,10 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           keys.reduce(
             (r: any, e, j) =>
               r[e] || (r[e] = isNaN(Number(keys[j + 1])) ? (keys.length - 1 == j ? value : {}) : []),
-              result
+              instance.value
           );
         }
       }
-
-      instance.value = result;
 
       return instance.value;
     };
