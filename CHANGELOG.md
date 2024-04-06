@@ -1,3 +1,10 @@
+## [1.20.3](https://github.com/Jaspero/modular/compare/v1.20.2...v1.20.3) (2024-04-06)
+
+
+### Bug Fixes
+
+* getValue returning original instance ([6137a4e](https://github.com/Jaspero/modular/commit/6137a4e3492ebc270fd5184d16ab0b3bc9fe5909))
+
 ## [1.20.2](https://github.com/Jaspero/modular/compare/v1.20.1...v1.20.2) (2024-03-28)
 
 
