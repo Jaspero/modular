@@ -299,8 +299,6 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           e.getValue = e.element.getValue;
         }
       });
-
-      console.log(222, this.elements);
     });
 
     // todo: return cleanup function
