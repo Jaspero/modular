@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/Jaspero/modular/compare/v1.20.3...v1.21.0) (2024-04-07)
+
+
+### Features
+
+* deep merging return value ([f9938c8](https://github.com/Jaspero/modular/commit/f9938c879e6e78757455d9cc2b8bd8cb86c5ba2b))
+
 ## [1.20.3](https://github.com/Jaspero/modular/compare/v1.20.2...v1.20.3) (2024-04-06)
 
 
