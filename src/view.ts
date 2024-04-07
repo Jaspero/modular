@@ -26,6 +26,7 @@ export interface ModuleViewElement {
   element: HTMLElement;
   options?: any;
   optionsCalled: boolean;
+  save?: (id: any) => Promise<void>;
 };
 
 type Events = 'change';
@@ -152,9 +153,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       await Promise.all(
         elements
           .filter(e => e.key)
-          .map(async (e: any) => {
-            (e.element.save && await e.element.save(id))
-          })
+          .map((e) => (e.save && e.save(id)))
       );
     }
 
@@ -276,7 +275,9 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           ...view.field && {key: view.field.replace(/^\//, '')},
           options: view.options,
           optionsCalled,
-          element
+          element,
+          // @ts-ignore
+          save: element.save
         });
 
         rowContainer.appendChild(element);
