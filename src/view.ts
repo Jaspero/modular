@@ -27,6 +27,7 @@ export interface ModuleViewElement {
   options?: any;
   optionsCalled: boolean;
   save?: (id: any) => Promise<void>;
+  getValue?: () => any;
 };
 
 type Events = 'change';
@@ -94,16 +95,18 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     };
 
     const getValue = async (elements: ModuleViewElement[] = this.elements) => {
+
+      const els = elements.filter(e => e.key);
+
       const values = await Promise.all(
-        elements
-          .filter(e => e.key)
-          .map(e => (e.element as any).getValue())
+        els
+          .map(e => e?.getValue!())
       );
 
       const result: any = {};
 
       for (let i = 0; i < values.length; i++) {
-        const el = this.elements[i];
+        const el = els[i];
         const value = values[i];
 
         if (el.key) {
@@ -287,11 +290,10 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     parentElement.appendChild(container);
 
     setTimeout(() => {
-      this.elements.forEach(e => {
-        // @ts-ignore
+      this.elements.forEach((e: any) => {
         if (e.element.save) {
-          // @ts-ignore
           e.save = e.element.save;
+          e.getValue = e.element.getValue;
         }
       });
 
