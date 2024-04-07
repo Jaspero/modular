@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/Jaspero/modular/compare/v1.22.0...v1.23.0) (2024-04-07)
+
+
+### Features
+
+* getValue can receive elements ([35d4928](https://github.com/Jaspero/modular/commit/35d4928caddc3ab2b731aa59a8c37f6f6e35d932))
+
 # [1.22.0](https://github.com/Jaspero/modular/compare/v1.21.0...v1.22.0) (2024-04-07)
 
 
