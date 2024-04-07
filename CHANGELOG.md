@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/Jaspero/modular/compare/v1.24.1...v1.25.0) (2024-04-07)
+
+
+### Features
+
+* extracted getValue ([05f5680](https://github.com/Jaspero/modular/commit/05f5680d2145becaa748d4d5c31b9598dfbd820f))
+
 ## [1.24.1](https://github.com/Jaspero/modular/compare/v1.24.0...v1.24.1) (2024-04-07)
 
 
