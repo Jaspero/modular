@@ -1,3 +1,10 @@
+## [1.25.2](https://github.com/Jaspero/modular/compare/v1.25.1...v1.25.2) (2024-04-07)
+
+
+### Bug Fixes
+
+* removed console logs ([f80cedc](https://github.com/Jaspero/modular/commit/f80cedc21ea338e5f78a3000e663f15b6a6f8080))
+
 ## [1.25.1](https://github.com/Jaspero/modular/compare/v1.25.0...v1.25.1) (2024-04-07)
 
 
