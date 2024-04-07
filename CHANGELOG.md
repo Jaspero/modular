@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/Jaspero/modular/compare/v1.24.0...v1.24.1) (2024-04-07)
+
+
+### Bug Fixes
+
+* assign save after rendering ([d94762d](https://github.com/Jaspero/modular/commit/d94762db72b37ba689d4c4f41cbefffea59f05f1))
+
 # [1.24.0](https://github.com/Jaspero/modular/compare/v1.23.1...v1.24.0) (2024-04-07)
 
 
