@@ -92,9 +92,9 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       }
     };
 
-    const getValue = async () => {
+    const getValue = async (elements: ModuleViewElement[] = this.elements) => {
       const values = await Promise.all(
-        this.elements
+        elements
           .filter(e => e.key)
           .map(e => (e.element as any).getValue())
       );
