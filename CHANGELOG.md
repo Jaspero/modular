@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/Jaspero/modular/compare/v1.25.0...v1.25.1) (2024-04-07)
+
+
+### Bug Fixes
+
+* getValue not assigning properly ([0b0a459](https://github.com/Jaspero/modular/commit/0b0a459806f4e895a97cec6ac0730ec22db46513))
+
 # [1.25.0](https://github.com/Jaspero/modular/compare/v1.24.1...v1.25.0) (2024-04-07)
 
 
