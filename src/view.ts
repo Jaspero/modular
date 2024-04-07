@@ -293,6 +293,9 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       this.elements.forEach((e: any) => {
         if (e.element.save) {
           e.save = e.element.save;
+        }
+
+        if (e.element.getValue) {
           e.getValue = e.element.getValue;
         }
       });
