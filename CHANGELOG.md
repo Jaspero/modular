@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/Jaspero/modular/compare/v1.23.1...v1.24.0) (2024-04-07)
+
+
+### Features
+
+* adjusted how save is processed in view ([db078b1](https://github.com/Jaspero/modular/commit/db078b183482cd616f4f17339137daa0f9932d93))
+
 ## [1.23.1](https://github.com/Jaspero/modular/compare/v1.23.0...v1.23.1) (2024-04-07)
 
 
