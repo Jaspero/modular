@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/Jaspero/modular/compare/v1.21.0...v1.22.0) (2024-04-07)
+
+
+### Features
+
+* exporting render and view element from view ([653e441](https://github.com/Jaspero/modular/commit/653e441a8ee663cdbfab3a8fbd3c1e687ad4ce22))
+
 # [1.21.0](https://github.com/Jaspero/modular/compare/v1.20.3...v1.21.0) (2024-04-07)
 
 
