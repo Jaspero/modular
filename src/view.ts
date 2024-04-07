@@ -12,16 +12,27 @@ export interface ViewRow<Options, Fields extends keyof Options> {
   items: View<Options, Fields>[];
 }
 
+export interface ModuleRender {
+  getValue: () => Promise<any>;
+  addEventListener: (event: Events, callback: (value?: any) => void) => void;
+  save: (id?: string) => Promise<void>;
+  removeEventListener: (event: Events, callback: (value?: any) => void) => void;
+  destroy: () => void;
+  setValue: (value: any) => void;
+}
+
+export interface ModuleViewElement {
+  key?: string;
+  element: HTMLElement;
+  options?: any;
+  optionsCalled: boolean;
+};
+
 type Events = 'change';
 
 export class ModularView<Options = ComponentOptions, Fields extends keyof Options = keyof Options> {
 
-  public elements: Array<{
-    key?: string;
-    element: HTMLElement;
-    options?: any;
-    optionsCalled: boolean;
-  }> = [];
+  public elements: ModuleViewElement[] = [];
   public componentPrefix: string;
 
   private _schema: ModularSchema;
@@ -52,7 +63,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     parentElement: HTMLElement,
     instance: ModularInstance,
     container?: string
-  }) {
+  }): ModuleRender {
     const {parentElement, instance} = options;
     
     this.elements = [];
@@ -134,9 +145,12 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       })
     }
 
-    const save = async (id?: string) => {
+    const save = async (
+      id?: string,
+      elements: ModuleViewElement[] = this.elements
+    ) => {
       await Promise.all(
-        this.elements
+        elements
           .filter(e => e.key)
           .map(async (e: any) => {
             (e.element.save && await e.element.save(id))
@@ -144,7 +158,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       );
     }
 
-    const r = {
+    const r: ModuleRender = {
       getValue,
       addEventListener,
       save,
