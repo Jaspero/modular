@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/Jaspero/modular/compare/v1.23.0...v1.23.1) (2024-04-07)
+
+
+### Bug Fixes
+
+* missing type definition ([dabe675](https://github.com/Jaspero/modular/commit/dabe6758dcb2ec52b37a7e1562d19b53c9cc8270))
+
 # [1.23.0](https://github.com/Jaspero/modular/compare/v1.22.0...v1.23.0) (2024-04-07)
 
 
