@@ -275,9 +275,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           ...view.field && {key: view.field.replace(/^\//, '')},
           options: view.options,
           optionsCalled,
-          element,
-          // @ts-ignore
-          save: element.save
+          element
         });
 
         rowContainer.appendChild(element);
@@ -287,6 +285,18 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     }
 
     parentElement.appendChild(container);
+
+    setTimeout(() => {
+      this.elements.forEach(e => {
+        // @ts-ignore
+        if (e.element.save) {
+          // @ts-ignore
+          e.save = e.element.save;
+        }
+      });
+
+      console.log(222, this.elements);
+    });
 
     // todo: return cleanup function
     return r;

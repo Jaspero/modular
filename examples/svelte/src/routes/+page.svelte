@@ -9,6 +9,7 @@
   } from "@jaspero/modular";
   import { onMount } from "svelte";
   import "@jaspero/web-components/dist/input.wc.js";
+  import "@jaspero/web-components/dist/file-upload.wc.js";
 
   let containerElement: HTMLDivElement;
   let containerElement1: HTMLDivElement;
@@ -53,7 +54,7 @@
               },
             },
             {
-              component: "jp-input",
+              component: "jp-file-upload",
               field: "/meta/image",
               options: {
                 label: "Meta Image",
