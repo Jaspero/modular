@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/Jaspero/modular/compare/v1.25.2...v1.26.0) (2024-04-15)
+
+
+### Features
+
+* implemented basic validation ([36806a8](https://github.com/Jaspero/modular/commit/36806a8602a5c4b86e7e52284bcb7a314e0057c4))
+
 ## [1.25.2](https://github.com/Jaspero/modular/compare/v1.25.1...v1.25.2) (2024-04-07)
 
 
