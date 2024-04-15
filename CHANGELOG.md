@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/Jaspero/modular/compare/v1.26.1...v1.27.0) (2024-04-15)
+
+
+### Features
+
+* assigning validity on form load ([b668e72](https://github.com/Jaspero/modular/commit/b668e72240520e9b36fa695205472f10c576466e))
+
 ## [1.26.1](https://github.com/Jaspero/modular/compare/v1.26.0...v1.26.1) (2024-04-15)
 
 
