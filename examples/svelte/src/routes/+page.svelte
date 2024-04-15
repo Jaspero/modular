@@ -43,6 +43,7 @@
               id: "title",
               options: {
                 label: "Title",
+                required: true
               },
             },
             {

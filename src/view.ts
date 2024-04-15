@@ -19,6 +19,8 @@ export interface ModuleRender {
   removeEventListener: (event: Events, callback: (value?: any) => void) => void;
   destroy: () => void;
   setValue: (value: any) => void;
+  validity: {[key: string]: boolean};
+  isValid: () => boolean;
 }
 
 export interface ModuleViewElement {
@@ -160,6 +162,18 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       );
     }
 
+    const validity: {[key: string]: boolean} = {};
+
+    const isValid = () => {
+      for (const key in validity) {
+        if (!validity[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
     const r: ModuleRender = {
       getValue,
       addEventListener,
@@ -167,6 +181,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       removeEventListener,
       destroy: () => container.remove(),
       setValue,
+      validity,
+      isValid,
     };
 
     for (const row of this._views) {
@@ -224,10 +240,15 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         element.style.boxSizing = 'border-box';
         element.addEventListener('value', async () => {
           const value = await getValue();
-          if (view.field && _hiddenChecks[view.field]?.length) {
-            _hiddenChecks[view.field].forEach(({element, check}) =>
-              element.style.display = check(value) ? 'block' : 'none'
-            );
+
+          if (view.field) {
+            if (_hiddenChecks[view.field]?.length) {
+              _hiddenChecks[view.field].forEach(({element, check}) =>
+                element.style.display = check(value) ? 'block' : 'none'
+              );
+            }
+  
+            validity[view.field] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
           }
 
           dispatchEvents('change');
