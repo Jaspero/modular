@@ -202,6 +202,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
       for (const view of row.items) {
         const element = document.createElement(this.componentPrefix + (view.component as string));
+        const key = view.field ? view.field.replace(/^\//, '') : undefined;
 
         if (!view.columns) {
           element.classList.add(`modular-util-col-12`);
@@ -241,14 +242,14 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         element.addEventListener('value', async () => {
           const value = await getValue();
 
-          if (view.field) {
+          if (key) {
             if (_hiddenChecks[view.field]?.length) {
               _hiddenChecks[view.field].forEach(({element, check}) =>
                 element.style.display = check(value) ? 'block' : 'none'
               );
             }
   
-            validity[view.field] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
+            validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
           }
 
           dispatchEvents('change');
@@ -296,7 +297,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         el.setRender?.(r);
 
         this.elements.push({
-          ...view.field && {key: view.field.replace(/^\//, '')},
+          ...key && {key},
           options: view.options,
           optionsCalled,
           element
@@ -318,6 +319,10 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         if (e.element.getValue) {
           e.getValue = e.element.getValue;
+        }
+
+        if (e.element.checkValidity) {
+          validity[e.key] = e.element.checkValidity();
         }
       });
     });

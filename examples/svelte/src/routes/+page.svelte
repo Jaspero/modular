@@ -15,7 +15,7 @@
   let containerElement1: HTMLDivElement;
 
   const initialValue = {
-    title: 7,
+    title: '',
     meta: {
       title: 10
     }
