@@ -13,7 +13,7 @@ export interface ViewRow<Options, Fields extends keyof Options> {
 }
 
 export interface ModuleRender {
-  getValue: (elements: ModuleViewElement[]) => Promise<any>;
+  getValue: (elements?: ModuleViewElement[]) => Promise<any>;
   addEventListener: (event: Events, callback: (value?: any) => void) => void;
   save: (id?: string, elements?: ModuleViewElement[]) => Promise<void>;
   removeEventListener: (event: Events, callback: (value?: any) => void) => void;
