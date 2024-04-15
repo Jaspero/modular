@@ -1,3 +1,10 @@
+## [1.26.1](https://github.com/Jaspero/modular/compare/v1.26.0...v1.26.1) (2024-04-15)
+
+
+### Bug Fixes
+
+* elements i optional in getValue ([e75f331](https://github.com/Jaspero/modular/commit/e75f3314274ab905e0470f54480dc0d3618f319f))
+
 # [1.26.0](https://github.com/Jaspero/modular/compare/v1.25.2...v1.26.0) (2024-04-15)
 
 
