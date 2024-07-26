@@ -76,7 +76,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     container.style.display = 'flex';
     container.style.flexWrap = 'wrap';
 
-    const _eventCallbacks: Array<{event: string, callback: (value?: any) => void}> = [];
+    const _eventCallbacks: Array<{event: string, callback: (value?: any, elements?: ModuleViewElement[]) => void}> = [];
     const _hiddenChecks: {
       [key: string]: Array<{
         element: HTMLElement;
@@ -84,7 +84,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       }>
     } = {};
 
-    const addEventListener = (event: Events, callback: (value?: any) => void) => {
+    const addEventListener = (event: Events, callback: (value?: any, elements?: ModuleViewElement[]) => void) => {
       _eventCallbacks.push({event, callback});
     };
 
@@ -146,7 +146,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       const value = await getValue();
       _eventCallbacks.forEach(e => {
         if (e.event === event) {
-          e.callback(value);
+          e.callback(value, this.elements);
         }
       })
     }
