@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/Jaspero/modular/compare/v1.27.0...v1.28.0) (2024-07-26)
+
+
+### Features
+
+* emiting elements on event callback ([c0313f4](https://github.com/Jaspero/modular/commit/c0313f4b3c2e8ef85fbed321f674c0c6dc4b0c50))
+
 # [1.27.0](https://github.com/Jaspero/modular/compare/v1.26.1...v1.27.0) (2024-04-15)
 
 
