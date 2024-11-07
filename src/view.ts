@@ -149,7 +149,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           e.callback(value, this.elements);
         }
       })
-    }
+    };
 
     const save = async (
       id?: string,
@@ -160,7 +160,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           .filter(e => e.key)
           .map((e) => (e.save && e.save(id)))
       );
-    }
+    };
 
     const validity: {[key: string]: boolean} = {};
 
@@ -172,7 +172,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       }
 
       return true;
-    }
+    };
 
     const r: ModuleRender = {
       getValue,
@@ -249,7 +249,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
               );
             }
   
-            validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
+            if (element.style.display !== 'none') {
+              validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;  
+            } else {
+              validity[key] = true;
+            }
           }
 
           dispatchEvents('change');
@@ -321,7 +325,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           e.getValue = e.element.getValue;
         }
 
-        if (e.element.checkValidity) {
+        if (e.element.checkValidity && e.element.style.display !== 'none') {
           validity[e.key] = e.element.checkValidity();
         }
       });
