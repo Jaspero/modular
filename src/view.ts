@@ -81,6 +81,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       [key: string]: Array<{
         element: HTMLElement;
         check: (value?: any) => boolean;
+        hidden: boolean;
+        elementShell: HTMLElement;
       }>
     } = {};
 
@@ -202,7 +204,13 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
       for (const view of row.items) {
         const element = document.createElement(this.componentPrefix + (view.component as string));
+        const elementShell = document.createElement('div');
         const key = view.field ? view.field.replace(/^\//, '') : undefined;
+
+        elementShell.style.display = 'none';
+        elementShell.id = `hidden-${key}`;
+
+        let hidden = false;
 
         if (!view.columns) {
           element.classList.add(`modular-util-col-12`);
@@ -224,17 +232,20 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         if (view.hidden) {
 
+          hidden = !view.hidden.check(instance.value);
+
           view.hidden.deps.forEach(dep => {
             if (!_hiddenChecks[dep]) {
               _hiddenChecks[dep] = [];
             }
 
-            _hiddenChecks[dep].push({element, check: view.hidden!.check});
+            _hiddenChecks[dep].push({
+              element,
+              check: view.hidden!.check,
+              elementShell,
+              hidden
+            });
           });
-
-          if (!view.hidden.check(instance.value)) {
-            element.style.display = 'none';
-          }
         }
 
         element.style.padding = '0.5rem';
@@ -244,16 +255,23 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
           if (key) {
             if (_hiddenChecks[view.field]?.length) {
-              _hiddenChecks[view.field].forEach(({element, check}) =>
-                element.style.display = check(value) ? 'block' : 'none'
-              );
+              _hiddenChecks[view.field].forEach((item) => {
+
+                const check = item.check(value);
+
+                if (check) {
+                  if (item.hidden) {
+                    item.hidden = false;
+                    item.element.parentElement!.removeChild(item.element);
+                  }
+                } else if (!item.hidden) {
+                  item.hidden = true;
+                  item.elementShell.parentElement!.insertBefore(item.element, item.elementShell);
+                }
+              });
             }
   
-            if (element.style.display !== 'none') {
-              validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;  
-            } else {
-              validity[key] = true;
-            }
+            validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
           }
 
           dispatchEvents('change');
@@ -307,7 +325,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           element
         });
 
-        rowContainer.appendChild(element);
+        if (!hidden) {
+          rowContainer.appendChild(element);
+        }
+
+        rowContainer.appendChild(elementShell);
       }
 
       container.appendChild(rowContainer);
@@ -325,7 +347,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           e.getValue = e.element.getValue;
         }
 
-        if (e.element.checkValidity && e.element.style.display !== 'none') {
+        if (e.element.checkValidity) {
           validity[e.key] = e.element.checkValidity();
         }
       });
