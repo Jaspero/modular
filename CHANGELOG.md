@@ -1,3 +1,10 @@
+## [1.28.1](https://github.com/Jaspero/modular/compare/v1.28.0...v1.28.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* don't check validity on hidden elements ([a923493](https://github.com/Jaspero/modular/commit/a92349376f7abd8dd8e6574d55d330d18344d9c8))
+
 # [1.28.0](https://github.com/Jaspero/modular/compare/v1.27.0...v1.28.0) (2024-07-26)
 
 
