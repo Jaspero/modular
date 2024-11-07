@@ -27,6 +27,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@jaspero/web-components": "1.102.0"
+    "@jaspero/web-components": "1.172.5"
   }
 }

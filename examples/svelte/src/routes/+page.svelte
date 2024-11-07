@@ -9,17 +9,21 @@
   } from "@jaspero/modular";
   import { onMount } from "svelte";
   import "@jaspero/web-components/dist/input.wc.js";
+  import "@jaspero/web-components/dist/select.wc.js";
+  import "@jaspero/web-components/dist/select.css";
+  import "@jaspero/web-components/dist/input.css";
   import "@jaspero/web-components/dist/file-upload.wc.js";
+  import "@jaspero/web-components/dist/file-upload.css";
 
   let containerElement: HTMLDivElement;
   let containerElement1: HTMLDivElement;
 
   const initialValue = {
-    title: '',
+    title: "",
     meta: {
-      title: 10
-    }
-  }
+      title: 10,
+    },
+  };
 
   onMount(() => {
     // TODO: Better solution
@@ -38,12 +42,42 @@
         {
           items: [
             {
+              component: "jp-select",
+              field: "/type",
+              options: {
+                label: "Type",
+                options: [
+                  { value: "1", label: "Option 1" },
+                  { value: "2", label: "Option 2" },
+                  { value: "3", label: "Option 3" },
+                ],
+              },
+            },
+            {
+              component: "jp-select",
+              field: "/event",
+              options: {
+                label: "Event",
+                name: "event",
+                required: true,
+                options: [
+                  { value: "A", label: "Option 1" },
+                  { value: "B", label: "Option 2" },
+                  { value: "C", label: "Option 3" },
+                ],
+              },
+              hidden: {
+                deps: ["/type"],
+                check: (value: { type: string }) => value.type === "1",
+              },
+            },
+            {
               component: "jp-input",
               field: "/title",
               id: "title",
               options: {
                 label: "Title",
-                required: true
+                required: true,
               },
             },
             {
@@ -60,7 +94,7 @@
               options: {
                 label: "Meta Image",
               },
-            }
+            },
           ],
         },
       ],
@@ -94,7 +128,7 @@
               options: {
                 label: "Meta Keywords",
               },
-            }
+            },
           ],
         },
       ],
@@ -109,19 +143,26 @@
       console.log("value 1", value);
     });
 
-    const render2 = view2.render({
-      parentElement: containerElement1,
-      instance: instance2,
-    });
+    // const render2 = view2.render({
+    //   parentElement: containerElement1,
+    //   instance: instance2,
+    // });
 
-    render2.addEventListener("change", (value) => {
-      console.log("value 2", value);
-    });
+    // render2.addEventListener("change", (value) => {
+    //   console.log("value 2", value);
+    // });
   });
+
+  function submit() {
+    console.log('Submit')
+  }
 </script>
 
-<p>Form 1</p>
-<div bind:this={containerElement} />
-
+<form on:submit|preventDefault={submit}>
+  <p>Form 1</p>
+  <div bind:this={containerElement} />
+  <button type="submit">Submit</button>
+</form>
+<!-- 
 <p>Form 2</p>
-<div bind:this={containerElement1} />
+<div bind:this={containerElement1} /> -->

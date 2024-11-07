@@ -104,7 +104,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
       const values = await Promise.all(
         els
-          .map(e => e?.getValue!())
+          .map(e => e?.getValue?.())
       );
 
       const result: any = {};
@@ -262,11 +262,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
                 if (check) {
                   if (item.hidden) {
                     item.hidden = false;
-                    item.element.parentElement!.removeChild(item.element);
+                    item.elementShell.parentElement!.insertBefore(item.element, item.elementShell);
                   }
                 } else if (!item.hidden) {
                   item.hidden = true;
-                  item.elementShell.parentElement!.insertBefore(item.element, item.elementShell);
+                  item.element.parentElement!.removeChild(item.element);
                 }
               });
             }

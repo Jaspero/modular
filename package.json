@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"npm run dev\" \"npm run dev:examples:svelte\" \"npm run dev:components\"",
+    "start": "concurrently \"npm run dev\" \"npm run dev:examples:svelte\"",
     "dev": "rollup --watch -c rollup.config.js",
     "dev:examples:svelte": "npm run dev --prefix examples/svelte",
     "dev:components": "npm run dev:build --prefix components",
