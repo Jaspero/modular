@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/Jaspero/modular/compare/v1.29.0...v1.30.0) (2024-11-07)
+
+
+### Features
+
+* properly hidding and showing elements ([6175607](https://github.com/Jaspero/modular/commit/61756073221875f4ca6ee7ba5ae3a97c45525210))
+
 # [1.29.0](https://github.com/Jaspero/modular/compare/v1.28.1...v1.29.0) (2024-11-07)
 
 
