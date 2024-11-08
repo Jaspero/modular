@@ -1,3 +1,10 @@
+## [1.30.1](https://github.com/Jaspero/modular/compare/v1.30.0...v1.30.1) (2024-11-08)
+
+
+### Bug Fixes
+
+* better optimization for emitting events ([8f183c9](https://github.com/Jaspero/modular/commit/8f183c9b2f5d76d7641f20dc6a6e318588654d38))
+
 # [1.30.0](https://github.com/Jaspero/modular/compare/v1.29.0...v1.30.0) (2024-11-07)
 
 
