@@ -69,7 +69,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     container?: string
   }): ModuleRender {
     const {parentElement, instance} = options;
-    
+
     this.elements = [];
 
     const container = document.createElement('div');
@@ -79,6 +79,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
     const _eventCallbacks: Array<{event: string, callback: (value?: any, elements?: ModuleViewElement[]) => void}> = [];
     const _hiddenChecks: {
       [key: string]: Array<{
+        key: string;
         element: HTMLElement;
         check: (value?: any) => boolean;
         hidden: boolean;
@@ -100,11 +101,11 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
     const getValue = async (elements: ModuleViewElement[] = this.elements) => {
 
-      const els = elements.filter(e => e.key);
+      const els = elements.filter(e => e.key && e.getValue);
 
       const values = await Promise.all(
         els
-          .map(e => e?.getValue?.())
+          .map(e => e.getValue!())
       );
 
       const result: any = {};
@@ -115,7 +116,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         if (el.key) {
           const keys = el.key.split('/');
-        
+
           keys.reduce(
             (r: any, e, j) =>
               r[e] || (r[e] = isNaN(Number(keys[j + 1])) ? (keys.length - 1 == j ? value : {}) : []),
@@ -176,6 +177,47 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       return true;
     };
 
+    const createValueListener = (key: string, element: HTMLInputElement, view: View<Options, Fields>) =>
+      async () => {
+        const value = await getValue();
+
+        if (key) {
+          if (_hiddenChecks[view.field]?.length) {
+            _hiddenChecks[view.field].forEach((item) => {
+
+              const check = item.check(value);
+
+              if (check) {
+                if (item.hidden) {
+                  item.hidden = false;
+                  item.elementShell.parentElement!.insertBefore(item.element, item.elementShell);
+
+                  item.element.addEventListener('value', createValueListener(item.key, item.element as HTMLInputElement, view));
+
+                  /**
+                   * Wait for element to render in the DOM
+                   */
+                  setTimeout(() => {
+                    const el = this.elements.find(it => it.element === item.element);
+
+                    if (el) {
+                      el.getValue = (item.element as any).getValue;
+                    }
+                  });
+                }
+              } else if (!item.hidden) {
+                item.hidden = true;
+                item.element.parentElement!.removeChild(item.element);
+              }
+            });
+          }
+
+          validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
+        }
+
+        dispatchEvents('change');
+      }
+
     const r: ModuleRender = {
       getValue,
       addEventListener,
@@ -224,7 +266,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           if (view.columns?.tablet) {
             element.classList.add(`modular-util-col-m-${view.columns.tablet}`);
           }
- 
+
           if (view.columns?.mobile) {
             element.classList.add(`modular-util-col-s-${view.columns.mobile}`);
           }
@@ -240,6 +282,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
             }
 
             _hiddenChecks[dep].push({
+              key: key!,
               element,
               check: view.hidden!.check,
               elementShell,
@@ -250,33 +293,8 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
 
         element.style.padding = '0.5rem';
         element.style.boxSizing = 'border-box';
-        element.addEventListener('value', async () => {
-          const value = await getValue();
+        element.addEventListener('value', createValueListener(key!, element as HTMLInputElement, view));
 
-          if (key) {
-            if (_hiddenChecks[view.field]?.length) {
-              _hiddenChecks[view.field].forEach((item) => {
-
-                const check = item.check(value);
-
-                if (check) {
-                  if (item.hidden) {
-                    item.hidden = false;
-                    item.elementShell.parentElement!.insertBefore(item.element, item.elementShell);
-                  }
-                } else if (!item.hidden) {
-                  item.hidden = true;
-                  item.element.parentElement!.removeChild(item.element);
-                }
-              });
-            }
-  
-            validity[key] = (element as HTMLInputElement).checkValidity ? (element as HTMLInputElement).checkValidity() : true;
-          }
-
-          dispatchEvents('change');
-        });
-        
         let el = element as any;
         let optionsCalled = false;
 
@@ -284,7 +302,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           el.setOptions?.(view.options);
           optionsCalled = true;
         }
-        
+
         /**
          * If the element doesn't have a "setOptions" method
          * we make the assumption that all of the options should
@@ -304,7 +322,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           if (el.setValue) {
             el.setValue(entryValue);
           }
-          
+
           /**
            * If the element doesn't have a "setValue" method we again
            * assume it should be assigned to the element directly

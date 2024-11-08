@@ -8,6 +8,7 @@
     ModularView,
   } from "@jaspero/modular";
   import { onMount } from "svelte";
+  import './style.css';
   import "@jaspero/web-components/dist/input.wc.js";
   import "@jaspero/web-components/dist/select.wc.js";
   import "@jaspero/web-components/dist/select.css";
@@ -16,9 +17,9 @@
   import "@jaspero/web-components/dist/file-upload.css";
 
   let containerElement: HTMLDivElement;
-  let containerElement1: HTMLDivElement;
+  let render: any;
 
-  const initialValue = {
+  let initialValue = {
     title: "",
     meta: {
       title: 10,
@@ -33,7 +34,6 @@
     const schema = new ModularSchema({});
 
     const instance = schema.createInstance(initialValue);
-    const instance2 = schema.createInstance(initialValue);
 
     const view = new ModularView({
       componentPrefix: "",
@@ -42,119 +42,166 @@
         {
           items: [
             {
-              component: "jp-select",
-              field: "/type",
+              component: 'jp-input',
+              field: '/title',
               options: {
-                label: "Type",
-                options: [
-                  { value: "1", label: "Option 1" },
-                  { value: "2", label: "Option 2" },
-                  { value: "3", label: "Option 3" },
-                ],
-              },
+                label: 'Title',
+                name: 'title',
+                required: true
+              }
             },
             {
-              component: "jp-select",
-              field: "/event",
+              component: 'jp-select',
+              field: '/navigationType',
               options: {
-                label: "Event",
-                name: "event",
+                label: 'Navigation Type',
+                name: 'navigationType',
                 required: true,
                 options: [
-                  { value: "A", label: "Option 1" },
-                  { value: "B", label: "Option 2" },
-                  { value: "C", label: "Option 3" },
-                ],
+                  {
+                    label: 'Screen',
+                    value: 'screen'
+                  },
+                  {
+                    label: 'Brand',
+                    value: 'brand'
+                  }
+                ]
+              }
+            },
+            {
+              component: 'jp-select',
+              field: '/routeTo',
+              options: {
+                label: 'Route To',
+                name: 'routeTo',
+                required: true,
+                options: [
+                  { value: 'Settings', label: 'Settings' },
+                  { value: 'SearchStack', label: 'SearchStack' }
+                ]
               },
               hidden: {
-                deps: ["/type"],
-                check: (value: { type: string }) => value.type === "1",
-              },
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType !== 'brand'
+              }
             },
             {
-              component: "jp-input",
-              field: "/title",
-              id: "title",
+              component: 'jp-select',
+              field: '/screen',
               options: {
-                label: "Title",
+                label: 'Screen',
+                name: 'screen',
                 required: true,
+                options: [
+                  { value: 'Search', label: 'Search' },
+                  { value: 'SingleEvent', label: 'SingleEvent' }
+                ]
               },
+              hidden: {
+                deps: ['/routeTo'],
+                check: (value: { routeTo: string }) => value.routeTo === 'SearchStack'
+              }
             },
             {
-              component: "jp-input",
-              field: "/meta/title",
-              id: "meta.title",
+              component: 'jp-select',
+              field: '/paramId',
               options: {
-                label: "Meta Title",
+                label: 'Event',
+                name: 'paramId',
+                options: [{value: 'event', label: 'event'}]
               },
+              hidden: {
+                deps: ['/screen'],
+                check: (value: { screen: string }) => value.screen === 'SingleEvent'
+              }
             },
             {
-              component: "jp-file-upload",
-              field: "/meta/image",
+              component: 'jp-select',
+              field: '/brand',
               options: {
-                label: "Meta Image",
+                label: 'Brand',
+                name: 'brand',
+                required: true,
+                options: [{value: 'event', label: 'Brand'}]
               },
+              hidden: {
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType !== 'screen'
+              }
             },
+            {
+              component: 'jp-input',
+              field: '/promotionalTitle',
+              options: {
+                label: 'Promotional Title',
+                name: 'promotionalTitle',
+                required: true
+              },
+              hidden: {
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType !== 'screen'
+              }
+            },
+            {
+              component: 'jp-textarea',
+              field: '/promotionalDescription',
+              options: {
+                label: 'Promotional Description',
+                name: 'promotionalDescription',
+                required: true
+              },
+              hidden: {
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType !== 'screen'
+              }
+            },
+            {
+              component: 'jp-input',
+              field: '/promotionalImage',
+              options: {
+                label: 'Promotional Image',
+                name: 'promotionalImage',
+                required: true
+              },
+              hidden: {
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType !== 'screen'
+              }
+            },
+            {
+              component: 'jp-select',
+              field: '/event',
+              options: {
+                label: 'Brand Event',
+                name: 'event',
+                required: true,
+                options: [{value: 'event', label: 'event'}]
+              },
+              hidden: {
+                deps: ['/navigationType'],
+                check: (value: { navigationType: string }) => value.navigationType === 'brand'
+              }
+            }
           ],
         },
       ],
     });
 
-    const view2 = new ModularView({
-      componentPrefix: "",
-      schema,
-      views: [
-        {
-          items: [
-            {
-              component: "jp-input",
-              field: "/title",
-              id: "title",
-              options: {
-                label: "Title",
-              },
-            },
-            {
-              component: "jp-input",
-              field: "/meta/title",
-              id: "meta.title",
-              options: {
-                label: "Meta Title",
-              },
-            },
-            {
-              component: "jp-input",
-              field: "/meta/keywords",
-              options: {
-                label: "Meta Keywords",
-              },
-            },
-          ],
-        },
-      ],
-    });
-
-    const render = view.render({
+    render = view.render({
       parentElement: containerElement,
       instance,
     });
 
     render.addEventListener("change", (value) => {
       console.log("value 1", value);
+      initialValue = value;
     });
-
-    // const render2 = view2.render({
-    //   parentElement: containerElement1,
-    //   instance: instance2,
-    // });
-
-    // render2.addEventListener("change", (value) => {
-    //   console.log("value 2", value);
-    // });
   });
 
-  function submit() {
+  async function submit() {
     console.log('Submit')
+    console.log(222, await render.getValue())
   }
 </script>
 
