@@ -1,3 +1,10 @@
+## [1.30.2](https://github.com/Jaspero/modular/compare/v1.30.1...v1.30.2) (2024-12-01)
+
+
+### Bug Fixes
+
+* save method properly attached when items are conditionally rendered ([f57ef01](https://github.com/Jaspero/modular/commit/f57ef01990a4de470f2ec79c50662aec3f260dc4))
+
 ## [1.30.1](https://github.com/Jaspero/modular/compare/v1.30.0...v1.30.1) (2024-11-08)
 
 
