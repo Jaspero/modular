@@ -201,7 +201,14 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
                     const el = this.elements.find(it => it.element === item.element);
 
                     if (el) {
-                      el.getValue = (item.element as any).getValue;
+
+                      if ((item.element as any).getValue) {
+                        el.getValue = (item.element as any).getValue;
+                      }
+
+                      if ((item.element as any).save) {
+                        el.save = (item.element as any).save;
+                      }
                     }
                   });
                 }
