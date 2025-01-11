@@ -322,6 +322,14 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           }
         }
 
+        if (view.events) {
+          for (const key in view.events) {
+            if (view.events.hasOwnProperty(key)) {
+              element.addEventListener(key, view.events[key]);
+            }
+          }
+        }
+
         if (view.field) {
 
           const entryValue = get(instance.value, view.field);
