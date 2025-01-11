@@ -63,7 +63,7 @@ export interface ViewInterface<OPTIONS, FIELD extends keyof OPTIONS> {
   component: FIELD;
   options?: OPTIONS[FIELD];
   events: {
-    [key: string]: (...args: any[]) => void;
+    [key: string]: (element: HTMLElement, event: Event) => void;
   }
   columns?: {
     desktop?: number;

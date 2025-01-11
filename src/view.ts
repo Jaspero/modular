@@ -325,7 +325,9 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
         if (view.events) {
           for (const key in view.events) {
             if (view.events.hasOwnProperty(key)) {
-              element.addEventListener(key, view.events[key]);
+              element.addEventListener(key, (e: any) => {
+                view.events[key](element, e);
+              });
             }
           }
         }
