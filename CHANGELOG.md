@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/Jaspero/modular/compare/v1.30.2...v1.31.0) (2025-01-11)
+
+
+### Features
+
+* added way to attach event listeners to instantiated components ([8030b21](https://github.com/Jaspero/modular/commit/8030b21b79133b6b819d4ee124afa6161bcc678e))
+
 ## [1.30.2](https://github.com/Jaspero/modular/compare/v1.30.1...v1.30.2) (2024-12-01)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@jaspero/modular",
-  "version": "1.30.2",
+  "version": "1.31.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
