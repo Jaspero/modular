@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/Jaspero/modular/compare/v1.31.0...v1.32.0) (2025-01-11)
+
+
+### Features
+
+* returning element in event response ([8f6a530](https://github.com/Jaspero/modular/commit/8f6a53052ca5211a109e15340e649d9218ef7655))
+
 # [1.31.0](https://github.com/Jaspero/modular/compare/v1.30.2...v1.31.0) (2025-01-11)
 
 
