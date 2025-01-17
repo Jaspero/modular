@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/Jaspero/modular/compare/v1.33.0...v1.33.1) (2025-01-17)
+
+
+### Bug Fixes
+
+* allow for empty view.field ([d6b886e](https://github.com/Jaspero/modular/commit/d6b886ed3f1cffd597cb1f36adc351578387d8a7))
+
 # [1.33.0](https://github.com/Jaspero/modular/compare/v1.32.0...v1.33.0) (2025-01-17)
 
 
