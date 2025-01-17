@@ -28,7 +28,7 @@ export interface ModuleViewElement {
   element: HTMLElement;
   options?: any;
   optionsCalled: boolean;
-  save?: (id: any) => Promise<void>;
+  save?: (id: any, value?: any) => Promise<void>;
   getValue?: () => any;
 };
 
@@ -158,11 +158,21 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       id?: string,
       elements: ModuleViewElement[] = this.elements
     ) => {
+
+      const data = await getValue(elements);
+
       await Promise.all(
         elements
           .filter(e => e.key)
-          .map((e) => (e.save && e.save(id)))
+          .map((e) =>
+            e.save && e.save(
+              id,
+              data
+            )
+          )
       );
+
+      return data;
     };
 
     const validity: {[key: string]: boolean} = {};
