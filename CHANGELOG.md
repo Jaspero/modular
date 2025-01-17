@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/Jaspero/modular/compare/v1.32.0...v1.33.0) (2025-01-17)
+
+
+### Features
+
+* providing value on save method ([edf8aff](https://github.com/Jaspero/modular/commit/edf8aff45003dde1834c385d69138896d0ca01be))
+
 # [1.32.0](https://github.com/Jaspero/modular/compare/v1.31.0...v1.32.0) (2025-01-11)
 
 
