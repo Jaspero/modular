@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-var hasExcape = /~/
-var escapeMatcher = /~[01]/g
+let hasExcape = /~/
+let escapeMatcher = /~[01]/g
 
 function escapeReplacer(m) {
   switch (m) {
@@ -19,8 +19,8 @@ function untilde(str) {
 }
 
 function setter(obj, pointer, value) {
-  var part
-  var hasNextPart
+  let part;
+  let hasNextPart;
 
   for (var p = 1, len = pointer.length; p < len;) {
     if (pointer[p] === 'constructor' || pointer[p] === 'prototype' || pointer[p] === '__proto__') return obj
@@ -72,12 +72,21 @@ export function get(obj, pointer) {
   if (typeof obj !== 'object') throw new Error('Invalid input object.')
   pointer = compilePointer(pointer)
   var len = pointer.length
-  if (len === 1) return obj
+  
+  if (len === 1) {
+    return obj
+  }
 
   for (var p = 1; p < len;) {
     obj = obj[untilde(pointer[p++])]
-    if (len === p) return obj
-    if (typeof obj !== 'object' || obj === null) return undefined
+    
+    if (len === p) {
+      return obj;
+    }
+
+    if (typeof obj !== 'object' || obj === null) {
+      return undefined;
+    }
   }
 }
 
