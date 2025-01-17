@@ -264,7 +264,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
       for (const view of row.items) {
         const element = document.createElement(this.componentPrefix + (view.component as string));
         const elementShell = document.createElement('div');
-        const key = view.field ? view.field.replace(/^\//, '') : undefined;
+        const key = (view.field || view.field === '') ? view.field.replace(/^\//, '') : undefined;
 
         elementShell.style.display = 'none';
         elementShell.id = `hidden-${key}`;
@@ -342,7 +342,7 @@ export class ModularView<Options = ComponentOptions, Fields extends keyof Option
           }
         }
 
-        if (view.field) {
+        if (view.field || view.field === '') {
 
           const entryValue = get(instance.value, view.field);
 
